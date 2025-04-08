@@ -1,0 +1,32 @@
+[
+    {
+        "keyword": "avon true",
+        "category": "makeup",
+        "description": "Avon's makeup line"
+    },
+    {
+        "keyword": "avon naturals",
+        "category": "body care",
+        "description": "Natural ingredients body care line"
+    },
+    {
+        "keyword": "avon care",
+        "category": "skincare",
+        "description": "Basic skincare line"
+    },
+    {
+        "keyword": "anew clinical",
+        "category": "skincare",
+        "description": "Advanced anti-aging skincare"
+    },
+    {
+        "keyword": "avon representative",
+        "category": "sales",
+        "description": "Person who sells Avon products"
+    },
+    "avon brochure",
+    "avon campaign",
+    "avon order",
+    "avon delivery",
+    "avon discount"
+]
