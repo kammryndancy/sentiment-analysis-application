@@ -1,12 +1,13 @@
 # sentiment-analysis-scraper
 A data scraping module for social media platforms
 
-## Facebook Scraper for Avon Product Comments
+## Node.js API for Facebook Sentiment Analysis
 
-This module scrapes Facebook pages for posts and comments, then filters and stores comments related to Avon products in a MongoDB database.
+This module provides a RESTful API for scraping Facebook pages for posts and comments, then filtering and storing comments related to Avon products in a MongoDB database.
 
 ### Features
 
+- RESTful API for scraping and data management
 - Scrape posts from multiple Facebook pages using page IDs
 - Extract all comments from these posts
 - Filter comments for Avon product-related content using keyword matching
@@ -19,7 +20,7 @@ This module scrapes Facebook pages for posts and comments, then filters and stor
 
 ### Requirements
 
-- Python 3.7+
+- Node.js 14+
 - Facebook Developer Account and Access Token
 - MongoDB (local or cloud instance)
 
@@ -33,87 +34,91 @@ This module scrapes Facebook pages for posts and comments, then filters and stor
 
 2. Install required dependencies:
    ```
-   pip install -r requirements.txt
+   npm install
    ```
 
 3. Configure your environment variables:
    - Copy `.env.example` to `.env`
-   - Add your Facebook access token and MongoDB connection details
+   - Add your Facebook app ID, app secret, access token, and MongoDB connection details
 
 ### Usage
 
-The scraper uses a command-line interface with several subcommands:
-
-#### Managing Facebook Pages
-
-Add a Facebook page to the database:
+Start the API server:
 ```
-python run_scraper.py add-page AvonInsider
+npm start
 ```
 
-With optional name and description:
+For development with auto-restart:
 ```
-python run_scraper.py add-page AvonInsider --name "Avon Insider" --description "Official Avon page"
-```
-
-Import multiple page IDs from a JSON file:
-```
-python run_scraper.py import-pages page_ids.json
+npm run dev
 ```
 
-List all Facebook pages stored in the database:
-```
-python run_scraper.py list-pages
-```
+### API Endpoints
 
-Remove a Facebook page from the database:
-```
-python run_scraper.py remove-page AvonInsider
-```
+#### Page Management
 
-#### Managing Keywords
+- **GET /api/pages** - List all Facebook pages
+- **POST /api/pages** - Add a new Facebook page
+  ```json
+  {
+    "pageId": "AvonInsider",
+    "name": "Avon Insider",
+    "description": "Official Avon page"
+  }
+  ```
+- **DELETE /api/pages/:pageId** - Remove a Facebook page
+- **POST /api/pages/import** - Import multiple page IDs
+  ```json
+  {
+    "pageIds": ["AvonInsider", "AvonUK", "AvonUSA"]
+  }
+  ```
 
-Add a keyword to the database:
-```
-python run_scraper.py add-keyword "avon lipstick"
-```
+#### Keyword Management
 
-With category and description:
-```
-python run_scraper.py add-keyword "avon true" --category "makeup" --description "Avon's makeup line"
-```
+- **GET /api/keywords** - List all keywords
+- **POST /api/keywords** - Add a new keyword
+  ```json
+  {
+    "keyword": "avon true",
+    "category": "makeup",
+    "description": "Avon's makeup line"
+  }
+  ```
+- **DELETE /api/keywords/:keyword** - Remove a keyword
+- **POST /api/keywords/import** - Import multiple keywords
+  ```json
+  {
+    "keywords": [
+      {
+        "keyword": "avon true",
+        "category": "makeup",
+        "description": "Avon's makeup line"
+      },
+      "avon brochure",
+      "avon campaign"
+    ]
+  }
+  ```
 
-Import keywords from a JSON file:
-```
-python run_scraper.py import-keywords keywords.json
-```
+#### Scraper Operations
 
-List all keywords in the database:
-```
-python run_scraper.py list-keywords
-```
-
-Remove a keyword from the database:
-```
-python run_scraper.py remove-keyword "avon lipstick"
-```
-
-#### Running the Scraper
-
-Scrape all pages stored in the database:
-```
-python run_scraper.py scrape
-```
-
-Scrape specific pages (overrides stored pages):
-```
-python run_scraper.py scrape --ids AvonInsider AvonUK
-```
-
-Specify how many days back to scrape:
-```
-python run_scraper.py scrape --days 14
-```
+- **POST /api/scraper/run** - Run the scraper
+  ```json
+  {
+    "pageIds": ["AvonInsider", "AvonUK"],  // Optional, uses all pages if not provided
+    "daysBack": 30  // Optional, defaults to 30
+  }
+  ```
+- **GET /api/scraper/status** - Get scraper status (last run times)
+- **GET /api/scraper/comments** - Get Avon-related comments
+  - Query parameters:
+    - `pageId` - Filter by page ID
+    - `startDate` - Filter by start date (ISO format)
+    - `endDate` - Filter by end date (ISO format)
+    - `limit` - Limit results (default: 100)
+    - `skip` - Skip results for pagination (default: 0)
+- **GET /api/scraper/stats** - Get statistics about the scraped data
 
 ### MongoDB Structure
 
