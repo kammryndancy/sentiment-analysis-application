@@ -105,13 +105,18 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Start server only if this file is run directly, not when imported by tests
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
 
 // Handle process termination
 process.on('SIGINT', async () => {
   console.log('Shutting down server...');
   process.exit(0);
 });
+
+// Export app for testing
+module.exports = { app };
