@@ -3,6 +3,7 @@ const FacebookScraper = require('../services/facebookScraper');
 exports.listKeywords = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const keywords = await scraper.listKeywords();
     res.json({ success: true, data: keywords });
   } catch (error) {
@@ -14,6 +15,7 @@ exports.listKeywords = async (req, res) => {
 exports.addKeyword = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const { keyword, category, description } = req.body;
 
     if (!keyword) {
@@ -36,6 +38,7 @@ exports.addKeyword = async (req, res) => {
 exports.removeKeyword = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const { keyword } = req.params;
     const result = await scraper.removeKeyword(keyword);
 
@@ -53,6 +56,7 @@ exports.removeKeyword = async (req, res) => {
 exports.importKeywords = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const { keywords } = req.body;
 
     if (!keywords || !Array.isArray(keywords)) {

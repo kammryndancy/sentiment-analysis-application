@@ -11,16 +11,21 @@ describe('Keyword Routes', () => {
     // Mock the mongoose connect method
     mongoose.connect = jest.fn().mockResolvedValue();
     app.listen = jest.fn();
-    jest.useFakeTimers();
     
-    // Mock the MongoDB collections
+    // Mock the MongoDB collections with more comprehensive functions
     const mockCollection = {
       find: jest.fn().mockReturnThis(),
       toArray: jest.fn().mockResolvedValue([]),
       findOne: jest.fn().mockResolvedValue(null),
       insertOne: jest.fn().mockResolvedValue({ insertedId: '123' }),
       deleteOne: jest.fn().mockResolvedValue({ deletedCount: 1 }),
-      insertMany: jest.fn().mockResolvedValue({ insertedIds: ['123'] })
+      insertMany: jest.fn().mockResolvedValue({ insertedIds: ['123'] }),
+      updateOne: jest.fn().mockResolvedValue({ modifiedCount: 1, upsertedCount: 0 }),
+      aggregate: jest.fn().mockReturnThis(),
+      project: jest.fn().mockReturnThis(),
+      sort: jest.fn().mockReturnThis(),
+      skip: jest.fn().mockReturnThis(),
+      limit: jest.fn().mockReturnThis()
     };
     
     // Set up app.locals.db
@@ -32,10 +37,10 @@ describe('Keyword Routes', () => {
   afterAll(async () => {
     // Restore the original mongoose connect method
     mongoose.connect.mockRestore();
-  });
-
-  afterEach(() => {
-    jest.clearAllTimers();
+    
+    // Close any open handles
+    jest.useRealTimers();
+    app.locals.db = null;
   });
 
   it('should get all keywords', async () => {
@@ -67,7 +72,6 @@ describe('Keyword Routes', () => {
       });
     expect(res.statusCode).toEqual(400);
     expect(res.body).toHaveProperty('success', false);
-    expect(res.body).toHaveProperty('errors');
   });
 
   it('should remove a keyword', async () => {

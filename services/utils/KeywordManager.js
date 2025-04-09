@@ -7,15 +7,16 @@ class KeywordManager {
     this.nlpManager = new NlpManager({ languages: ['en'] });
     this.avonPattern = null;
     
-    // Initialize keywords
-    this.initializeKeywords();
+    // Initialize keywords asynchronously
+    this.compileKeywordPattern();
   }
   
   // Initialize keywords from database or use defaults if none exist
   async initializeKeywords() {
     try {
       // Check if we have keywords in the database
-      const keywordsCount = await this.keywords_collection.countDocuments({});
+      const keywords = await this.keywords_collection.find({}).toArray();
+      const keywordsCount = keywords.length;
       
       if (keywordsCount === 0) {
         // No keywords in database, add default keywords

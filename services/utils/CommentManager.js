@@ -1,7 +1,7 @@
 class CommentManager {
   constructor(db, keywordManager) {
     this.db = db;
-    this.collection = db.collection(process.env.MONGO_COLLECTION);
+    this.collection = db.collection(process.env.MONGO_COLLECTION || 'comments');
     this.keywordManager = keywordManager;
   }
 

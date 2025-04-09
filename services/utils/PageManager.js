@@ -9,6 +9,104 @@ class PageManager {
     this.fbPromise = fbPromise;
   }
 
+  // Initialize page IDs from JSON file or use defaults if none exist
+  async initializePageIds() {
+    try {
+      // Check if we have page IDs in the database
+      const pages = await this.page_ids_collection.find({}).toArray();
+      
+      if (pages.length === 0) {
+        // No page IDs in database, load from JSON file
+        const fs = require('fs');
+        const path = require('path');
+        const defaultPagesPath = path.resolve(process.cwd(), 'page_ids.json');
+        
+        if (fs.existsSync(defaultPagesPath)) {
+          // Load page IDs from JSON file
+          const pageIdsData = fs.readFileSync(defaultPagesPath, 'utf8');
+          const pageIds = JSON.parse(pageIdsData);
+          
+          console.log(`Found ${pageIds.length} page IDs in JSON file. Adding to database...`);
+          
+          const added = [];
+          for (const pageId of pageIds) {
+            const result = await this.addPageId(pageId);
+            if (result.success) {
+              added.push(pageId);
+            }
+          }
+          
+          console.log(`Added ${added.length} page IDs to database from JSON file.`);
+          return {
+            success: true,
+            message: `Initialized database with ${added.length} page IDs.`,
+            added
+          };
+        } else {
+          console.warn('No page_ids.json file found in the root directory.');
+          return {
+            success: false,
+            message: 'No page_ids.json file found in the root directory.'
+          };
+        }
+      } else {
+        // We already have page IDs in the database, let's check for new ones in the JSON
+        const fs = require('fs');
+        const path = require('path');
+        const defaultPagesPath = path.resolve(process.cwd(), 'page_ids.json');
+        
+        if (fs.existsSync(defaultPagesPath)) {
+          // Load page IDs from JSON file
+          const pageIdsData = fs.readFileSync(defaultPagesPath, 'utf8');
+          const pageIds = JSON.parse(pageIdsData);
+          
+          // Get existing page IDs
+          const existingPageIds = pages.map(p => p.page_id);
+          
+          // Find new page IDs
+          const newPageIds = pageIds.filter(id => !existingPageIds.includes(id));
+          
+          if (newPageIds.length > 0) {
+            console.log(`Found ${newPageIds.length} new page IDs in JSON file. Adding to database...`);
+            
+            const added = [];
+            for (const pageId of newPageIds) {
+              const result = await this.addPageId(pageId);
+              if (result.success) {
+                added.push(pageId);
+              }
+            }
+            
+            console.log(`Added ${added.length} new page IDs to database from JSON file.`);
+            return {
+              success: true,
+              message: `Added ${added.length} new page IDs to database.`,
+              added
+            };
+          } else {
+            console.log('No new page IDs found in JSON file.');
+            return {
+              success: true,
+              message: `Database already has all ${pageIds.length} page IDs from JSON file.`
+            };
+          }
+        } else {
+          console.log(`Database already has ${pages.length} page IDs. No page_ids.json file found.`);
+          return {
+            success: true,
+            message: `Database already has ${pages.length} page IDs.`
+          };
+        }
+      }
+    } catch (error) {
+      console.error('Error initializing page IDs:', error);
+      return {
+        success: false,
+        message: error.message
+      };
+    }
+  }
+
   // Add a page ID to the database
   async addPageId(pageId, name = null, description = null) {
     try {

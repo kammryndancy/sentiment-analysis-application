@@ -11,9 +11,8 @@ describe('Scraper Routes', () => {
     // Mock the mongoose connect method
     mongoose.connect = jest.fn().mockResolvedValue();
     app.listen = jest.fn();
-    jest.useFakeTimers();
     
-    // Mock the MongoDB collections
+    // Mock the MongoDB collections with comprehensive methods
     const mockCollection = {
       find: jest.fn().mockReturnThis(),
       toArray: jest.fn().mockResolvedValue([]),
@@ -21,7 +20,14 @@ describe('Scraper Routes', () => {
       insertOne: jest.fn().mockResolvedValue({ insertedId: '123' }),
       deleteOne: jest.fn().mockResolvedValue({ deletedCount: 1 }),
       insertMany: jest.fn().mockResolvedValue({ insertedIds: ['123'] }),
-      countDocuments: jest.fn().mockResolvedValue(0)
+      updateOne: jest.fn().mockResolvedValue({ modifiedCount: 1, upsertedCount: 0 }),
+      aggregate: jest.fn().mockReturnValue({
+        toArray: jest.fn().mockResolvedValue([])
+      }),
+      project: jest.fn().mockReturnThis(),
+      sort: jest.fn().mockReturnThis(),
+      skip: jest.fn().mockReturnThis(),
+      limit: jest.fn().mockReturnThis()
     };
     
     // Set up app.locals.db
@@ -33,10 +39,9 @@ describe('Scraper Routes', () => {
   afterAll(async () => {
     // Disconnect from the test database
     mongoose.connect.mockRestore();
-  });
-
-  afterEach(() => {
-    jest.clearAllTimers();
+    
+    // Clean up
+    app.locals.db = null;
   });
 
   it('should run the scraper', async () => {

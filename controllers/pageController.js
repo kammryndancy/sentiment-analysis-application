@@ -3,6 +3,7 @@ const FacebookScraper = require('../services/facebookScraper');
 exports.listPages = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const pages = await scraper.listPages();
     res.json({ success: true, data: pages });
   } catch (error) {
@@ -14,6 +15,7 @@ exports.listPages = async (req, res) => {
 exports.addPage = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const { pageId, name, description } = req.body;
 
     if (!pageId) {
@@ -36,6 +38,7 @@ exports.addPage = async (req, res) => {
 exports.removePage = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const { pageId } = req.params;
     const result = await scraper.removePageId(pageId);
 
@@ -53,6 +56,7 @@ exports.removePage = async (req, res) => {
 exports.importPages = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const { pageIds } = req.body;
 
     if (!pageIds || !Array.isArray(pageIds)) {

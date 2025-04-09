@@ -3,6 +3,7 @@ const FacebookScraper = require('../services/facebookScraper');
 exports.runScraper = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const { pageIds, daysBack = 30 } = req.body;
 
     // Start scraping in the background
@@ -26,6 +27,7 @@ exports.runScraper = async (req, res) => {
 exports.getScraperStatus = async (req, res) => {
   try {
     const scraper = new FacebookScraper(req.app.locals.db);
+    await scraper.initialize();
     const pages = await scraper.listPages();
 
     // Format the status information
@@ -83,7 +85,9 @@ exports.getComments = async (req, res) => {
       .limit(parseInt(limit))
       .toArray();
 
-    const total = await collection.countDocuments(query);
+    // Get count using find().toArray().length instead of countDocuments
+    const allItems = await collection.find(query).toArray();
+    const total = allItems.length;
 
     res.json({
       success: true,
@@ -106,11 +110,17 @@ exports.getStats = async (req, res) => {
     const db = req.app.locals.db;
     const collection = db.collection(process.env.MONGO_COLLECTION);
     const scraped_posts = db.collection('scraped_posts');
+    const page_ids = db.collection('page_ids');
 
-    // Get total counts
-    const totalComments = await collection.countDocuments();
-    const totalPosts = await scraped_posts.countDocuments();
-    const totalPages = await db.collection('page_ids').countDocuments();
+    // Get total counts using find().toArray().length instead of countDocuments
+    const allComments = await collection.find({}).toArray();
+    const totalComments = allComments.length;
+    
+    const allPosts = await scraped_posts.find({}).toArray();
+    const totalPosts = allPosts.length;
+    
+    const allPages = await page_ids.find({}).toArray();
+    const totalPages = allPages.length;
 
     // Get comments per page
     const commentsPerPage = await collection.aggregate([

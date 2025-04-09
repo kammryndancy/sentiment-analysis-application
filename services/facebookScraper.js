@@ -17,15 +17,20 @@ class FacebookScraper {
     
     FB.setAccessToken(process.env.FACEBOOK_ACCESS_TOKEN);
     
+    // Initialize the DB
+    this.db = db;
+    
     // Initialize utility managers
     this.keywordManager = new KeywordManager(db);
     this.pageManager = new PageManager(db, this.fbPromise.bind(this));
     this.commentManager = new CommentManager(db, this.keywordManager);
   }
   
-  // Initialize keywords from database or use defaults if none exist
-  async initializeKeywords() {
-    return this.keywordManager.initializeKeywords();
+  // Initialize all required dependencies
+  async initialize() {
+    await this.keywordManager.initializeKeywords();
+    await this.pageManager.initializePageIds();
+    return true;
   }
   
   // Check if the text contains Avon-related keywords
