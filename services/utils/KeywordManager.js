@@ -3,7 +3,7 @@ const { NlpManager } = require('node-nlp');
 class KeywordManager {
   constructor(db) {
     this.db = db;
-    this.keywords_collection = db.collection('keywords');
+    this.collection = db.collection('keywords');
     this.nlpManager = new NlpManager({ languages: ['en'] });
     this.avonPattern = null;
     
@@ -15,7 +15,7 @@ class KeywordManager {
   async initializeKeywords() {
     try {
       // Check if we have keywords in the database
-      const keywords = await this.keywords_collection.find({}).toArray();
+      const keywords = await this.collection.find({}).toArray();
       const keywordsCount = keywords.length;
       
       if (keywordsCount === 0) {
@@ -45,14 +45,14 @@ class KeywordManager {
   async compileKeywordPattern() {
     try {
       // Get all keywords from database
-      const keywords = await this.getKeywords();
+      const keywords = await this.getAllKeywords();
       
       if (!keywords || keywords.length === 0) {
         // Fallback to a basic pattern if no keywords are found
         this.avonPattern = new RegExp('\\bavon\\b', 'i');
       } else {
         // Compile regex pattern for faster matching
-        this.avonPattern = new RegExp('\\b(' + keywords.join('|') + ')\\b', 'i');
+        this.avonPattern = new RegExp('\\b(' + keywords.map(k => k.keyword).join('|') + ')\\b', 'i');
       }
     } catch (error) {
       console.error('Error compiling keyword pattern:', error);
@@ -62,131 +62,149 @@ class KeywordManager {
   }
   
   // Check if the text contains Avon-related keywords
-  isAvonRelated(text) {
+  async isAvonRelated(text) {
     if (!text) {
       return false;
     }
+    
+    if (!this.avonPattern) {
+      await this.compileKeywordPattern();
+    }
+    
     return this.avonPattern.test(text);
   }
   
   // Add a keyword to the database
-  async addKeyword(keyword, category = null, description = null, isDefault = false) {
+  async addKeyword(keywordData) {
     try {
+      // Validation
+      if (!keywordData || (!keywordData.keyword && typeof keywordData !== 'string')) {
+        return { 
+          success: false, 
+          error: 'Keyword is required' 
+        };
+      }
+      
+      const keyword = typeof keywordData === 'string' ? 
+        keywordData : keywordData.keyword;
+      
+      const category = typeof keywordData === 'object' ? 
+        keywordData.category || null : null;
+      
+      const description = typeof keywordData === 'object' ? 
+        keywordData.description || null : null;
+      
+      // Check if keyword already exists
+      const existing = await this.collection.findOne({ 
+        keyword: keyword.toLowerCase().trim() 
+      });
+      
+      if (existing) {
+        return { 
+          success: false, 
+          error: 'Keyword already exists' 
+        };
+      }
+      
       // Prepare document for MongoDB
       const keywordDoc = {
         keyword: keyword.toLowerCase().trim(),
         category,
         description,
-        is_default: isDefault,
         added_at: new Date(),
         last_updated: new Date()
       };
       
-      // Insert or update keyword in MongoDB
-      const result = await this.keywords_collection.updateOne(
-        { keyword: keywordDoc.keyword },
-        { $set: keywordDoc },
-        { upsert: true }
-      );
+      // Insert keyword in MongoDB
+      await this.collection.insertOne(keywordDoc);
       
       // Recompile the pattern with the new keyword
       await this.compileKeywordPattern();
       
       return {
         success: true,
-        message: result.upsertedCount > 0 
-          ? `Added new keyword: ${keywordDoc.keyword}` 
-          : `Updated existing keyword: ${keywordDoc.keyword}`
+        message: `Added new keyword: ${keywordDoc.keyword}`
       };
     } catch (error) {
-      console.error('Error adding keyword:', error);
-      return { success: false, message: error.message };
+      throw new Error(`Error adding keyword: ${error.message}`);
     }
   }
   
   // Remove a keyword from the database
   async removeKeyword(keyword) {
     try {
-      const result = await this.keywords_collection.deleteOne({ 
+      // Validation
+      if (!keyword) {
+        return { 
+          success: false, 
+          error: 'Keyword is required' 
+        };
+      }
+      
+      const result = await this.collection.deleteOne({ 
         keyword: keyword.toLowerCase().trim() 
       });
       
       if (result.deletedCount === 0) {
-        return { success: false, message: `Keyword not found: ${keyword}` };
+        return { 
+          success: false, 
+          error: 'Keyword not found' 
+        };
       }
       
       // Recompile the pattern without the removed keyword
       await this.compileKeywordPattern();
       
-      return { success: true, message: `Removed keyword: ${keyword}` };
+      return { 
+        success: true, 
+        message: `Removed keyword: ${keyword}` 
+      };
     } catch (error) {
-      console.error('Error removing keyword:', error);
-      return { success: false, message: error.message };
+      throw new Error(`Error removing keyword: ${error.message}`);
     }
   }
   
   // Get all keywords from the database
-  async getKeywords() {
+  async getAllKeywords() {
     try {
-      const keywords = await this.keywords_collection.find({}).toArray();
-      return keywords.map(k => k.keyword);
+      return await this.collection.find({}).toArray();
     } catch (error) {
-      console.error('Error getting keywords:', error);
-      return [];
-    }
-  }
-  
-  // List all keywords in the database with details
-  async listKeywords() {
-    try {
-      return await this.keywords_collection.find({}).toArray();
-    } catch (error) {
-      console.error('Error listing keywords:', error);
-      return [];
+      throw new Error(`Error getting keywords: ${error.message}`);
     }
   }
   
   // Import a list of keywords to the database
   async importKeywords(keywordsList) {
     try {
-      let addedCount = 0;
-      let updatedCount = 0;
+      // Validation
+      if (!keywordsList || !Array.isArray(keywordsList) || keywordsList.length === 0) {
+        return { 
+          success: false, 
+          error: 'No keywords provided' 
+        };
+      }
       
+      // Check that all items have keyword field
       for (const item of keywordsList) {
-        if (typeof item === 'string') {
-          // Simple string keyword
-          const result = await this.addKeyword(item);
-          if (result.success) {
-            if (result.message.includes('Added')) {
-              addedCount++;
-            } else {
-              updatedCount++;
-            }
-          }
-        } else if (typeof item === 'object') {
-          // Object with keyword, category, and description
-          const result = await this.addKeyword(
-            item.keyword, 
-            item.category || null, 
-            item.description || null
-          );
-          if (result.success) {
-            if (result.message.includes('Added')) {
-              addedCount++;
-            } else {
-              updatedCount++;
-            }
-          }
+        if (typeof item === 'object' && !item.keyword) {
+          return { 
+            success: false, 
+            error: 'All keywords must have a keyword field' 
+          };
         }
       }
       
+      await this.collection.insertMany(keywordsList);
+      
+      // Recompile the pattern
+      await this.compileKeywordPattern();
+      
       return {
         success: true,
-        message: `Imported ${addedCount} new keywords and updated ${updatedCount} existing keywords.`
+        message: `Imported ${keywordsList.length} keywords successfully.`
       };
     } catch (error) {
-      console.error('Error importing keywords:', error);
-      return { success: false, message: error.message };
+      throw new Error(`Error importing keywords: ${error.message}`);
     }
   }
 }

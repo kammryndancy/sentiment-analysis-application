@@ -1,0 +1,131 @@
+// Mock modules before requiring any other modules
+jest.mock('natural', () => ({
+  PorterStemmer: {
+    stem: jest.fn(word => `${word}_stemmed`)
+  },
+  WordTokenizer: jest.fn().mockImplementation(() => ({
+    tokenize: jest.fn(text => text.split(' '))
+  })),
+  SentimentAnalyzer: jest.fn().mockImplementation(() => ({
+    getSentiment: jest.fn(() => 0.5)
+  }))
+}));
+
+jest.mock('../../../services/utils/dataProcessing/text-preprocessor-shim', () => ({
+  preprocessText: jest.fn(text => `preprocessed_${text}`)
+}));
+
+jest.mock('../../../services/utils/anonymization/anonymizer-shim', () => ({
+  anonymizeData: jest.fn(text => `anonymized_${text}`)
+}));
+
+jest.mock('sentiment', () => {
+  return jest.fn().mockImplementation(() => ({
+    analyze: jest.fn(() => ({
+      score: 1,
+      comparative: 0.5,
+      tokens: ['test', 'comment'],
+      words: ['test'],
+      positive: ['test'],
+      negative: []
+    }))
+  }));
+});
+
+const { jest } = require('@jest/globals');
+const DataProcessor = require('../../../services/utils/dataProcessorManagerShim');
+const { preprocessText } = require('../../../services/utils/dataProcessing/text-preprocessor-shim');
+const { anonymizeData } = require('../../../services/utils/anonymization/anonymizer-shim');
+
+describe('DataProcessor', () => {
+  let dataProcessor;
+  let mockDb;
+
+  beforeEach(() => {
+    // Reset mocks
+    jest.clearAllMocks();
+    
+    // Set up mock db
+    mockDb = {
+      collection: jest.fn().mockReturnValue({
+        find: jest.fn().mockReturnThis(),
+        toArray: jest.fn().mockResolvedValue([
+          { _id: '1', content: 'Test comment 1', postId: 'post1' },
+          { _id: '2', content: 'Test comment 2', postId: 'post2' }
+        ]),
+        insertMany: jest.fn().mockResolvedValue({ insertedCount: 2 }),
+        aggregate: jest.fn().mockReturnThis(),
+        project: jest.fn().mockReturnThis(),
+        group: jest.fn().mockReturnThis(),
+        limit: jest.fn().mockReturnThis(),
+        sort: jest.fn().mockReturnThis(),
+        countDocuments: jest.fn().mockResolvedValue(10)
+      })
+    };
+
+    // Set environment variables
+    process.env.MONGO_URI = 'mongodb://localhost:27017';
+    process.env.MONGO_DB = 'test_db';
+    process.env.MONGO_COLLECTION = 'comments';
+
+    // Create instance
+    dataProcessor = new DataProcessor(mockDb);
+  });
+
+  describe('processComment', () => {
+    it('should process a comment correctly', async () => {
+      const mockComment = {
+        _id: 'comment123',
+        content: 'Test comment',
+        postId: 'post123'
+      };
+
+      const result = await dataProcessor.processComment(mockComment);
+
+      expect(result).toBeDefined();
+      expect(preprocessText).toHaveBeenCalled();
+      expect(anonymizeData).toHaveBeenCalled();
+    });
+  });
+
+  describe('processAllComments', () => {
+    it('should process all comments', async () => {
+      const result = await dataProcessor.processAllComments();
+
+      expect(result.success).toBe(true);
+      expect(mockDb.collection).toHaveBeenCalledWith('comments');
+      expect(mockDb.collection).toHaveBeenCalledWith('processed_comments');
+    });
+
+    it('should handle errors', async () => {
+      mockDb.collection().find.mockImplementation(() => {
+        throw new Error('Test error');
+      });
+
+      const result = await dataProcessor.processAllComments();
+
+      expect(result.success).toBe(false);
+      expect(result.error).toBeDefined();
+    });
+  });
+
+  describe('getStats', () => {
+    it('should return processing stats', async () => {
+      const stats = await dataProcessor.getStats();
+
+      expect(stats.success).toBe(true);
+      expect(stats).toHaveProperty('totalComments');
+      expect(stats).toHaveProperty('processedComments');
+      expect(mockDb.collection().countDocuments).toHaveBeenCalled();
+    });
+
+    it('should handle errors', async () => {
+      mockDb.collection().countDocuments.mockRejectedValue(new Error('Stats error'));
+
+      const stats = await dataProcessor.getStats();
+
+      expect(stats.success).toBe(false);
+      expect(stats.error).toBeDefined();
+    });
+  });
+});

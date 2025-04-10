@@ -1,99 +1,122 @@
-const FacebookScraper = require('../services/facebookScraper');
+const PageManager = require('../services/utils/PageManagerShim');
 
-exports.listPages = async (req, res) => {
+exports.getAllPages = async (req, res) => {
   try {
-    const scraper = new FacebookScraper(req.app.locals.db);
-    await scraper.initialize();
-    const pages = await scraper.listPages();
-    res.json({ success: true, data: pages });
+    const pageManager = req.app.locals.pageManager;
+    const pages = await pageManager.getAllPages();
+    res.status(200).json({
+      success: true,
+      data: pages
+    });
   } catch (error) {
     console.error('Error getting pages:', error);
-    res.status(500).json({ success: false, message: error.message });
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
   }
 };
 
 exports.addPage = async (req, res) => {
   try {
-    const scraper = new FacebookScraper(req.app.locals.db);
-    await scraper.initialize();
-    const { pageId, name, description } = req.body;
+    const pageManager = req.app.locals.pageManager;
+    const { page_id, name, description } = req.body;
 
-    if (!pageId) {
-      return res.status(400).json({ success: false, message: 'Page ID is required' });
+    if (!page_id || !name) {
+      return res.status(400).json({
+        success: false,
+        error: 'Both page_id and name are required'
+      });
     }
 
-    const result = await scraper.addPageId(pageId, name, description);
+    const result = await pageManager.addPage({ page_id, name, description });
 
     if (result.success) {
-      res.status(201).json(result);
+      res.status(201).json({
+        success: true,
+        message: 'Page added successfully',
+        data: result.page
+      });
     } else {
-      res.status(400).json(result);
+      res.status(400).json({
+        success: false,
+        error: result.error || 'Page already exists'
+      });
     }
   } catch (error) {
     console.error('Error adding page:', error);
-    res.status(500).json({ success: false, message: error.message });
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
   }
 };
 
 exports.removePage = async (req, res) => {
   try {
-    const scraper = new FacebookScraper(req.app.locals.db);
-    await scraper.initialize();
-    const { pageId } = req.params;
-    const result = await scraper.removePageId(pageId);
+    const pageManager = req.app.locals.pageManager;
+    const page_id = req.params.page_id;
+
+    if (!page_id) {
+      return res.status(400).json({
+        success: false,
+        error: 'Page ID is required'
+      });
+    }
+
+    const result = await pageManager.removePage(page_id);
 
     if (result.success) {
-      res.json(result);
+      res.status(200).json({
+        success: true,
+        message: 'Page removed successfully'
+      });
     } else {
-      res.status(404).json(result);
+      res.status(404).json({
+        success: false,
+        error: result.error || 'Page not found'
+      });
     }
   } catch (error) {
     console.error('Error removing page:', error);
-    res.status(500).json({ success: false, message: error.message });
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
   }
 };
 
 exports.importPages = async (req, res) => {
   try {
-    const scraper = new FacebookScraper(req.app.locals.db);
-    await scraper.initialize();
+    const pageManager = req.app.locals.pageManager;
     const { pageIds } = req.body;
 
     if (!pageIds || !Array.isArray(pageIds)) {
       return res.status(400).json({
         success: false,
-        message: 'Request body must contain a pageIds array'
+        error: 'pageIds array is required'
       });
     }
 
-    const results = {
-      success: true,
-      added: 0,
-      updated: 0,
-      failed: 0,
-      messages: []
-    };
+    const result = await pageManager.importPages(pageIds);
 
-    for (const pageId of pageIds) {
-      const result = await scraper.addPageId(pageId);
-
-      if (result.success) {
-        if (result.message.includes('Added')) {
-          results.added++;
-        } else {
-          results.updated++;
-        }
-      } else {
-        results.failed++;
-        results.messages.push(`Failed to add ${pageId}: ${result.message}`);
-      }
+    if (result.success) {
+      res.status(200).json({
+        success: true,
+        message: 'Pages imported successfully',
+        data: { imported: result.imported }
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: result.error || 'Failed to import pages'
+      });
     }
-
-    results.message = `Imported ${results.added} new pages and updated ${results.updated} existing pages. ${results.failed} failed.`;
-
-    res.status(201).json(results);
   } catch (error) {
     console.error('Error importing pages:', error);
-    res.status(500).json({ success: false, message: error.message });
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
   }
 };
