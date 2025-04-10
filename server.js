@@ -5,6 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
+const DataProcessor = require('./services/utils/dataProcessorManager').default; 
 
 // Load environment variables
 dotenv.config();
@@ -13,6 +14,7 @@ dotenv.config();
 const pageRoutes = require('./routes/pageRoutes');
 const keywordRoutes = require('./routes/keywordRoutes');
 const scraperRoutes = require('./routes/scraperRoutes');
+const dataProcessorRoutes = require('./routes/dataProcessorRoutes');
 
 // Initialize Express app
 const app = express();
@@ -31,11 +33,11 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(async () => {
   console.log('Connected to MongoDB');
 
-  const db = mongoose.connection.db;
-  app.locals.db = db;
+  const nativeDb = mongoose.connection.db; // Get native db object
+  app.locals.db = nativeDb; // Store native db object
 
   // Load initial data from JSON files
-  const loadInitialData = async () => {
+  const loadInitialData = async (db) => { // Pass native db object
     const pageIdsCollection = db.collection('page_ids');
     const keywordsCollection = db.collection('keywords');
 
@@ -66,15 +68,17 @@ mongoose.connect(process.env.MONGO_URI, {
     console.log('Keywords loaded and updated');
   };
 
-  await loadInitialData();
-}).catch(err => {
-  console.error('MongoDB connection error:', err);
-});
+  await loadInitialData(nativeDb); // Pass native db object
+
+  // Initialize DataProcessor
+  const dataProcessorInstance = new DataProcessor(nativeDb); // Pass the native db instance
+  app.locals.dataProcessor = dataProcessorInstance; // Make instance available to routes
 
 // Routes
 app.use('/api/pages', pageRoutes);
 app.use('/api/keywords', keywordRoutes);
 app.use('/api/scraper', scraperRoutes);
+app.use('/api/dataProcessor', dataProcessorRoutes);
 
 // Health check endpoint
 app.get('/health', async (req, res) => {
@@ -94,7 +98,9 @@ app.get('/', (req, res) => {
     message: 'Facebook Sentiment Analysis Scraper API',
     endpoints: {
       pages: '/api/pages',
-      keywords: '/api/keywords'
+      keywords: '/api/keywords',
+      scraper: '/api/scraper',
+      dataProcessor: '/api/dataProcessor'
     }
   });
 });
@@ -120,3 +126,6 @@ process.on('SIGINT', async () => {
 
 // Export app for testing
 module.exports = { app };
+}).catch(err => {
+  console.error('MongoDB connection error:', err);
+});

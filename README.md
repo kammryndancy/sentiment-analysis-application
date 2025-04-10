@@ -120,6 +120,22 @@ npm run dev
     - `skip` - Skip results for pagination (default: 0)
 - **GET /api/scraper/stats** - Get statistics about the scraped data
 
+### Data Processing
+
+The application includes a data processing module for cleaning, anonymizing, and analyzing text data.
+
+### DataProcessorManager
+
+The `DataProcessorManager` class in `services/utils/dataProcessorManager.js` is responsible for orchestrating the data processing workflow. It utilizes the following utility functions:
+
+### Text Preprocessing
+
+The `text-preprocessor.js` module in `services/utils/dataProcessing/` provides functions for text normalization, tokenization, stopword removal, and lemmatization.
+
+### Anonymization
+
+The `anonymizer.js` module in `services/utils/anonymization/` provides functions for masking personally identifiable information (PII) in text data.
+
 ### MongoDB Structure
 
 The scraper uses four MongoDB collections:
