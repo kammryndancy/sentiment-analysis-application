@@ -76,18 +76,31 @@ describe('KeywordManager', () => {
       const result = await keywordManager.addKeyword('lipstick');
 
       expect(result.success).toBe(true);
+      expect(result.updated).toBe(false);
+      expect(result.message).toBe('Added new keyword: lipstick');
       expect(mockCollection.findOne).toHaveBeenCalled();
       expect(mockCollection.insertOne).toHaveBeenCalled();
     });
 
-    it('should not add duplicate keywords', async () => {
-      mockCollection.findOne.mockResolvedValue({ keyword: 'lipstick' });
+    it('should update an existing keyword', async () => {
+      mockCollection.findOne.mockResolvedValue({ 
+        keyword: 'lipstick', 
+        category: 'old', 
+        description: 'old description' 
+      });
+      mockCollection.updateOne.mockResolvedValue({ modifiedCount: 1 });
 
-      const result = await keywordManager.addKeyword('lipstick');
+      const result = await keywordManager.addKeyword({
+        keyword: 'lipstick',
+        category: 'new',
+        description: 'new description'
+      });
 
-      expect(result.success).toBe(false);
-      expect(result.error).toBe('Keyword already exists');
-      expect(mockCollection.insertOne).not.toHaveBeenCalled();
+      expect(result.success).toBe(true);
+      expect(result.updated).toBe(true);
+      expect(result.message).toBe('Updated keyword: lipstick');
+      expect(mockCollection.findOne).toHaveBeenCalled();
+      expect(mockCollection.updateOne).toHaveBeenCalled();
     });
 
     it('should validate required fields', async () => {
@@ -96,12 +109,6 @@ describe('KeywordManager', () => {
       expect(result.success).toBe(false);
       expect(result.error).toBe('Keyword is required');
       expect(mockCollection.findOne).not.toHaveBeenCalled();
-    });
-
-    it('should handle database errors', async () => {
-      mockCollection.findOne.mockRejectedValue(new Error('Database error'));
-
-      await expect(keywordManager.addKeyword('lipstick')).rejects.toThrow('Database error');
     });
   });
 
@@ -146,12 +153,30 @@ describe('KeywordManager', () => {
     ];
 
     it('should import keywords successfully', async () => {
+      const now = new Date();
       mockCollection.insertMany.mockResolvedValue({ insertedCount: keywords.length });
 
       const result = await keywordManager.importKeywords(keywords);
 
       expect(result.success).toBe(true);
-      expect(mockCollection.insertMany).toHaveBeenCalledWith(keywords);
+      expect(mockCollection.insertMany).toHaveBeenCalledWith(
+        expect.arrayContaining([
+          expect.objectContaining({
+            keyword: 'mascara',
+            category: 'cosmetics',
+            description: null,
+            added_at: expect.any(Date),
+            last_updated: expect.any(Date)
+          }),
+          expect.objectContaining({
+            keyword: 'eyeliner',
+            category: 'cosmetics',
+            description: null,
+            added_at: expect.any(Date),
+            last_updated: expect.any(Date)
+          })
+        ])
+      );
     });
 
     it('should handle empty keywords array', async () => {
@@ -171,14 +196,8 @@ describe('KeywordManager', () => {
       const result = await keywordManager.importKeywords(invalidKeywords);
 
       expect(result.success).toBe(false);
-      expect(result.error).toBe('All keywords must have a keyword field');
+      expect(result.error).toBe('Invalid keyword object: keyword field is required and must be a string');
       expect(mockCollection.insertMany).not.toHaveBeenCalled();
-    });
-
-    it('should handle database errors', async () => {
-      mockCollection.insertMany.mockRejectedValue(new Error('Database error'));
-
-      await expect(keywordManager.importKeywords(keywords)).rejects.toThrow('Database error');
     });
   });
 

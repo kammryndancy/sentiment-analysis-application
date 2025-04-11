@@ -1,25 +1,62 @@
 // Data processing endpoint
 const processComments = async (req, res) => {
-  const dataProcessor = req.app.locals.dataProcessor; // Access shared instance
   try {
+    const dataProcessor = req.app.locals.dataProcessor;
     const options = req.body;
+
+    if (!options) {
+      return res.status(400).json({
+        success: false,
+        error: 'Processing options are required'
+      });
+    }
+
     const result = await dataProcessor.processAllComments(options);
-    res.status(200).json(result);
+    
+    if (result.success) {
+      res.status(200).json({
+        success: true,
+        message: 'Comments processed successfully',
+        data: result
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        error: result.error || 'Failed to process comments'
+      });
+    }
   } catch (error) {
     console.error('Error processing data:', error);
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
   }
 };
 
 // Statistics endpoint
 const getStats = async (req, res) => {
-  const dataProcessor = req.app.locals.dataProcessor; // Access shared instance
   try {
+    const dataProcessor = req.app.locals.dataProcessor;
     const stats = await dataProcessor.getProcessingStats();
-    res.status(200).json(stats);
+    
+    if (stats) {
+      res.status(200).json({
+        success: true,
+        data: stats
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        error: 'Failed to get processing stats'
+      });
+    }
   } catch (error) {
     console.error('Error getting stats:', error);
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
   }
 };
 

@@ -1,7 +1,7 @@
 export const listKeywords = async (req, res) => {
   try {
     const keywordManager = req.app.locals.keywordManager;
-    const keywords = await keywordManager.listKeywords();
+    const keywords = await keywordManager.getAllKeywords();
     res.status(200).json({
       success: true,
       data: keywords
@@ -27,12 +27,18 @@ export const addKeyword = async (req, res) => {
       });
     }
 
-    const result = await keywordManager.addKeyword({ keyword, category, description });
+    // Pass the keyword as a string directly
+    const result = await keywordManager.addKeyword({
+      keyword,
+      category,
+      description
+    });
 
     if (result.success) {
       res.status(201).json({
         success: true,
-        message: 'Keyword added successfully'
+        message: 'Keyword added successfully',
+        data: result
       });
     } else {
       res.status(400).json({
@@ -52,7 +58,15 @@ export const addKeyword = async (req, res) => {
 export const removeKeyword = async (req, res) => {
   try {
     const keywordManager = req.app.locals.keywordManager;
-    const { keyword } = req.params;
+    const keyword = req.params.keyword;
+
+    if (!keyword) {
+      return res.status(400).json({
+        success: false,
+        error: 'Keyword is required'
+      });
+    }
+
     const result = await keywordManager.removeKeyword(keyword);
 
     if (result.success) {
@@ -63,7 +77,7 @@ export const removeKeyword = async (req, res) => {
     } else {
       res.status(404).json({
         success: false,
-        error: 'Keyword not found'
+        error: result.error || 'Keyword not found'
       });
     }
   } catch (error) {
@@ -90,9 +104,10 @@ export const importKeywords = async (req, res) => {
     const result = await keywordManager.importKeywords(keywords);
 
     if (result.success) {
-      res.status(201).json({
+      res.status(200).json({
         success: true,
-        message: 'Keywords imported successfully'
+        message: 'Keywords imported successfully',
+        data: result
       });
     } else {
       res.status(400).json({

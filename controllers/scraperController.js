@@ -26,34 +26,22 @@ exports.runScraper = async (req, res) => {
       });
     }
 
-    await scraper.runScraper(pageIds, daysBack);
+    const result = await scraper.scrapePages(pageIds, daysBack);
 
-    res.status(202).json({
-      success: true,
-      message: 'Scraper started successfully',
-      pageIds: pageIds,
-      daysBack
-    });
+    if (result.success) {
+      res.status(202).json({
+        success: true,
+        message: 'Scraper started successfully',
+        stats: result.stats
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        error: result.message
+      });
+    }
   } catch (error) {
     console.error('Error starting scraper:', error);
-    res.status(500).json({
-      success: false,
-      error: error.message
-    });
-  }
-};
-
-exports.getScraperStatus = async (req, res) => {
-  try {
-    const scraper = req.app.locals.scraper;
-    const status = await scraper.getScraperStatus();
-
-    res.status(200).json({
-      success: true,
-      data: status
-    });
-  } catch (error) {
-    console.error('Error getting scraper status:', error);
     res.status(500).json({
       success: false,
       error: error.message
@@ -66,39 +54,17 @@ exports.getComments = async (req, res) => {
     const scraper = req.app.locals.scraper;
     const { startDate, endDate, pageId, limit = 100, skip = 0 } = req.query;
 
-    const queryParams = {};
+    // Convert query parameters to proper format
+    const queryParams = {
+      startDate: startDate ? new Date(startDate) : undefined,
+      endDate: endDate ? new Date(endDate) : undefined,
+      pageId,
+      limit: parseInt(limit),
+      skip: parseInt(skip)
+    };
 
-    // Parse and validate dates if provided
-    if (startDate) {
-      const parsedStartDate = new Date(startDate);
-      if (isNaN(parsedStartDate.getTime())) {
-        return res.status(400).json({
-          success: false,
-          error: 'Invalid date format'
-        });
-      }
-      queryParams.startDate = parsedStartDate;
-    }
-
-    if (endDate) {
-      const parsedEndDate = new Date(endDate);
-      if (isNaN(parsedEndDate.getTime())) {
-        return res.status(400).json({
-          success: false,
-          error: 'Invalid date format'
-        });
-      }
-      queryParams.endDate = parsedEndDate;
-    }
-
-    if (pageId) {
-      queryParams.pageId = pageId;
-    }
-
-    queryParams.limit = parseInt(limit);
-    queryParams.skip = parseInt(skip);
-
-    const comments = await scraper.getComments(queryParams);
+    // Use the comment manager directly since FacebookScraper doesn't have a getComments method
+    const comments = await scraper.commentManager.getComments(queryParams);
 
     res.status(200).json({
       success: true,
@@ -116,7 +82,7 @@ exports.getComments = async (req, res) => {
 exports.getStats = async (req, res) => {
   try {
     const scraper = req.app.locals.scraper;
-    const stats = await scraper.getStats();
+    const stats = await scraper.commentManager.getStats();
 
     res.status(200).json({
       success: true,

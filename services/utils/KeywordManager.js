@@ -1,4 +1,6 @@
 const { NlpManager } = require('node-nlp');
+const fs = require('fs');
+const path = require('path');
 
 class KeywordManager {
   constructor(db) {
@@ -6,9 +8,6 @@ class KeywordManager {
     this.collection = db.collection('keywords');
     this.nlpManager = new NlpManager({ languages: ['en'] });
     this.avonPattern = null;
-    
-    // Initialize keywords asynchronously
-    this.compileKeywordPattern();
   }
   
   // Initialize keywords from database or use defaults if none exist
@@ -19,25 +18,45 @@ class KeywordManager {
       const keywordsCount = keywords.length;
       
       if (keywordsCount === 0) {
-        // No keywords in database, add default keywords
-        const defaultKeywords = [
-          'avon', 'avon products', 'avon representative', 'avon catalog', 
-          'avon skincare', 'avon makeup', 'avon perfume', 'avon fragrance',
-          'anew', 'skin so soft', 'far away', 'today', 'little black dress',
-          'advance techniques', 'mark', 'avon care'
-        ];
+        // Load keywords from JSON file
+        const keywordsPath = path.join(__dirname, '..', '..', 'keywords.json');
+        const keywordsData = JSON.parse(fs.readFileSync(keywordsPath, 'utf8'));
         
-        for (const keyword of defaultKeywords) {
-          await this.addKeyword(keyword, null, null, true);
-        }
+        // Process keywords to ensure proper structure
+        const processedKeywords = keywordsData.map(keywordData => {
+          const keyword = typeof keywordData === 'object' ? 
+            keywordData.keyword : 
+            keywordData;
+          
+          const category = typeof keywordData === 'object' ? 
+            keywordData.category || null : 
+            null;
+          
+          const description = typeof keywordData === 'object' ? 
+            keywordData.description || null : 
+            null;
+          
+          return {
+            keyword: keyword.toLowerCase().trim(),
+            category,
+            description,
+            added_at: new Date(),
+            last_updated: new Date()
+          };
+        });
+
+        // Insert keywords into database
+        await this.collection.insertMany(processedKeywords);
         
-        console.log(`Initialized database with ${defaultKeywords.length} default keywords`);
+        console.log(`Initialized database with ${processedKeywords.length} keywords from keywords.json`);
       }
       
       // Compile regex pattern
       await this.compileKeywordPattern();
+      return true;
     } catch (error) {
       console.error('Error initializing keywords:', error);
+      return false;
     }
   }
   
@@ -100,9 +119,38 @@ class KeywordManager {
       });
       
       if (existing) {
-        return { 
-          success: false, 
-          error: 'Keyword already exists' 
+        // Update existing keyword with new category and description
+        const updateResult = await this.collection.updateOne(
+          { keyword: keyword.toLowerCase().trim() },
+          {
+            $set: {
+              category: category,
+              description: description,
+              last_updated: new Date()
+            }
+          }
+        );
+        
+        if (updateResult.modifiedCount === 0) {
+          return { 
+            success: false, 
+            error: 'Failed to update keyword' 
+          };
+        }
+        
+        // Recompile the pattern
+        await this.compileKeywordPattern();
+        
+        return {
+          success: true,
+          message: `Updated keyword: ${keyword}`,
+          updated: true,
+          keyword: {
+            keyword,
+            category,
+            description,
+            last_updated: new Date()
+          }
         };
       }
       
@@ -123,7 +171,9 @@ class KeywordManager {
       
       return {
         success: true,
-        message: `Added new keyword: ${keywordDoc.keyword}`
+        message: `Added new keyword: ${keyword}`,
+        updated: false,
+        keyword: keywordDoc
       };
     } catch (error) {
       throw new Error(`Error adding keyword: ${error.message}`);
@@ -173,7 +223,7 @@ class KeywordManager {
     }
   }
   
-  // Import a list of keywords to the database
+  // Import multiple keywords at once
   async importKeywords(keywordsList) {
     try {
       // Validation
@@ -183,25 +233,56 @@ class KeywordManager {
           error: 'No keywords provided' 
         };
       }
-      
-      // Check that all items have keyword field
-      for (const item of keywordsList) {
-        if (typeof item === 'object' && !item.keyword) {
-          return { 
-            success: false, 
-            error: 'All keywords must have a keyword field' 
-          };
+
+      // Process keywords to ensure proper structure
+      const processedKeywords = keywordsList.map(keywordData => {
+        const keyword = typeof keywordData === 'object' ? 
+          keywordData.keyword : 
+          keywordData;
+
+        // Validate keyword exists and is a string
+        if (!keyword || typeof keyword !== 'string') {
+          throw new Error('Invalid keyword object: keyword field is required and must be a string');
         }
-      }
-      
-      await this.collection.insertMany(keywordsList);
-      
-      // Recompile the pattern
+
+        const category = typeof keywordData === 'object' ? 
+          keywordData.category || null : 
+          null;
+
+        const description = typeof keywordData === 'object' ? 
+          keywordData.description || null : 
+          null;
+
+        return {
+          keyword: keyword.toLowerCase().trim(),
+          category,
+          description,
+          added_at: new Date(),
+          last_updated: new Date()
+        };
+      });
+
+      // Check for duplicates and remove them
+      const uniqueKeywords = new Map();
+      const uniqueProcessedKeywords = processedKeywords.filter(keyword => {
+        const lowerCaseKeyword = keyword.keyword.toLowerCase();
+        if (!uniqueKeywords.has(lowerCaseKeyword)) {
+          uniqueKeywords.set(lowerCaseKeyword, true);
+          return true;
+        }
+        return false;
+      });
+
+      // Insert keywords in MongoDB
+      const result = await this.collection.insertMany(uniqueProcessedKeywords);
+
+      // Recompile the pattern with the new keywords
       await this.compileKeywordPattern();
-      
+
       return {
         success: true,
-        message: `Imported ${keywordsList.length} keywords successfully.`
+        message: `Imported ${result.insertedCount} unique keywords`,
+        imported: result.insertedCount
       };
     } catch (error) {
       throw new Error(`Error importing keywords: ${error.message}`);

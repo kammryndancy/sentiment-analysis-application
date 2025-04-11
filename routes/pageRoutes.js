@@ -5,7 +5,8 @@ const { body, validationResult } = require('express-validator');
 
 // Validation middleware for adding a page
 const validateAddPage = [
-  body('pageId').notEmpty().withMessage('Page ID is required'),
+  body('page_id').notEmpty().withMessage('Page ID is required'),
+  body('name').notEmpty().withMessage('Page name is required'),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -28,10 +29,10 @@ router.get('/', pageController.listPages);
 router.post('/', validateAddPage, pageController.addPage);
 
 /**
- * @route   DELETE /api/pages/:pageId
+ * @route   DELETE /api/pages/:page_id
  * @desc    Remove a page ID
  */
-router.delete('/:pageId', pageController.removePage);
+router.delete('/:page_id', pageController.removePage);
 
 /**
  * @route   POST /api/pages/import

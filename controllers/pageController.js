@@ -1,9 +1,7 @@
-const PageManager = require('../services/utils/PageManagerShim');
-
-exports.getAllPages = async (req, res) => {
+exports.listPages = async (req, res) => {
   try {
     const pageManager = req.app.locals.pageManager;
-    const pages = await pageManager.getAllPages();
+    const pages = await pageManager.listPages();
     res.status(200).json({
       success: true,
       data: pages
@@ -29,7 +27,8 @@ exports.addPage = async (req, res) => {
       });
     }
 
-    const result = await pageManager.addPage({ page_id, name, description });
+    // Pass the page_id as a string directly
+    const result = await pageManager.addPageId(page_id, name, description);
 
     if (result.success) {
       res.status(201).json({
@@ -64,7 +63,7 @@ exports.removePage = async (req, res) => {
       });
     }
 
-    const result = await pageManager.removePage(page_id);
+    const result = await pageManager.removePageId(page_id);
 
     if (result.success) {
       res.status(200).json({
@@ -98,20 +97,26 @@ exports.importPages = async (req, res) => {
       });
     }
 
-    const result = await pageManager.importPages(pageIds);
-
-    if (result.success) {
-      res.status(200).json({
-        success: true,
-        message: 'Pages imported successfully',
-        data: { imported: result.imported }
-      });
-    } else {
-      res.status(400).json({
-        success: false,
-        error: result.error || 'Failed to import pages'
-      });
+    // Process each page ID
+    const results = [];
+    for (const pageId of pageIds) {
+      const result = await pageManager.addPageId(pageId, null, null);
+      results.push(result);
     }
+
+    const successCount = results.filter(r => r.success).length;
+    const failedCount = results.length - successCount;
+
+    res.status(200).json({
+      success: true,
+      message: 'Pages imported successfully',
+      data: {
+        total: results.length,
+        success: successCount,
+        failed: failedCount,
+        results
+      }
+    });
   } catch (error) {
     console.error('Error importing pages:', error);
     res.status(500).json({
