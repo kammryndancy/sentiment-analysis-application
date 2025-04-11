@@ -1,4 +1,4 @@
-import { getAllKeywords, addKeyword, removeKeyword, importKeywords } from '../../controllers/keywordController.js';
+import { getAllKeywords, addKeyword, removeKeyword, importKeywords, listKeywords } from '../../controllers/keywordController.js';
 
 describe('Keyword Controller', () => {
   let req;
@@ -10,7 +10,8 @@ describe('Keyword Controller', () => {
       getAllKeywords: jest.fn(),
       addKeyword: jest.fn(),
       removeKeyword: jest.fn(),
-      importKeywords: jest.fn()
+      importKeywords: jest.fn(),
+      listKeywords: jest.fn()
     };
 
     req = {
@@ -29,7 +30,7 @@ describe('Keyword Controller', () => {
     };
   });
 
-  describe('getAllKeywords', () => {
+  describe('listKeywords', () => {
     it('should return all keywords successfully', async () => {
       const mockKeywords = [
         { keyword: 'lipstick', category: 'cosmetics' },
@@ -37,7 +38,7 @@ describe('Keyword Controller', () => {
       ];
       mockKeywordManager.getAllKeywords.mockResolvedValue(mockKeywords);
 
-      await getAllKeywords(req, res);
+      await listKeywords(req, res);
 
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith({
@@ -50,7 +51,7 @@ describe('Keyword Controller', () => {
       const error = new Error('Database error');
       mockKeywordManager.getAllKeywords.mockRejectedValue(error);
 
-      await getAllKeywords(req, res);
+      await listKeywords(req, res);
 
       expect(res.status).toHaveBeenCalledWith(500);
       expect(res.json).toHaveBeenCalledWith({
@@ -76,7 +77,8 @@ describe('Keyword Controller', () => {
       expect(res.status).toHaveBeenCalledWith(201);
       expect(res.json).toHaveBeenCalledWith({
         success: true,
-        message: 'Keyword added successfully'
+        message: 'Keyword added successfully',
+        data: { success: true }
       });
       expect(mockKeywordManager.addKeyword).toHaveBeenCalledWith(newKeyword);
     });
@@ -183,10 +185,11 @@ describe('Keyword Controller', () => {
 
       await importKeywords(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(201);
+      expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith({
         success: true,
-        message: 'Keywords imported successfully'
+        message: 'Keywords imported successfully',
+        data: { success: true }
       });
       expect(mockKeywordManager.importKeywords).toHaveBeenCalledWith(keywords);
     });

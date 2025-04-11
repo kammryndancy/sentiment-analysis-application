@@ -25,7 +25,11 @@ describe('Data Processor Routes', () => {
         .send({ removeStopwords: true });
 
       expect(response.status).toBe(200);
-      expect(response.body).toEqual(mockResult);
+      expect(response.body).toEqual({
+        success: true,
+        message: 'Comments processed successfully',
+        data: mockResult
+      });
       expect(app.locals.dataProcessor.processAllComments).toHaveBeenCalledWith({ removeStopwords: true });
     });
 
@@ -47,7 +51,7 @@ describe('Data Processor Routes', () => {
       const mockStats = {
         totalComments: 100,
         processedComments: 50,
-        processingRatio: '50.00%'
+        processingRatio: "50.00%"
       };
       app.locals.dataProcessor.getProcessingStats.mockResolvedValue(mockStats);
 
@@ -55,18 +59,25 @@ describe('Data Processor Routes', () => {
         .get('/api/data/stats');
 
       expect(response.status).toBe(200);
-      expect(response.body).toEqual(mockStats);
+      expect(response.body).toEqual({
+        success: true,
+        data: mockStats
+      });
+      expect(app.locals.dataProcessor.getProcessingStats).toHaveBeenCalled();
     });
 
     it('should handle stats retrieval errors', async () => {
-      const error = new Error('Stats retrieval failed');
+      const error = new Error('Failed to retrieve stats');
       app.locals.dataProcessor.getProcessingStats.mockRejectedValue(error);
 
       const response = await request(app)
         .get('/api/data/stats');
 
       expect(response.status).toBe(500);
-      expect(response.body).toEqual({ success: false, error: error.message });
+      expect(response.body).toEqual({
+        success: false,
+        error: error.message
+      });
     });
   });
 });

@@ -126,7 +126,7 @@ class FacebookScraper {
           };
         }
       }
-      
+      console.log(`Found ${JSON.stringify(pageIds)} page IDs to scrape.`);
       let totalPosts = 0;
       let totalComments = 0;
       let totalSavedComments = 0;

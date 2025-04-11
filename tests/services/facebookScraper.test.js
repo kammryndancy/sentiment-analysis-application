@@ -1,140 +1,400 @@
+const FacebookScraper = require('../../services/facebookScraper');
 const { MongoClient } = require('mongodb');
-const FacebookScraper = require('../../services/facebookScraperShim');
 const FB = require('fb');
 
+// Mock MongoDB
 jest.mock('mongodb');
-jest.mock('fb');
+
+// Mock FB module
+jest.mock('fb', () => {
+  return {
+    options: jest.fn(),
+    setAccessToken: jest.fn(),
+    api: jest.fn()
+  };
+});
 
 describe('FacebookScraper', () => {
   let scraper;
-  let mockDb;
   let mockCollection;
-  let mockFbApi;
+  let mockDb;
 
   beforeEach(() => {
+    // Mock MongoDB collection
     mockCollection = {
-      find: jest.fn().mockReturnThis(),
-      toArray: jest.fn(),
-      insertOne: jest.fn(),
       insertMany: jest.fn(),
-      updateOne: jest.fn(),
-      findOne: jest.fn(),
-      aggregate: jest.fn().mockReturnThis(),
-      countDocuments: jest.fn().mockResolvedValue(10)
+      find: jest.fn().mockReturnThis(),
+      toArray: jest.fn()
     };
 
+    // Mock MongoDB database
     mockDb = {
       collection: jest.fn().mockReturnValue(mockCollection)
     };
 
-    // Set up FB API mock
-    mockFbApi = jest.fn().mockImplementation((endpoint, options, callback) => {
-      const response = {
-        data: []
-      };
-      
-      if (endpoint.includes('posts')) {
-        response.data = [
-          { 
-            id: 'post1', 
-            message: 'Test post 1',
-            comments: { summary: { total_count: 5 } },
-            reactions: { summary: { total_count: 10 } }
-          },
-          { 
-            id: 'post2', 
-            message: 'Test post 2',
-            comments: { summary: { total_count: 3 } },
-            reactions: { summary: { total_count: 7 } }
-          }
-        ];
-      } else if (endpoint.includes('comments')) {
-        response.data = [
-          { id: 'comment1', message: 'Test comment 1', created_time: '2023-04-01T12:00:00Z' },
-          { id: 'comment2', message: 'Test comment 2', created_time: '2023-04-02T12:00:00Z' }
-        ];
-      }
-      
-      // Call the callback with the response
-      callback(response);
+    // Mock FB module
+    FB.options.mockReturnValue(undefined);
+    FB.setAccessToken.mockReturnValue(undefined);
+    FB.api.mockImplementation((endpoint, options, callback) => {
+      callback(null, {
+        data: [
+          { id: 'post1', message: 'Avon product review', created_time: '2025-04-11' },
+          { id: 'post2', message: 'Just bought some Avon makeup', created_time: '2025-04-11' }
+        ]
+      });
     });
-    
-    FB.api = mockFbApi;
-    FB.setAccessToken = jest.fn();
-    FB.options = jest.fn();
-    
-    // Create scraper with mock DB
-    scraper = new FacebookScraper(mockDb);
-    
-    // Mock environment variables
+
+    // Set up environment variables
     process.env.FACEBOOK_APP_ID = 'mock_app_id';
     process.env.FACEBOOK_APP_SECRET = 'mock_app_secret';
     process.env.FACEBOOK_ACCESS_TOKEN = 'mock_access_token';
+
+    // Initialize scraper
+    scraper = new FacebookScraper(mockDb);
+
+    // Mock PageManager methods
+    scraper.pageManager = {
+      getPageIds: jest.fn().mockResolvedValue([
+        { page_id: '12345', name: 'Test Page 1' },
+        { page_id: '67890', name: 'Test Page 2' }
+      ]),
+      getPagePosts: jest.fn().mockResolvedValue([
+        { id: 'post1', message: 'Avon product review', created_time: '2025-04-11' },
+        { id: 'post2', message: 'Just bought some Avon makeup', created_time: '2025-04-11' }
+      ]),
+      savePost: jest.fn().mockResolvedValue(undefined)
+    };
+
+    // Mock CommentManager methods
+    scraper.commentManager = {
+      getAllComments: jest.fn().mockResolvedValue([
+        { id: 'comment1', message: 'Love this Avon product!', created_time: '2025-04-11' },
+        { id: 'comment2', message: 'Great review!', created_time: '2025-04-11' }
+      ]),
+      saveAllComments: jest.fn().mockResolvedValue(2)
+    };
   });
 
-  describe('runScraper', () => {
+  describe('scrapePages', () => {
     beforeEach(() => {
       // Mock PageManager's getAllPages
-      mockCollection.toArray.mockResolvedValue([
+      scraper.pageManager.getPageIds.mockResolvedValue([
         { page_id: '12345', name: 'Test Page 1' },
         { page_id: '67890', name: 'Test Page 2' }
       ]);
     });
 
     it('should scrape and store data successfully', async () => {
-      const result = await scraper.runScraper({ limit: 10 });
+      // Mock FB.api for comments
+      scraper.fbPromise = jest.fn().mockImplementation((method, endpoint, params) => {
+        if (endpoint.includes('/comments')) {
+          return Promise.resolve({
+            data: [
+              { id: 'comment1', message: 'Love this Avon product!', created_time: '2025-04-11' },
+              { id: 'comment2', message: 'Great review!', created_time: '2025-04-11' }
+            ]
+          });
+        } else {
+          return Promise.resolve({
+            data: [
+              { id: 'post1', message: 'Avon product review', created_time: '2025-04-11' },
+              { id: 'post2', message: 'Just bought some Avon makeup', created_time: '2025-04-11' }
+            ]
+          });
+        }
+      });
+
+      // Mock PageManager methods
+      scraper.pageManager = {
+        getPageIds: jest.fn().mockResolvedValue([
+          { page_id: '12345', name: 'Test Page 1' },
+          { page_id: '67890', name: 'Test Page 2' }
+        ]),
+        getPagePosts: jest.fn().mockImplementation(async (pageId, limit, daysBack) => {
+          // Use fbPromise to mock the actual API call
+          const posts = await scraper.fbPromise('GET', `${pageId}/posts`, {
+            limit: limit,
+            since: new Date(Date.now() - daysBack * 24 * 60 * 60 * 1000).toISOString()
+          });
+          return posts.data;
+        }),
+        savePost: jest.fn().mockResolvedValue(undefined),
+        updatePageLastScraped: jest.fn().mockResolvedValue(undefined)
+      };
+
+      // Mock CommentManager methods
+      scraper.commentManager = {
+        getAllComments: jest.fn().mockImplementation(async (post, fbPromise) => {
+          const comments = await fbPromise('GET', `${post.id}/comments`, { limit: 100 });
+          return comments.data;
+        }),
+        saveAllComments: jest.fn().mockResolvedValue(2)
+      };
+
+      // Mock isAvonRelated
+      scraper.isAvonRelated = jest.fn().mockReturnValue(true);
+
+      const result = await scraper.scrapePages(null, 10);
 
       expect(result.success).toBe(true);
-      expect(mockCollection.insertMany).toHaveBeenCalled();
-      expect(FB.api).toHaveBeenCalled();
+      expect(result.message).toBe('Scraping completed successfully.');
+      expect(result.stats).toEqual({
+        totalPosts: 4,
+        keywordMatchedPosts: 4,
+        totalComments: 8,
+        totalSavedComments: 8
+      });
+      expect(scraper.fbPromise).toHaveBeenCalled();
+      expect(scraper.pageManager.getPagePosts).toHaveBeenCalled();
+      expect(scraper.pageManager.getPageIds).toHaveBeenCalled();
+      expect(scraper.pageManager.updatePageLastScraped).toHaveBeenCalled();
+      expect(scraper.pageManager.savePost).toHaveBeenCalledTimes(4);
+      expect(scraper.commentManager.getAllComments).toHaveBeenCalled();
+      expect(scraper.commentManager.saveAllComments).toHaveBeenCalled();
+      expect(scraper.isAvonRelated).toHaveBeenCalledTimes(4);
+    });
+
+    it('should scrape and store data successfully for specific pages', async () => {
+      // Mock FB.api for comments
+      scraper.fbPromise = jest.fn().mockImplementation((method, endpoint, params) => {
+        if (endpoint.includes('/comments')) {
+          return Promise.resolve({
+            data: [
+              { id: 'comment1', message: 'Love this Avon product!', created_time: '2025-04-11' },
+              { id: 'comment2', message: 'Great review!', created_time: '2025-04-11' }
+            ]
+          });
+        } else {
+          return Promise.resolve({
+            data: [
+              { id: 'post1', message: 'Avon product review', created_time: '2025-04-11' },
+              { id: 'post2', message: 'Just bought some Avon makeup', created_time: '2025-04-11' }
+            ]
+          });
+        }
+      });
+
+      // Mock PageManager methods
+      scraper.pageManager = {
+        getPagePosts: jest.fn().mockImplementation(async (pageId, limit, daysBack) => {
+          const posts = await scraper.fbPromise('GET', `${pageId}/posts`, {
+            limit: limit,
+            since: new Date(Date.now() - daysBack * 24 * 60 * 60 * 1000).toISOString()
+          });
+          return posts.data;
+        }),
+        savePost: jest.fn().mockResolvedValue(undefined),
+        updatePageLastScraped: jest.fn().mockResolvedValue(undefined)
+      };
+
+      // Mock CommentManager methods
+      scraper.commentManager = {
+        getAllComments: jest.fn().mockImplementation(async (post, fbPromise) => {
+          const comments = await fbPromise('GET', `${post.id}/comments`, { limit: 100 });
+          return comments.data;
+        }),
+        saveAllComments: jest.fn().mockResolvedValue(2)
+      };
+
+      // Mock isAvonRelated
+      scraper.isAvonRelated = jest.fn().mockReturnValue(true);
+
+      const result = await scraper.scrapePages(['12345', '67890'], 10);
+
+      expect(result.success).toBe(true);
+      expect(result.message).toBe('Scraping completed successfully.');
+      expect(result.stats).toEqual({
+        totalPosts: 4,
+        keywordMatchedPosts: 4,
+        totalComments: 8,
+        totalSavedComments: 8
+      });
+      expect(scraper.fbPromise).toHaveBeenCalled();
+      expect(scraper.pageManager.getPagePosts).toHaveBeenCalled();
+      expect(scraper.pageManager.updatePageLastScraped).toHaveBeenCalled();
+      expect(scraper.pageManager.savePost).toHaveBeenCalledTimes(4);
+      expect(scraper.commentManager.getAllComments).toHaveBeenCalled();
+      expect(scraper.commentManager.saveAllComments).toHaveBeenCalled();
+      expect(scraper.isAvonRelated).toHaveBeenCalledTimes(4);
+    });
+
+    it('should scrape all pages when no pageIds are provided', async () => {
+      // Mock FB.api for comments
+      scraper.fbPromise = jest.fn().mockImplementation((method, endpoint, params) => {
+        if (endpoint.includes('/comments')) {
+          return Promise.resolve({
+            data: [
+              { id: 'comment1', message: 'Love this Avon product!', created_time: '2025-04-11' },
+              { id: 'comment2', message: 'Great review!', created_time: '2025-04-11' }
+            ]
+          });
+        } else {
+          return Promise.resolve({
+            data: [
+              { id: 'post1', message: 'Avon product review', created_time: '2025-04-11' },
+              { id: 'post2', message: 'Just bought some Avon makeup', created_time: '2025-04-11' }
+            ]
+          });
+        }
+      });
+
+      // Mock PageManager methods
+      scraper.pageManager = {
+        getPageIds: jest.fn().mockResolvedValue([
+          { page_id: '12345', name: 'Test Page 1' },
+          { page_id: '67890', name: 'Test Page 2' }
+        ]),
+        getPagePosts: jest.fn().mockImplementation(async (pageId, limit, daysBack) => {
+          const posts = await scraper.fbPromise('GET', `${pageId}/posts`, {
+            limit: limit,
+            since: new Date(Date.now() - daysBack * 24 * 60 * 60 * 1000).toISOString()
+          });
+          return posts.data;
+        }),
+        savePost: jest.fn().mockResolvedValue(undefined),
+        updatePageLastScraped: jest.fn().mockResolvedValue(undefined)
+      };
+
+      // Mock CommentManager methods
+      scraper.commentManager = {
+        getAllComments: jest.fn().mockImplementation(async (post, fbPromise) => {
+          const comments = await fbPromise('GET', `${post.id}/comments`, { limit: 100 });
+          return comments.data;
+        }),
+        saveAllComments: jest.fn().mockResolvedValue(2)
+      };
+
+      // Mock isAvonRelated
+      scraper.isAvonRelated = jest.fn().mockReturnValue(true);
+
+      const result = await scraper.scrapePages(null, 10);
+
+      expect(result.success).toBe(true);
+      expect(result.message).toBe('Scraping completed successfully.');
+      expect(result.stats).toEqual({
+        totalPosts: 4,
+        keywordMatchedPosts: 4,
+        totalComments: 8,
+        totalSavedComments: 8
+      });
+      expect(scraper.fbPromise).toHaveBeenCalled();
+      expect(scraper.pageManager.getPagePosts).toHaveBeenCalled();
+      expect(scraper.pageManager.getPageIds).toHaveBeenCalled();
+      expect(scraper.pageManager.updatePageLastScraped).toHaveBeenCalled();
+      expect(scraper.pageManager.savePost).toHaveBeenCalledTimes(4);
+      expect(scraper.commentManager.getAllComments).toHaveBeenCalled();
+      expect(scraper.commentManager.saveAllComments).toHaveBeenCalled();
+      expect(scraper.isAvonRelated).toHaveBeenCalledTimes(4);
     });
 
     it('should handle API errors gracefully', async () => {
-      // Override the mockFbApi to simulate an error
-      FB.api.mockImplementationOnce((endpoint, options, callback) => {
-        callback({ error: { message: 'API error' } });
+      // Mock FB.api with error
+      scraper.fbPromise = jest.fn().mockImplementation((method, endpoint, params) => {
+        return Promise.reject(new Error('Facebook API error'));
       });
 
-      const result = await scraper.runScraper({ limit: 10 });
+      // Mock PageManager methods
+      scraper.pageManager = {
+        getPageIds: jest.fn().mockResolvedValue([
+          { page_id: '12345', name: 'Test Page 1' }
+        ]),
+        getPagePosts: jest.fn().mockImplementation(async (pageId, limit, daysBack) => {
+          try {
+            const posts = await scraper.fbPromise('GET', `${pageId}/posts`, {
+              limit: limit,
+              since: new Date(Date.now() - daysBack * 24 * 60 * 60 * 1000).toISOString()
+            });
+            return posts.data;
+          } catch (error) {
+            throw error;
+          }
+        }),
+        savePost: jest.fn().mockResolvedValue(undefined),
+        updatePageLastScraped: jest.fn().mockResolvedValue(undefined)
+      };
+
+      // Mock CommentManager methods
+      scraper.commentManager = {
+        getAllComments: jest.fn().mockImplementation(async (post, fbPromise) => {
+          try {
+            const comments = await fbPromise('GET', `${post.id}/comments`, { limit: 100 });
+            return comments.data;
+          } catch (error) {
+            throw error;
+          }
+        }),
+        saveAllComments: jest.fn().mockResolvedValue(2)
+      };
+
+      // Mock isAvonRelated
+      scraper.isAvonRelated = jest.fn().mockReturnValue(true);
+
+      const result = await scraper.scrapePages(['12345'], 10);
 
       expect(result.success).toBe(false);
-      expect(result.error).toBeDefined();
+      expect(result.message).toContain('Facebook API error');
+      expect(result.stats).toEqual({
+        totalPosts: 0,
+        keywordMatchedPosts: 0,
+        totalComments: 0,
+        totalSavedComments: 0
+      });
+      expect(scraper.fbPromise).toHaveBeenCalled();
+      expect(scraper.pageManager.getPagePosts).toHaveBeenCalled();
+      expect(scraper.pageManager.savePost).not.toHaveBeenCalled();
+      expect(scraper.commentManager.getAllComments).not.toHaveBeenCalled();
+      expect(scraper.commentManager.saveAllComments).not.toHaveBeenCalled();
     });
 
-    it('should handle database errors', async () => {
-      mockCollection.insertMany.mockRejectedValue(new Error('Database error'));
+    it('should handle empty results gracefully', async () => {
+      // Mock FB.api with empty results
+      scraper.fbPromise = jest.fn().mockImplementation((method, endpoint, params) => {
+        return Promise.resolve({ data: [] });
+      });
 
-      const result = await scraper.runScraper({ limit: 10 });
+      // Mock PageManager methods
+      scraper.pageManager = {
+        getPageIds: jest.fn().mockResolvedValue([
+          { page_id: '12345', name: 'Test Page 1' }
+        ]),
+        getPagePosts: jest.fn().mockImplementation(async (pageId, limit, daysBack) => {
+          const posts = await scraper.fbPromise('GET', `${pageId}/posts`, {
+            limit: limit,
+            since: new Date(Date.now() - daysBack * 24 * 60 * 60 * 1000).toISOString()
+          });
+          return posts.data;
+        }),
+        savePost: jest.fn().mockResolvedValue(undefined),
+        updatePageLastScraped: jest.fn().mockResolvedValue(undefined)
+      };
 
-      expect(result.success).toBe(false);
-      expect(result.error).toBeDefined();
-    });
-  });
+      // Mock CommentManager methods
+      scraper.commentManager = {
+        getAllComments: jest.fn().mockImplementation(async (post, fbPromise) => {
+          const comments = await fbPromise('GET', `${post.id}/comments`, { limit: 100 });
+          return comments.data;
+        }),
+        saveAllComments: jest.fn().mockResolvedValue(2)
+      };
 
-  describe('getStats', () => {
-    it('should return scraper statistics', async () => {
-      mockCollection.countDocuments
-        .mockResolvedValueOnce(5)  // pages
-        .mockResolvedValueOnce(100); // comments
-      
-      mockCollection.aggregate.mockResolvedValue([
-        { total: 100, matched: 50 }
-      ]);
+      // Mock isAvonRelated
+      scraper.isAvonRelated = jest.fn().mockReturnValue(true);
 
-      const stats = await scraper.getStats();
+      const result = await scraper.scrapePages(['12345'], 10);
 
-      expect(stats.success).toBe(true);
-      expect(stats.pages).toBeDefined();
-      expect(mockCollection.countDocuments).toHaveBeenCalled();
-    });
-
-    it('should handle stats retrieval errors', async () => {
-      mockCollection.countDocuments.mockRejectedValue(new Error('Stats error'));
-
-      const stats = await scraper.getStats();
-
-      expect(stats.success).toBe(false);
-      expect(stats.error).toBeDefined();
+      expect(result.success).toBe(true);
+      expect(result.message).toBe('Scraping completed successfully.');
+      expect(result.stats).toEqual({
+        totalPosts: 0,
+        keywordMatchedPosts: 0,
+        totalComments: 0,
+        totalSavedComments: 0
+      });
+      expect(scraper.fbPromise).toHaveBeenCalled();
+      expect(scraper.pageManager.getPagePosts).toHaveBeenCalled();
+      expect(scraper.pageManager.savePost).not.toHaveBeenCalled();
+      expect(scraper.commentManager.getAllComments).not.toHaveBeenCalled();
+      expect(scraper.commentManager.saveAllComments).not.toHaveBeenCalled();
     });
   });
 });

@@ -193,10 +193,10 @@ describe('KeywordManager', () => {
         { keyword: 'eyeliner', category: 'cosmetics' }
       ];
 
-      const result = await keywordManager.importKeywords(invalidKeywords);
+      await expect(keywordManager.importKeywords(invalidKeywords))
+        .rejects
+        .toThrow('Error importing keywords: Invalid keyword object: keyword field is required and must be a string');
 
-      expect(result.success).toBe(false);
-      expect(result.error).toBe('Invalid keyword object: keyword field is required and must be a string');
       expect(mockCollection.insertMany).not.toHaveBeenCalled();
     });
   });

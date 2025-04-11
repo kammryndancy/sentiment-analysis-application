@@ -53,14 +53,21 @@ describe('Text Preprocessor', () => {
     it('should remove stopwords when enabled', () => {
       const input = 'this is a test message';
       const result = preprocessText(input, {
-        ...defaultOptions,
-        removeStopwords: true
+        removeStopwords: true,
+        performLemmatization: false,
+        performStemming: false
       });
 
-      // Assuming 'test message' remains after stopword removal
-      expect(result.text).not.toContain('this');
-      expect(result.text).not.toContain('is');
-      expect(result.text).not.toContain('a');
+      // Verify stopwords are removed from tokens array
+      expect(result.tokens).not.toContain('this');
+      expect(result.tokens).not.toContain('is');
+      expect(result.tokens).not.toContain('a');
+      
+      // Verify the remaining tokens are correct
+      expect(result.tokens).toEqual(['test', 'message']);
+      
+      // Verify the processed text is correct
+      expect(result.text).toBe('test message');
     });
 
     it('should handle special characters and whitespace', () => {

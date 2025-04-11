@@ -7,7 +7,6 @@ jest.mock('../../controllers/scraperController');
 
 const router = Router();
 router.post('/run', scraperController.runScraper);
-router.get('/status', scraperController.getScraperStatus);
 router.get('/comments', scraperController.getComments);
 router.get('/stats', scraperController.getStats);
 
@@ -61,45 +60,6 @@ describe('Scraper Routes', () => {
       expect(response.status).toBe(400);
       expect(response.body.success).toBe(false);
       expect(response.body.error).toBe('Page IDs array is required');
-    });
-  });
-
-  describe('GET /api/scraper/status', () => {
-    it('should return scraper status successfully', async () => {
-      const mockStatus = {
-        isRunning: true,
-        progress: 50,
-        lastRun: new Date().toISOString()
-      };
-
-      scraperController.getScraperStatus.mockImplementation((req, res) => {
-        res.status(200).json({
-          success: true,
-          data: mockStatus
-        });
-      });
-
-      const response = await request(app).get('/api/scraper/status');
-
-      expect(response.status).toBe(200);
-      expect(response.body.success).toBe(true);
-      expect(response.body.data).toEqual(mockStatus);
-      expect(scraperController.getScraperStatus).toHaveBeenCalled();
-    });
-
-    it('should handle errors when getting status', async () => {
-      scraperController.getScraperStatus.mockImplementation((req, res) => {
-        res.status(500).json({
-          success: false,
-          error: 'Error getting scraper status'
-        });
-      });
-
-      const response = await request(app).get('/api/scraper/status');
-
-      expect(response.status).toBe(500);
-      expect(response.body.success).toBe(false);
-      expect(response.body.error).toBe('Error getting scraper status');
     });
   });
 

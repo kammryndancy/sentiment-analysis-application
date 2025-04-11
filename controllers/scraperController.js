@@ -5,28 +5,35 @@ exports.runScraper = async (req, res) => {
     const scraper = req.app.locals.scraper;
     const { pageIds, daysBack = 30 } = req.body;
 
+    let finalPageIds = pageIds;
     if (!pageIds) {
-      return res.status(400).json({
-        success: false,
-        error: 'Page IDs array is required'
-      });
+      // If no pageIds provided, get all pageIds from the database
+      const pageManager = req.app.locals.pageManager;
+      finalPageIds = await pageManager.getPageIds();
+      
+      if (!finalPageIds || finalPageIds.length === 0) {
+        return res.status(400).json({
+          success: false,
+          error: 'No pages found in the database'
+        });
+      }
     }
 
-    if (!Array.isArray(pageIds)) {
+    if (!Array.isArray(finalPageIds)) {
       return res.status(400).json({
         success: false,
         error: 'Page IDs must be an array'
       });
     }
 
-    if (pageIds.length === 0) {
+    if (finalPageIds.length === 0) {
       return res.status(400).json({
         success: false,
         error: 'Page IDs array cannot be empty'
       });
     }
 
-    const result = await scraper.scrapePages(pageIds, daysBack);
+    const result = await scraper.scrapePages(finalPageIds, daysBack);
 
     if (result.success) {
       res.status(202).json({

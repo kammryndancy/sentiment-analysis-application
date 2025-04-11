@@ -1,6 +1,5 @@
 const { 
   runScraper, 
-  getScraperStatus, 
   getComments, 
   getStats 
 } = require('../../controllers/scraperController');
@@ -9,19 +8,24 @@ describe('Scraper Controller', () => {
   let req;
   let res;
   let mockScraper;
+  let mockPageManager;
 
   beforeEach(() => {
     mockScraper = {
-      runScraper: jest.fn(),
-      getScraperStatus: jest.fn(),
+      scrapePages: jest.fn(),
       getComments: jest.fn(),
       getStats: jest.fn()
+    };
+
+    mockPageManager = {
+      getPageIds: jest.fn()
     };
 
     req = {
       app: {
         locals: {
-          scraper: mockScraper
+          scraper: mockScraper,
+          pageManager: mockPageManager
         }
       },
       params: {},
@@ -40,7 +44,7 @@ describe('Scraper Controller', () => {
 
     it('should start scraper successfully', async () => {
       req.body = { pageIds };
-      mockScraper.runScraper.mockResolvedValue({ success: true });
+      mockScraper.scrapePages.mockResolvedValue({ success: true, stats: { processed: 2 } });
 
       await runScraper(req, res);
 
@@ -48,27 +52,29 @@ describe('Scraper Controller', () => {
       expect(res.json).toHaveBeenCalledWith({
         success: true,
         message: 'Scraper started successfully',
-        pageIds,
-        daysBack: 30
+        stats: { processed: 2 }
       });
-      expect(mockScraper.runScraper).toHaveBeenCalledWith(pageIds, 30);
+      expect(mockScraper.scrapePages).toHaveBeenCalledWith(pageIds, 30);
     });
 
-    it('should validate required fields', async () => {
-      req.body = {}; // Missing pageIds
+    it('should handle errors when starting scraper', async () => {
+      const error = new Error('Database error');
+      mockScraper.scrapePages.mockRejectedValue(error);
+      mockPageManager.getPageIds.mockResolvedValue(['12345', '67890']);
 
       await runScraper(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.status).toHaveBeenCalledWith(500);
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        error: 'Page IDs array is required'
+        error: error.message
       });
-      expect(mockScraper.runScraper).not.toHaveBeenCalled();
+      expect(mockPageManager.getPageIds).toHaveBeenCalled();
+      expect(mockScraper.scrapePages).toHaveBeenCalledWith(['12345', '67890'], 30);
     });
 
     it('should validate pageIds is an array', async () => {
-      req.body = { pageIds: '12345' }; // Not an array
+      req.body = { pageIds: 'not an array' };
 
       await runScraper(req, res);
 
@@ -77,52 +83,49 @@ describe('Scraper Controller', () => {
         success: false,
         error: 'Page IDs must be an array'
       });
-      expect(mockScraper.runScraper).not.toHaveBeenCalled();
+      expect(mockScraper.scrapePages).not.toHaveBeenCalled();
     });
 
-    it('should handle scraper errors', async () => {
-      req.body = { pageIds };
-      const error = new Error('Scraper error');
-      mockScraper.runScraper.mockRejectedValue(error);
+    it('should validate pageIds array is not empty', async () => {
+      req.body = { pageIds: [] };
 
       await runScraper(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.status).toHaveBeenCalledWith(400);
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        error: error.message
+        error: 'Page IDs array cannot be empty'
       });
+      expect(mockScraper.scrapePages).not.toHaveBeenCalled();
     });
-  });
 
-  describe('getScraperStatus', () => {
-    it('should return scraper status successfully', async () => {
-      const mockStatus = {
-        isRunning: true,
-        progress: 50,
-        lastRun: new Date()
-      };
-      mockScraper.getScraperStatus.mockResolvedValue(mockStatus);
+    it('should start scraper with all pages when no pageIds provided', async () => {
+      const mockPageIds = ['12345', '67890'];
+      
+      mockPageManager.getPageIds.mockResolvedValue(mockPageIds);
+      mockScraper.scrapePages.mockResolvedValue({ success: true, stats: { processed: 2 } });
 
-      await getScraperStatus(req, res);
+      await runScraper(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.status).toHaveBeenCalledWith(202);
       expect(res.json).toHaveBeenCalledWith({
         success: true,
-        data: mockStatus
+        message: 'Scraper started successfully',
+        stats: { processed: 2 }
       });
+      expect(mockPageManager.getPageIds).toHaveBeenCalled();
+      expect(mockScraper.scrapePages).toHaveBeenCalledWith(mockPageIds, 30);
     });
 
-    it('should handle status retrieval errors', async () => {
-      const error = new Error('Status error');
-      mockScraper.getScraperStatus.mockRejectedValue(error);
+    it('should return error when no pages found in database', async () => {
+      mockPageManager.getPageIds.mockResolvedValue([]);
 
-      await getScraperStatus(req, res);
+      await runScraper(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.status).toHaveBeenCalledWith(400);
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        error: error.message
+        error: 'No pages found in the database'
       });
     });
   });
@@ -130,10 +133,14 @@ describe('Scraper Controller', () => {
   describe('getComments', () => {
     it('should return comments successfully', async () => {
       const mockComments = [
-        { id: 'comment1', message: 'Test comment 1' },
-        { id: 'comment2', message: 'Test comment 2' }
+        { id: '1', message: 'Test comment 1', from: { name: 'User 1' } },
+        { id: '2', message: 'Test comment 2', from: { name: 'User 2' } }
       ];
-      mockScraper.getComments.mockResolvedValue(mockComments);
+
+      // Setup mock scraper with commentManager
+      mockScraper.commentManager = {
+        getComments: jest.fn().mockResolvedValue(mockComments)
+      };
 
       await getComments(req, res);
 
@@ -141,6 +148,28 @@ describe('Scraper Controller', () => {
       expect(res.json).toHaveBeenCalledWith({
         success: true,
         data: mockComments
+      });
+      expect(mockScraper.commentManager.getComments).toHaveBeenCalledWith({
+        startDate: undefined,
+        endDate: undefined,
+        pageId: undefined,
+        limit: 100,
+        skip: 0
+      });
+    });
+
+    it('should handle errors when getting comments', async () => {
+      const error = new Error('Database error');
+      mockScraper.commentManager = {
+        getComments: jest.fn().mockRejectedValue(error)
+      };
+
+      await getComments(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({
+        success: false,
+        error: error.message
       });
     });
 
@@ -150,33 +179,33 @@ describe('Scraper Controller', () => {
       const pageId = '12345';
       req.query = { startDate, endDate, pageId };
       
-      await getComments(req, res);
-
-      // Check that we're passing a proper object to getComments
-      expect(mockScraper.getComments).toHaveBeenCalled();
-      const calledWith = mockScraper.getComments.mock.calls[0][0];
-      expect(calledWith).toHaveProperty('startDate');
-      expect(calledWith).toHaveProperty('endDate');
-      expect(calledWith).toHaveProperty('pageId', pageId);
-    });
-
-    it('should handle invalid date parameters', async () => {
-      req.query = {
-        startDate: 'invalid-date'
+      // Setup mock for commentManager
+      mockScraper.commentManager = {
+        getComments: jest.fn().mockResolvedValue([])
       };
 
       await getComments(req, res);
 
-      expect(res.status).toHaveBeenCalledWith(400);
-      expect(res.json).toHaveBeenCalledWith({
-        success: false,
-        error: 'Invalid date format'
+      const calledWith = mockScraper.commentManager.getComments.mock.calls[0][0];
+      expect(calledWith).toEqual({
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        pageId: '12345',
+        limit: 100,
+        skip: 0
       });
     });
 
-    it('should handle comment retrieval errors', async () => {
-      const error = new Error('Comments error');
-      mockScraper.getComments.mockRejectedValue(error);
+    it('should handle invalid date parameters', async () => {
+      const error = new Error('Invalid date format');
+      req.query = {
+        startDate: 'invalid-date'
+      };
+
+      // Setup mock for commentManager
+      mockScraper.commentManager = {
+        getComments: jest.fn().mockRejectedValue(error)
+      };
 
       await getComments(req, res);
 
@@ -192,10 +221,14 @@ describe('Scraper Controller', () => {
     it('should return stats successfully', async () => {
       const mockStats = {
         totalComments: 100,
-        totalPages: 5,
-        lastScrapeDate: new Date()
+        totalPages: 10,
+        averageCommentsPerPage: 10
       };
-      mockScraper.getStats.mockResolvedValue(mockStats);
+
+      // Setup mock for commentManager
+      mockScraper.commentManager = {
+        getStats: jest.fn().mockResolvedValue(mockStats)
+      };
 
       await getStats(req, res);
 
@@ -204,11 +237,15 @@ describe('Scraper Controller', () => {
         success: true,
         data: mockStats
       });
+      expect(mockScraper.commentManager.getStats).toHaveBeenCalled();
     });
 
-    it('should handle stats retrieval errors', async () => {
-      const error = new Error('Stats error');
-      mockScraper.getStats.mockRejectedValue(error);
+    it('should handle errors when getting stats', async () => {
+      const error = new Error('Database error');
+      // Setup mock for commentManager
+      mockScraper.commentManager = {
+        getStats: jest.fn().mockRejectedValue(error)
+      };
 
       await getStats(req, res);
 
@@ -217,6 +254,7 @@ describe('Scraper Controller', () => {
         success: false,
         error: error.message
       });
+      expect(mockScraper.commentManager.getStats).toHaveBeenCalled();
     });
   });
 });

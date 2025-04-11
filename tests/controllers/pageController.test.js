@@ -1,4 +1,4 @@
-const { getAllPages, addPage, removePage, importPages } = require('../../controllers/pageController');
+const { addPage, removePage, importPages, listPages } = require('../../controllers/pageController');
 
 // Create simple mock objects for the tests
 describe('Page Controller', () => {
@@ -14,6 +14,13 @@ describe('Page Controller', () => {
     statusMock = jest.fn().mockReturnValue({ json: jsonMock });
     
     mockPageManager = {
+      getPageIds: jest.fn(),
+      listPages: jest.fn(),
+      addPageId: jest.fn(),
+      removePageId: jest.fn(),
+      updatePageLastScraped: jest.fn(),
+      getPagePosts: jest.fn(),
+      savePost: jest.fn(),
       getAllPages: jest.fn(),
       addPage: jest.fn(),
       removePage: jest.fn(),
@@ -27,7 +34,8 @@ describe('Page Controller', () => {
         }
       },
       body: {},
-      params: {}
+      params: {},
+      query: {}
     };
 
     res = {
@@ -36,185 +44,208 @@ describe('Page Controller', () => {
     };
   });
 
-  describe('getAllPages', () => {
+  describe('listPages', () => {
     it('should return all pages successfully', async () => {
       const mockPages = [
-        { page_id: '123', name: 'Test Page 1' },
-        { page_id: '456', name: 'Test Page 2' }
+        { page_id: '12345', name: 'Test Page 1', description: 'Description 1' },
+        { page_id: '67890', name: 'Test Page 2', description: 'Description 2' }
       ];
-      mockPageManager.getAllPages.mockResolvedValue(mockPages);
 
-      await getAllPages(req, res);
+      mockPageManager.listPages.mockResolvedValue(mockPages);
 
-      expect(statusMock).toHaveBeenCalledWith(200);
-      expect(jsonMock).toHaveBeenCalledWith({
+      await listPages(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({
         success: true,
         data: mockPages
       });
+      expect(mockPageManager.listPages).toHaveBeenCalled();
     });
 
-    it('should handle errors', async () => {
+    it('should handle errors when getting pages', async () => {
       const error = new Error('Database error');
-      mockPageManager.getAllPages.mockRejectedValue(error);
+      mockPageManager.listPages.mockRejectedValue(error);
 
-      await getAllPages(req, res);
+      await listPages(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(500);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({
         success: false,
-        error: 'Database error'
+        error: error.message
       });
+      expect(mockPageManager.listPages).toHaveBeenCalled();
     });
   });
 
   describe('addPage', () => {
-    beforeEach(() => {
-      req.body = {
-        page_id: '789',
-        name: 'New Test Page',
-        description: 'New Test Description'
-      };
-    });
-
     it('should add a page successfully', async () => {
-      const expectedResponse = { 
-        success: true, 
-        page: { 
-          page_id: '789', 
-          name: 'New Test Page',
-          description: 'New Test Description' 
-        } 
+      const mockPage = {
+        page_id: '12345',
+        name: 'Test Page',
+        description: 'Description'
       };
-      
-      mockPageManager.addPage.mockResolvedValue(expectedResponse);
+
+      mockPageManager.addPageId.mockResolvedValue({ success: true, page: mockPage });
+
+      req.body = {
+        page_id: '12345',
+        name: 'Test Page',
+        description: 'Description'
+      };
 
       await addPage(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(201);
-      expect(jsonMock).toHaveBeenCalledWith(expect.objectContaining({
-        success: true
-      }));
+      expect(res.status).toHaveBeenCalledWith(201);
+      expect(res.json).toHaveBeenCalledWith({
+        success: true,
+        message: 'Page added successfully',
+        data: mockPage
+      });
+      expect(mockPageManager.addPageId).toHaveBeenCalledWith('12345', 'Test Page', 'Description');
     });
 
-    it('should validate required fields', async () => {
-      req.body = { name: 'New Test Page' }; // Missing page_id
+    it('should handle missing required fields', async () => {
+      req.body = {
+        name: 'Test Page'
+      };
 
       await addPage(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(400);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
         success: false,
         error: 'Both page_id and name are required'
       });
+      expect(mockPageManager.addPageId).not.toHaveBeenCalled();
     });
 
-    it('should handle errors', async () => {
-      const error = new Error('Database error');
-      mockPageManager.addPage.mockRejectedValue(error);
+    it('should handle page already exists error', async () => {
+      mockPageManager.addPageId.mockResolvedValue({ success: false, error: 'Page already exists' });
+
+      req.body = {
+        page_id: '12345',
+        name: 'Test Page'
+      };
 
       await addPage(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(500);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
         success: false,
-        error: 'Database error'
+        error: 'Page already exists'
       });
+      expect(mockPageManager.addPageId).toHaveBeenCalled();
     });
   });
 
   describe('removePage', () => {
     it('should remove a page successfully', async () => {
-      req.params.page_id = '123';
-      mockPageManager.removePage.mockResolvedValue({ 
-        success: true, 
-        page_id: '123' 
-      });
+      mockPageManager.removePageId.mockResolvedValue({ success: true });
+
+      req.params = {
+        page_id: '12345'
+      };
 
       await removePage(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(200);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({
         success: true,
         message: 'Page removed successfully'
       });
-      expect(mockPageManager.removePage).toHaveBeenCalledWith('123');
+      expect(mockPageManager.removePageId).toHaveBeenCalledWith('12345');
     });
 
-    it('should handle non-existent pages', async () => {
-      req.params.page_id = 'nonexistent';
-      mockPageManager.removePage.mockResolvedValue({
-        success: false,
-        error: 'Page not found'
-      });
+    it('should handle missing page_id', async () => {
+      req.params = {};
 
       await removePage(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(404);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
         success: false,
-        error: 'Page not found'
+        error: 'Page ID is required'
       });
+      expect(mockPageManager.removePageId).not.toHaveBeenCalled();
     });
 
-    it('should handle errors', async () => {
-      req.params.page_id = '123';
-      const error = new Error('Database error');
-      mockPageManager.removePage.mockRejectedValue(error);
+    it('should handle page not found error', async () => {
+      mockPageManager.removePageId.mockResolvedValue({ success: false, error: 'Page not found' });
+
+      req.params = {
+        page_id: '12345'
+      };
 
       await removePage(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(500);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(404);
+      expect(res.json).toHaveBeenCalledWith({
         success: false,
-        error: 'Database error'
+        error: 'Page not found'
       });
+      expect(mockPageManager.removePageId).toHaveBeenCalled();
     });
   });
 
   describe('importPages', () => {
-    const pageIds = ['123', '456', '789'];
-
     it('should import pages successfully', async () => {
-      req.body = { pageIds };
-      mockPageManager.importPages.mockResolvedValue({ 
-        success: true, 
-        imported: 3 
-      });
+      const mockPages = [
+        { success: true, page: { page_id: '12345', name: 'Test Page 1' } },
+        { success: false, error: 'Page already exists' }
+      ];
+
+      mockPageManager.addPageId.mockImplementation((pageId, name) => 
+        pageId === '12345' ? { success: true, page: { page_id: '12345', name: 'Test Page 1' } } : 
+        { success: false, error: 'Page already exists' }
+      );
+
+      req.body = {
+        pageIds: ['12345', '67890']
+      };
 
       await importPages(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(200);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({
         success: true,
-        message: 'Pages imported successfully'
+        message: 'Pages imported successfully',
+        data: {
+          total: 2,
+          success: 1,
+          failed: 1,
+          results: mockPages
+        }
       });
-      expect(mockPageManager.importPages).toHaveBeenCalledWith(pageIds);
+      expect(mockPageManager.addPageId).toHaveBeenCalledTimes(2);
     });
 
-    it('should validate the request body', async () => {
-      req.body = {}; // Missing pageIds
+    it('should handle missing pageIds', async () => {
+      req.body = {};
 
       await importPages(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(400);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
         success: false,
         error: 'pageIds array is required'
       });
+      expect(mockPageManager.addPageId).not.toHaveBeenCalled();
     });
 
-    it('should handle errors', async () => {
-      req.body = { pageIds };
-      const error = new Error('Import error');
-      mockPageManager.importPages.mockRejectedValue(error);
+    it('should handle invalid pageIds format', async () => {
+      req.body = {
+        pageIds: 'not-an-array'
+      };
 
       await importPages(req, res);
 
-      expect(statusMock).toHaveBeenCalledWith(500);
-      expect(jsonMock).toHaveBeenCalledWith({
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
         success: false,
-        error: 'Import error'
+        error: 'pageIds array is required'
       });
+      expect(mockPageManager.addPageId).not.toHaveBeenCalled();
     });
   });
 });

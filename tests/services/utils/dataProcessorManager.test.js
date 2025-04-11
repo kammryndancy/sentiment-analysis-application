@@ -80,52 +80,118 @@ describe('DataProcessor', () => {
         postId: 'post123'
       };
 
+      const expectedProcessed = {
+        _id: 'comment123',
+        original_message: 'Test comment',
+        processed_message: 'preprocessed_Test comment',
+        tokens: ['test', 'tokens'],
+        anonymized: true,
+        sentiment: {
+          score: 1,
+          comparative: 0.5
+        },
+        processed_at: expect.any(Date)
+      };
+
       const result = await dataProcessor.processComment(mockComment);
 
-      expect(result).toBeDefined();
-      expect(preprocessText).toHaveBeenCalled();
-      expect(anonymizeData).toHaveBeenCalled();
+      expect(result).toEqual(expectedProcessed);
+      expect(result.processed_at).toBeInstanceOf(Date);
     });
   });
 
   describe('processAllComments', () => {
     it('should process all comments', async () => {
+      const mockComments = [
+        { _id: '1', content: 'Test comment 1', postId: 'post1' },
+        { _id: '2', content: 'Test comment 2', postId: 'post2' }
+      ];
+
+      // Mock the database operations
+      mockDb.collection().find().toArray.mockResolvedValue(mockComments);
+      mockDb.collection().insertMany.mockResolvedValue({ insertedCount: mockComments.length });
+
       const result = await dataProcessor.processAllComments();
 
-      expect(result.success).toBe(true);
+      expect(result).toEqual({
+        success: true,
+        count: 2,
+        comments: expect.arrayContaining([
+          {
+            _id: '1',
+            original_message: 'Test comment 1',
+            processed_message: 'preprocessed_Test comment 1',
+            tokens: ['test', 'tokens'],
+            anonymized: true,
+            sentiment: {
+              score: 1,
+              comparative: 0.5
+            },
+            processed_at: expect.any(Date)
+          },
+          {
+            _id: '2',
+            original_message: 'Test comment 2',
+            processed_message: 'preprocessed_Test comment 2',
+            tokens: ['test', 'tokens'],
+            anonymized: true,
+            sentiment: {
+              score: 1,
+              comparative: 0.5
+            },
+            processed_at: expect.any(Date)
+          }
+        ])
+      });
+
       expect(mockDb.collection).toHaveBeenCalledWith('comments');
       expect(mockDb.collection).toHaveBeenCalledWith('processed_comments');
+      expect(mockDb.collection().find().toArray).toHaveBeenCalled();
+      expect(mockDb.collection().insertMany).toHaveBeenCalledWith(
+        expect.arrayContaining([
+          expect.objectContaining({ _id: '1' }),
+          expect.objectContaining({ _id: '2' })
+        ])
+      );
     });
 
     it('should handle errors', async () => {
-      mockDb.collection().find.mockImplementation(() => {
-        throw new Error('Test error');
-      });
+      mockDb.collection().find().toArray.mockRejectedValue(new Error('Test error'));
 
       const result = await dataProcessor.processAllComments();
 
-      expect(result.success).toBe(false);
-      expect(result.error).toBeDefined();
+      expect(result).toEqual({
+        success: false,
+        error: 'Test error'
+      });
     });
   });
 
   describe('getStats', () => {
     it('should return processing stats', async () => {
-      const stats = await dataProcessor.getStats();
+      mockDb.collection().countDocuments.mockResolvedValue(10);
 
-      expect(stats.success).toBe(true);
-      expect(stats).toHaveProperty('totalComments');
-      expect(stats).toHaveProperty('processedComments');
-      expect(mockDb.collection().countDocuments).toHaveBeenCalled();
+      const result = await dataProcessor.getStats();
+
+      expect(result).toEqual({
+        success: true,
+        totalComments: 10,
+        processedComments: 10,
+        processingRate: 100
+      });
+
+      expect(mockDb.collection().countDocuments).toHaveBeenCalledWith();
     });
 
     it('should handle errors', async () => {
       mockDb.collection().countDocuments.mockRejectedValue(new Error('Stats error'));
 
-      const stats = await dataProcessor.getStats();
+      const result = await dataProcessor.getStats();
 
-      expect(stats.success).toBe(false);
-      expect(stats.error).toBeDefined();
+      expect(result).toEqual({
+        success: false,
+        error: 'Stats error'
+      });
     });
   });
 });
