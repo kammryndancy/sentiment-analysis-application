@@ -1,0 +1,164 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Sentiment Analysis Application Infrastructure'
+
+Parameters:
+  VpcId:
+    Type: String
+    Description: 'VPC ID for the application'
+  SubnetIds:
+    Type: CommaDelimitedList
+    Description: 'Subnet IDs for the application'
+  SecurityGroupId:
+    Type: String
+    Description: 'Security Group ID for the application'
+  MongodbSecurityGroupId:
+    Type: String
+    Description: 'Security Group ID for MongoDB'
+  RedisSecurityGroupId:
+    Type: String
+    Description: 'Security Group ID for Redis'
+  Environment:
+    Type: String
+    Default: 'production'
+    Description: 'Application environment'
+  ApplicationVersion:
+    Type: String
+    Default: 'v1.0.0'
+    Description: 'Application version to deploy'
+
+Resources:
+  # Elastic Beanstalk Application
+  SentimentAnalysisApp:
+    Type: AWS::ElasticBeanstalk::Application
+    Properties:
+      ApplicationName: sentiment-analysis-app
+      Description: Sentiment Analysis Application
+
+  # Elastic Beanstalk Environment
+  SentimentAnalysisEnv:
+    Type: AWS::ElasticBeanstalk::Environment
+    Properties:
+      ApplicationName: !Ref SentimentAnalysisApp
+      EnvironmentName: sentiment-analysis-env
+      SolutionStackName: 64bit Amazon Linux 2 v3.6.1 running Python 3.9
+      OptionSettings:
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: InstanceType
+          Value: t2.micro
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: EnvironmentType
+          Value: LoadBalanced
+        - Namespace: aws:elasticbeanstalk:application:environment
+          OptionName: FACEBOOK_APP_ID
+          Value: !Ref FacebookAppId
+        - Namespace: aws:elasticbeanstalk:application:environment
+          OptionName: FACEBOOK_APP_SECRET
+          Value: !Ref FacebookAppSecret
+        - Namespace: aws:elasticbeanstalk:application:environment
+          OptionName: MONGODB_URI
+          Value: !Sub mongodb://${MongodbEndpoint}
+        - Namespace: aws:elasticbeanstalk:application:environment
+          OptionName: REDIS_HOST
+          Value: !Sub ${RedisEndpoint}
+
+  # RDS Instance
+  SentimentAnalysisDB:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: sentiment-analysis-db
+      DBInstanceClass: db.t2.micro
+      Engine: mongodb
+      AllocatedStorage: 20
+      MasterUsername: admin
+      MasterUserPassword: !Ref MongodbPassword
+      VPCSecurityGroups:
+        - !Ref MongodbSecurityGroupId
+      DBSubnetGroupName: !Ref MongodbSubnetGroup
+      PubliclyAccessible: true
+      Tags:
+        - Key: Name
+          Value: sentiment-analysis-db
+
+  # Redis Instance
+  SentimentAnalysisRedis:
+    Type: AWS::ElastiCache::CacheCluster
+    Properties:
+      CacheClusterId: sentiment-analysis-redis
+      CacheNodeType: cache.t2.micro
+      Engine: redis
+      NumCacheNodes: 1
+      VpcSecurityGroupIds:
+        - !Ref RedisSecurityGroupId
+      Tags:
+        - Key: Name
+          Value: sentiment-analysis-redis
+
+  # Auto Scaling Group
+  SentimentAnalysisASG:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: sentiment-analysis-asg
+      LaunchTemplate:
+        LaunchTemplateId: !Ref LaunchTemplate
+        Version: !GetAtt LaunchTemplate.LatestVersionNumber
+      MinSize: 1
+      MaxSize: 3
+      VPCZoneIdentifier: !Ref SubnetIds
+      TargetGroupARNs: !Ref TargetGroupARNs
+
+  # Launch Template
+  LaunchTemplate:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateName: sentiment-analysis-template
+      LaunchTemplateData:
+        ImageId: ami-0c55b159cbfafe1f0
+        InstanceType: t2.micro
+        SecurityGroupIds:
+          - !Ref SecurityGroupId
+        UserData: !Base64 |
+          #!/bin/bash
+          yum update -y
+          yum install -y python39 python39-pip
+          pip3 install -r requirements.txt
+          python3 app.py
+
+  # CloudWatch Alarms
+  HighCPUAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: HighCPUUtilization
+      ComparisonOperator: GreaterThanThreshold
+      EvaluationPeriods: 2
+      MetricName: CPUUtilization
+      Namespace: AWS/EC2
+      Period: 300
+      Statistic: Average
+      Threshold: 80
+      AlarmActions:
+        - !Ref SnsTopic
+
+  # SNS Topic
+  SnsTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: sentiment-analysis-notifications
+
+  # SNS Subscription
+  SnsSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref SnsTopic
+      Protocol: email
+      Endpoint: admin@example.com
+
+Outputs:
+  ApplicationURL:
+    Description: URL of the deployed application
+    Value: !GetAtt SentimentAnalysisEnv.EndpointURL
+  RdsEndpoint:
+    Description: RDS endpoint
+    Value: !GetAtt SentimentAnalysisDB.Endpoint.Address
+  RedisEndpoint:
+    Description: Redis endpoint
+    Value: !GetAtt SentimentAnalysisRedis.CacheNodes[0].Endpoint.Address

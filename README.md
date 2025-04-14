@@ -223,3 +223,100 @@ You can import keywords in two formats:
 - This tool is intended for research purposes only
 - The scraper will only process new posts and comments that haven't been scraped before
 - Default keywords are automatically added if no keywords exist in the database
+
+### AWS Deployment Instructions
+
+To deploy this application to AWS, follow these steps:
+
+1. **Prerequisites**
+   - AWS CLI installed and configured with appropriate permissions
+   - AWS account with necessary permissions for:
+     - EC2
+     - RDS
+     - ElastiCache
+     - Elastic Beanstalk
+     - CloudFormation
+     - S3
+     - CloudWatch
+     - SNS
+
+2. **Configure AWS CLI**
+   ```bash
+   # Configure your AWS credentials
+   aws configure
+   
+   # Verify configuration
+   aws sts get-caller-identity
+   ```
+
+3. **Prepare Application for Deployment**
+   ```bash
+   # Build your application
+   npm run build
+   
+   # Create deployment package
+   zip -r sentiment-analysis-app.zip . -x "*.git*" "node_modules/*" "*.zip"
+   ```
+
+4. **Deploy to AWS**
+   ```bash
+   # Make the deployment script executable
+   chmod +x deploy.sh
+   
+   # Run the deployment script
+   ./deploy.sh
+   ```
+
+5. **Deployment Process Overview**
+The deployment script will:
+   - Create a VPC with public and private subnets
+   - Set up security groups with proper rules
+   - Create RDS instance for MongoDB
+   - Create Redis instance for caching
+   - Set up Elastic Beanstalk environment
+   - Configure auto-scaling and monitoring
+   - Create CloudFormation stack
+   - Set up CloudWatch alarms
+   - Configure SNS notifications
+
+6. **Post-Deployment Configuration**
+   - Update your `.env` file with the RDS and Redis endpoints provided by the deployment script
+   - Configure your Facebook app credentials in the AWS environment variables
+   - Monitor CloudWatch logs for application status
+   - Set up monitoring alerts through CloudWatch alarms
+
+7. **Accessing the Application**
+   - The application URL will be displayed at the end of deployment
+   - Access the application through the provided URL
+   - Monitor health and metrics through CloudWatch
+
+8. **Troubleshooting**
+   - Check CloudFormation stack events for deployment status
+   - View CloudWatch logs for application errors
+   - Verify security group rules if connectivity issues occur
+   - Check SNS notifications for deployment alerts
+
+9. **Cleanup**
+   ```bash
+   # To delete all resources created by the deployment
+   aws cloudformation delete-stack --stack-name sentiment-analysis-stack
+   ```
+
+### Security Considerations
+
+- All sensitive information (credentials, API keys) should be stored in AWS Secrets Manager
+- Security groups are configured to allow only necessary inbound traffic
+- RDS and Redis instances are configured with proper network isolation
+- Application logs are encrypted at rest
+- Regular backups are configured for RDS instances
+
+### Monitoring and Maintenance
+
+- CloudWatch metrics and alarms are set up for:
+  - CPU utilization
+  - Memory usage
+  - Disk space
+  - Network traffic
+- Auto-scaling is configured based on CPU and memory metrics
+- Regular backups are configured for RDS instances
+- CloudWatch logs are configured for application monitoring

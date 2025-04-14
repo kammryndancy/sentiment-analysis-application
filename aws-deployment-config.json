@@ -1,0 +1,150 @@
+{
+  "metadata": {
+    "description": "AWS deployment configuration for Sentiment Analysis Application",
+    "version": "1.0.0",
+    "created": "2025-04-14"
+  },
+  "aws": {
+    "region": "us-east-1",
+    "ec2": {
+      "instanceType": "t2.micro",
+      "ami": "ami-0c55b159cbfafe1f0",
+      "securityGroups": [
+        {
+          "name": "sentiment-analysis-sg",
+          "description": "Security group for sentiment analysis application",
+          "inboundRules": [
+            {
+              "protocol": "tcp",
+              "port": 80,
+              "source": "0.0.0.0/0",
+              "description": "Allow HTTP access"
+            },
+            {
+              "protocol": "tcp",
+              "port": 443,
+              "source": "0.0.0.0/0",
+              "description": "Allow HTTPS access"
+            },
+            {
+              "protocol": "tcp",
+              "port": 22,
+              "source": "0.0.0.0/0",
+              "description": "Allow SSH access"
+            }
+          ]
+        }
+      ]
+    },
+    "rds": {
+      "instanceClass": "db.t2.micro",
+      "allocatedStorage": 20,
+      "engine": "mongodb",
+      "multiAZ": false,
+      "backupRetentionPeriod": 7,
+      "securityGroup": "mongodb-sg",
+      "subnetGroup": "mongodb-subnet-group"
+    },
+    "elasticache": {
+      "engine": "redis",
+      "nodeType": "cache.t2.micro",
+      "numCacheNodes": 1,
+      "securityGroup": "redis-sg"
+    },
+    "elasticBeanstalk": {
+      "environmentName": "sentiment-analysis-env",
+      "applicationName": "sentiment-analysis-app",
+      "solutionStack": "64bit Amazon Linux 2 v3.6.1 running Python 3.9",
+      "instanceType": "t2.micro"
+    }
+  },
+  "application": {
+    "name": "sentiment-analysis-application",
+    "version": "1.0.0",
+    "environment": {
+      "production": {
+        "database": {
+          "host": "mongodb://{{RDS_ENDPOINT}}",
+          "port": 27017,
+          "name": "sentiment_analysis_db"
+        },
+        "cache": {
+          "host": "{{REDIS_ENDPOINT}}",
+          "port": 6379
+        },
+        "facebook": {
+          "app_id": "{{FACEBOOK_APP_ID}}",
+          "app_secret": "{{FACEBOOK_APP_SECRET}}"
+        },
+        "mongodb": {
+          "uri": "mongodb://{{MONGODB_URI}}"
+        }
+      }
+    }
+  },
+  "deployment": {
+    "strategy": "blue-green",
+    "rollingUpdate": {
+      "minInstancesInService": 1,
+      "maxBatchSize": 1,
+      "pauseTime": "PT5M"
+    },
+    "healthCheck": {
+      "path": "/health",
+      "healthyThreshold": 2,
+      "unhealthyThreshold": 5,
+      "interval": 30,
+      "timeout": 5
+    }
+  },
+  "monitoring": {
+    "cloudwatch": {
+      "metrics": {
+        "cpu": {
+          "period": 300,
+          "statistic": "Average",
+          "threshold": 80
+        },
+        "memory": {
+          "period": 300,
+          "statistic": "Average",
+          "threshold": 90
+        },
+        "disk": {
+          "period": 300,
+          "statistic": "Average",
+          "threshold": 85
+        }
+      },
+      "alarms": {
+        "cpu": {
+          "comparisonOperator": "GreaterThanThreshold",
+          "evaluationPeriods": 2,
+          "threshold": 80
+        },
+        "memory": {
+          "comparisonOperator": "GreaterThanThreshold",
+          "evaluationPeriods": 2,
+          "threshold": 90
+        },
+        "disk": {
+          "comparisonOperator": "GreaterThanThreshold",
+          "evaluationPeriods": 2,
+          "threshold": 85
+        }
+      }
+    }
+  },
+  "autoscaling": {
+    "minCapacity": 1,
+    "maxCapacity": 3,
+    "targetTracking": {
+      "cpu": {
+        "targetValue": 70
+      },
+      "memory": {
+        "targetValue": 75
+      }
+    }
+  }
+}
