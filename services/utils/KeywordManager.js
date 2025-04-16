@@ -288,6 +288,27 @@ class KeywordManager {
       throw new Error(`Error importing keywords: ${error.message}`);
     }
   }
+
+  /**
+   * Extract all matched keywords from a given text
+   * @param {string} text
+   * @returns {Promise<string[]>} Array of matched keywords
+   */
+  async extractMatchedKeywords(text) {
+    if (!text) return [];
+    // Get all keywords from the DB
+    const keywords = await this.getAllKeywords();
+    const matched = [];
+    for (const k of keywords) {
+      const kw = k.keyword;
+      // Use word boundaries for precise matching, case-insensitive
+      const regex = new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}\\b`, 'i');
+      if (regex.test(text)) {
+        matched.push(kw);
+      }
+    }
+    return matched;
+  }
 }
 
 module.exports = KeywordManager;

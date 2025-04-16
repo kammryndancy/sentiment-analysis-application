@@ -6,7 +6,7 @@ class CommentManager {
   }
 
   // Get all comments for a post, handling pagination
-  async getAllComments(post, fbPromise) {
+  async getAllComments(post, fbPromise, matchedKeywords = []) {
     try {
       if (!post.comments) {
         return [];
@@ -30,7 +30,20 @@ class CommentManager {
           break;
         }
       }
-      
+
+      // If matchedKeywords provided, check which comments mention them
+      if (matchedKeywords && matchedKeywords.length > 0) {
+        for (const comment of comments) {
+          comment.matched_keywords = [];
+          for (const kw of matchedKeywords) {
+            const regex = new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}\\b`, 'i');
+            if (regex.test(comment.message || '')) {
+              comment.matched_keywords.push(kw);
+            }
+          }
+        }
+      }
+
       return comments;
     } catch (error) {
       console.error('Error getting all comments:', error);

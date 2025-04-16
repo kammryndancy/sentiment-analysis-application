@@ -143,13 +143,15 @@ class FacebookScraper {
           const postId = post.id;
           const postMessage = post.message || '';
           const postHasKeywords = this.isAvonRelated(postMessage);
-          
+          let matchedKeywords = [];
           if (postHasKeywords) {
+            // Extract specific matched keywords
+            matchedKeywords = await this.keywordManager.extractMatchedKeywords(postMessage);
             keywordMatchedPosts++;
             console.log(`Found Avon-related keywords in post ${postId}: "${postMessage.substring(0, 50)}..."`);
             
-            // Save the post to the saved_posts collection
-            await this.savePost(post, pageId);
+            // Save the post to the saved_posts collection, including matched keywords
+            await this.savePost({ ...post, matched_keywords: matchedKeywords }, pageId);
             
             const comments = await this.getAllComments(post);
             totalComments += comments.length;

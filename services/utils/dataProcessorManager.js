@@ -9,6 +9,8 @@ import { MongoClient } from 'mongodb';
 import { preprocessText } from './dataProcessing/text-preprocessor.js';
 import { anonymizeData } from './anonymization/anonymizer.js';
 import Sentiment from 'sentiment';
+import { analyzeSentimentHuggingFace } from '../nlp/huggingfaceSentiment.js';
+import { analyzeSentimentGoogle } from '../nlp/googleCloudNLP.js';
 const sentiment = new Sentiment();
 
 class DataProcessor {
@@ -55,6 +57,26 @@ class DataProcessor {
   analyzeSentiment(text) {
     const result = sentiment.analyze(text);
     return result;
+  }
+
+  /**
+   * Analyze sentiment of a text using both Hugging Face and Google Cloud NLP
+   * @param {string} text - Input text to analyze
+   * @returns {Object} - Combined sentiment analysis results
+   */
+  async analyzeHybridSentiment(text) {
+    const results = {};
+    try {
+      results.huggingface = await analyzeSentimentHuggingFace(text);
+    } catch (err) {
+      results.huggingface = { error: err.message };
+    }
+    try {
+      results.google = await analyzeSentimentGoogle(text);
+    } catch (err) {
+      results.google = { error: err.message };
+    }
+    return results;
   }
 
   /**
@@ -171,15 +193,15 @@ class DataProcessor {
     // Anonymize the data
     const anonymizedComment = anonymizeData(comment, options);
 
-    // Analyze sentiment
-    const sentimentAnalysis = this.analyzeSentiment(processedText.text);
+    // Analyze sentiment using both Hugging Face and Google Cloud NLP
+    const hybridSentiment = await this.analyzeHybridSentiment(processedText.text);
 
     return {
       ...anonymizedComment,
       original_message: comment.message,
       processed_message: processedText.text,
       tokens: processedText.tokens,
-      sentiment: sentimentAnalysis,
+      sentiment: hybridSentiment,
       processed_at: new Date()
     };
   }
