@@ -1,0 +1,43 @@
+.feed-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  padding: 16px 20px 14px 20px;
+  margin-bottom: 4px;
+  border-left: 5px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.feed-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+.feed-card-user {
+  font-weight: bold;
+  color: #1976d2;
+  font-size: 1.07rem;
+}
+.feed-card-time {
+  color: #888;
+  font-size: 0.95rem;
+}
+.feed-card-text {
+  color: #333;
+  font-size: 1.08rem;
+  margin-bottom: 4px;
+}
+.feed-card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.feed-card-tag {
+  background: #f6f8fa;
+  color: #1976d2;
+  padding: 2px 8px;
+  border-radius: 7px;
+  font-size: 0.95rem;
+}

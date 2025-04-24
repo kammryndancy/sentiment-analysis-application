@@ -1,0 +1,7 @@
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+  margin-top: 10px;
+}

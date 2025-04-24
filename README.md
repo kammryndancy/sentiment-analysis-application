@@ -1,56 +1,64 @@
-# sentiment-analysis-scraper
-A data scraping module for social media platforms
+# Sentiment Analysis Application
 
-## Node.js API for Facebook Sentiment Analysis
+A full-stack application for scraping, analyzing, and visualizing sentiment from social media platforms.
 
-This module provides a RESTful API for scraping Facebook pages for posts and comments, then filtering and storing comments related to Avon products in a MongoDB database.
+---
+
+## Table of Contents
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Backend (API)](#backend-api)
+- [Frontend (Dashboard)](#frontend-dashboard)
+- [Development & Setup](#development--setup)
+- [License](#license)
+
+---
+
+## Overview
+This project provides:
+- A backend API for scraping Facebook data, filtering for Avon-related content, and storing results in MongoDB
+- A React-based frontend dashboard for data visualization and reporting
+
+## Project Structure
+```
+sentiment-analysis-application/
+  backend/
+    api/           # Node.js API, controllers, routes, services, config, tests
+  frontend/        # React dashboard (Vite)
+  documents/       # Planning, requirements, and docs
+  README.md
+```
+
+---
+
+## Backend (API)
 
 ### Features
-
 - RESTful API for scraping and data management
-- Scrape posts from multiple Facebook pages using page IDs
-- Extract all comments from these posts
+- Scrape posts/comments from multiple Facebook pages using page IDs
 - Filter comments for Avon product-related content using keyword matching
-- Store filtered comments in MongoDB for further analysis
-- Rate limit handling to avoid API restrictions
-- **Incremental scraping**: Only processes new, unscraped posts and comments
-- **Time-based filtering**: Specify how many days back to scrape
-- **Page management**: Store and manage Facebook page IDs in MongoDB
-- **Keyword management**: Configure and manage Avon-related keywords in MongoDB
+- Store filtered comments in MongoDB
+- Rate limit handling
+- Incremental & time-based scraping
+- Manage page IDs and keywords in MongoDB
 
 ### Requirements
-
 - Node.js 14+
-- Facebook Developer Account and Access Token
-- MongoDB (local or cloud instance)
+- Facebook Developer Account & Access Token
+- MongoDB (local or cloud)
+- See `backend/api/.env.example` for environment variables
 
 ### Installation
-
-1. Clone this repository:
-   ```
-   git clone https://github.com/yourusername/sentiment-analysis-scraper.git
-   cd sentiment-analysis-scraper
-   ```
-
-2. Install required dependencies:
-   ```
-   npm install
-   ```
-
-3. Configure your environment variables:
-   - Copy `.env.example` to `.env`
-   - Add your Facebook app ID, app secret, access token, and MongoDB connection details
-
-### Usage
-
-Start the API server:
+```bash
+cd backend/api
+npm install
 ```
+
+### Running the Backend
+```bash
+# Copy example env and fill in your credentials
+cp .env.example .env
 npm start
-```
-
-For development with auto-restart:
-```
-npm run dev
 ```
 
 ### API Endpoints
@@ -120,203 +128,39 @@ npm run dev
     - `skip` - Skip results for pagination (default: 0)
 - **GET /api/scraper/stats** - Get statistics about the scraped data
 
-### Data Processing
+---
 
-The application includes a data processing module for cleaning, anonymizing, and analyzing text data.
+## Frontend (Dashboard)
 
-### DataProcessorManager
+### Features
+- Modern React dashboard for visualizing sentiment data
+- Sidebar navigation, analytics panel, filters, and feed list
+- Responsive, clean UI with real-time analytics (when backend is connected)
 
-The `DataProcessorManager` class in `services/utils/dataProcessorManager.js` is responsible for orchestrating the data processing workflow. It utilizes the following utility functions:
+### Requirements
+- Node.js 14+
 
-### Text Preprocessing
+### Installation
+```bash
+cd frontend
+npm install
+```
 
-The `text-preprocessor.js` module in `services/utils/dataProcessing/` provides functions for text normalization, tokenization, stopword removal, and lemmatization.
+### Running the Frontend
+```bash
+npm run dev
+# Visit http://localhost:5173
+```
 
-### Anonymization
+---
 
-The `anonymizer.js` module in `services/utils/anonymization/` provides functions for masking personally identifiable information (PII) in text data.
+## Development & Setup
+- See `documents/Phase1-PlanningRequirements.md` for project goals and stack
+- Backend and frontend run independently for development
+- Environment variables for the backend are in `backend/api/.env`
+- For API docs and Postman collections, see `backend/api/api-collection-postman.json`
 
-### MongoDB Structure
+---
 
-The scraper uses four MongoDB collections:
-
-1. **facebook_comments**: Stores Avon-related comments with the following structure:
-   ```json
-   {
-     "comment_id": "123456789_12345",
-     "post_id": "123456789",
-     "page_id": "avon_page_id",
-     "message": "I love the new Avon Anew serum!",
-     "created_time": "2023-01-15T14:22:15+0000",
-     "from_id": "user_id",
-     "from_name": "User Name",
-     "scraped_at": "2023-01-16T08:30:45"
-   }
-   ```
-
-2. **scraped_posts**: Tracks which posts have already been scraped:
-   ```json
-   {
-     "post_id": "123456789",
-     "page_id": "avon_page_id",
-     "created_time": "2023-01-15T14:22:15+0000",
-     "last_scraped": "2023-01-16T08:30:45"
-   }
-   ```
-
-3. **page_ids**: Stores Facebook pages to be scraped:
-   ```json
-   {
-     "page_id": "AvonInsider",
-     "name": "Avon Insider",
-     "description": "Official Avon page",
-     "added_at": "2023-01-15T14:22:15+0000",
-     "last_scraped": "2023-01-16T08:30:45"
-   }
-   ```
-
-4. **keywords**: Stores Avon-related keywords for filtering comments:
-   ```json
-   {
-     "keyword": "avon true",
-     "category": "makeup",
-     "description": "Avon's makeup line",
-     "is_default": false,
-     "added_at": "2023-01-15T14:22:15+0000",
-     "last_updated": "2023-01-16T08:30:45"
-   }
-   ```
-
-### Keyword Format for Import
-
-You can import keywords in two formats:
-
-1. Simple string list:
-   ```json
-   [
-     "avon lipstick",
-     "avon mascara",
-     "avon foundation"
-   ]
-   ```
-
-2. Detailed format with metadata:
-   ```json
-   [
-     {
-       "keyword": "avon true",
-       "category": "makeup",
-       "description": "Avon's makeup line"
-     },
-     {
-       "keyword": "anew clinical",
-       "category": "skincare",
-       "description": "Advanced anti-aging skincare"
-     }
-   ]
-   ```
-
-### Important Notes
-
-- Ensure your Facebook access token has the necessary permissions
-- Be mindful of Facebook's rate limits and terms of service
-- This tool is intended for research purposes only
-- The scraper will only process new posts and comments that haven't been scraped before
-- Default keywords are automatically added if no keywords exist in the database
-
-### AWS Deployment Instructions
-
-To deploy this application to AWS, follow these steps:
-
-1. **Prerequisites**
-   - AWS CLI installed and configured with appropriate permissions
-   - AWS account with necessary permissions for:
-     - EC2
-     - RDS
-     - ElastiCache
-     - Elastic Beanstalk
-     - CloudFormation
-     - S3
-     - CloudWatch
-     - SNS
-
-2. **Configure AWS CLI**
-   ```bash
-   # Configure your AWS credentials
-   aws configure
-   
-   # Verify configuration
-   aws sts get-caller-identity
-   ```
-
-3. **Prepare Application for Deployment**
-   ```bash
-   # Build your application
-   npm run build
-   
-   # Create deployment package
-   zip -r sentiment-analysis-app.zip . -x "*.git*" "node_modules/*" "*.zip"
-   ```
-
-4. **Deploy to AWS**
-   ```bash
-   # Make the deployment script executable
-   chmod +x deploy.sh
-   
-   # Run the deployment script
-   ./deploy.sh
-   ```
-
-5. **Deployment Process Overview**
-The deployment script will:
-   - Create a VPC with public and private subnets
-   - Set up security groups with proper rules
-   - Create RDS instance for MongoDB
-   - Create Redis instance for caching
-   - Set up Elastic Beanstalk environment
-   - Configure auto-scaling and monitoring
-   - Create CloudFormation stack
-   - Set up CloudWatch alarms
-   - Configure SNS notifications
-
-6. **Post-Deployment Configuration**
-   - Update your `.env` file with the RDS and Redis endpoints provided by the deployment script
-   - Configure your Facebook app credentials in the AWS environment variables
-   - Monitor CloudWatch logs for application status
-   - Set up monitoring alerts through CloudWatch alarms
-
-7. **Accessing the Application**
-   - The application URL will be displayed at the end of deployment
-   - Access the application through the provided URL
-   - Monitor health and metrics through CloudWatch
-
-8. **Troubleshooting**
-   - Check CloudFormation stack events for deployment status
-   - View CloudWatch logs for application errors
-   - Verify security group rules if connectivity issues occur
-   - Check SNS notifications for deployment alerts
-
-9. **Cleanup**
-   ```bash
-   # To delete all resources created by the deployment
-   aws cloudformation delete-stack --stack-name sentiment-analysis-stack
-   ```
-
-### Security Considerations
-
-- All sensitive information (credentials, API keys) should be stored in AWS Secrets Manager
-- Security groups are configured to allow only necessary inbound traffic
-- RDS and Redis instances are configured with proper network isolation
-- Application logs are encrypted at rest
-- Regular backups are configured for RDS instances
-
-### Monitoring and Maintenance
-
-- CloudWatch metrics and alarms are set up for:
-  - CPU utilization
-  - Memory usage
-  - Disk space
-  - Network traffic
-- Auto-scaling is configured based on CPU and memory metrics
-- Regular backups are configured for RDS instances
-- CloudWatch logs are configured for application monitoring
+## License
+MIT

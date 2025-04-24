@@ -180,7 +180,7 @@ class PageManager {
       const path = `/${pageId}/posts`;
       const params = {
         limit: limit,
-        fields: 'id,message,created_time,comments.limit(25){id,message,from,created_time}'
+        fields: 'id,message,created_time,likes.summary(true),reactions.summary(true),comments.limit(25){id,message,from,created_time,like_count,comment_count,user_likes,reactions.summary(true)}'
       };
       
       const response = await this.fbPromise('get', path, params);
@@ -234,7 +234,20 @@ class PageManager {
         page_id: pageId,
         message: post.message,
         created_time: new Date(post.created_time),
-        scraped_at: new Date()
+        scraped_at: new Date(),
+        // Save likes and reactions summary if present
+        likes: post.likes ? post.likes.summary ? post.likes.summary.total_count : post.likes : 0,
+        reactions: post.reactions ? post.reactions.data : [],
+        comments: post.comments ? post.comments.data.map(comment => ({
+          id: comment.id,
+          message: comment.message,
+          from: comment.from,
+          created_time: comment.created_time,
+          like_count: comment.like_count || 0,
+          comment_count: comment.comment_count || 0,
+          user_likes: comment.user_likes || false,
+          reactions: comment.reactions ? comment.reactions.data : []
+        })) : []
       };
       
       // Insert post in MongoDB
