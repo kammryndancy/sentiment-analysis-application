@@ -1,7 +1,8 @@
 import './AnalyticsPanel.css';
 
-const AnalyticsPanel = () => (
-  <section className="analytics-panel">
+const AnalyticsPanel = () => {
+  return (
+    <section className="analytics-panel">
     <div className="analytics-chart">
       <div className="chart-title">Real-Time Polarity</div>
       <div className="chart-placeholder">[Chart Here]</div>
@@ -15,6 +16,7 @@ const AnalyticsPanel = () => (
       <div className="top-pages-placeholder">[Avatars]</div>
     </div>
   </section>
-);
+  );
+};
 
 export default AnalyticsPanel;

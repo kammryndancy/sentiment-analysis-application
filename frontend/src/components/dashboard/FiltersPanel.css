@@ -1,8 +1,10 @@
 .filters-panel {
-  background: #fff;
+  background: #f8fcf8;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-  padding: 24px 18px 18px 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 18px 22px;
+  border: 1.5px solid #e2eae2;
+  color: #222c22;
   min-width: 230px;
   margin-left: 32px;
   font-size: 1rem;
@@ -10,18 +12,19 @@
 .filters-title {
   font-size: 1.15rem;
   font-weight: bold;
-  color: #1976d2;
+  color: #3e6c3e;
   margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 .filters-total {
-  color: #444;
+  color: #3e6c3e;
   margin-bottom: 18px;
 }
 .filters-section {
   margin-bottom: 14px;
 }
 .filters-label {
-  color: #6c757d;
+  color: #3e6c3e;
   font-size: 0.93rem;
   margin-bottom: 6px;
 }
@@ -39,16 +42,21 @@
 }
 .sentiment span {
   font-size: 0.95rem;
-  color: #555;
+  color: #3e6c3e;
 }
 .filters-sources {
   display: flex;
   gap: 8px;
 }
 .filters-sources span {
-  background: #f6f8fa;
-  padding: 3px 10px;
-  border-radius: 10px;
-  color: #1976d2;
-  font-size: 0.98rem;
+  background: #cfcfcf;
+  color: #3a563a;
+  border-radius: 8px;
+  padding: 3px 11px;
+  font-size: 0.93rem;
+  font-weight: 500;
+  margin-right: 8px;
+  margin-bottom: 3px;
+  display: inline-block;
+  border: 1px solid #e2eae2;
 }

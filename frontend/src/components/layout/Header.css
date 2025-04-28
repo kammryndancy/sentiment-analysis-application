@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f6f8fa;
-  padding: 18px 32px 18px 0;
-  border-bottom: 1px solid #e0e0e0;
+  background: #223322;
+  padding: 18px 32px 18px 32px;
+  border-bottom: 1px solid #2f3e2f;
   min-height: 60px;
 }
 .header-left {
@@ -15,15 +15,15 @@
 .header-title {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #3a3a3a;
+  color: #7dd87d;
 }
 .header-dropdown {
   font-size: 1rem;
   padding: 6px 12px;
   border-radius: 4px;
-  border: 1px solid #bdbdbd;
-  background: #fff;
-  color: #333;
+  border: 1px solid #2f3e2f;
+  background: #223322;
+  color: #e5ffde;
 }
 .header-actions {
   display: flex;
@@ -33,14 +33,15 @@
 .header-search {
   padding: 6px 14px;
   border-radius: 20px;
-  border: 1px solid #bdbdbd;
-  background: #fff;
+  border: 1px solid #2f3e2f;
+  background: #141814;
+  color: #e5ffde;
   font-size: 1rem;
   margin-right: 4px;
 }
 .header-export {
   background: #7dd87d;
-  color: #1b5e20;
+  color: #1a2a1a;
   border: none;
   border-radius: 6px;
   padding: 7px 16px;
@@ -55,13 +56,13 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #e0e0e0;
+  background: #2f3e2f;
   display: inline-block;
   margin-left: 2px;
 }
 .header-icon.user {
-  background: url('https://randomuser.me/api/portraits/men/32.jpg') center/cover no-repeat, #e0e0e0;
+  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/70% no-repeat, #2f3e2f;
 }
 .header-icon.settings {
-  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/60% no-repeat, #e0e0e0;
+  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/60% no-repeat, #2f3e2f;
 }

@@ -1,11 +1,12 @@
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import AnalyticsPanel from './components/AnalyticsPanel';
-import FiltersPanel from './components/FiltersPanel';
-import FeedList from './components/FeedList';
-import './App.css';
+import React from 'react';
+import Sidebar from '../layout/Sidebar';
+import Header from '../layout/Header';
+import AnalyticsPanel from './AnalyticsPanel';
+import FiltersPanel from './FiltersPanel';
+import FeedList from './FeedList';
+import '../../App.css';
 
-function App() {
+const DashboardPage: React.FC = () => {
   return (
     <div className="dashboard-app">
       <Sidebar />
@@ -21,6 +22,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default DashboardPage;

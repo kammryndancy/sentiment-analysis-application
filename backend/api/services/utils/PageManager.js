@@ -211,6 +211,9 @@ class PageManager {
           post_id: post.id,
           page_id: pageId,
           created_time: new Date(post.created_time),
+          // Save likes and reactions summary if present
+          likes: post.likes ? post.likes.summary ? post.likes.summary.total_count : post.likes : 0,
+          reactions: post.reactions ? post.reactions.data : [],
           scraped_at: new Date()
         }));
         
@@ -237,17 +240,7 @@ class PageManager {
         scraped_at: new Date(),
         // Save likes and reactions summary if present
         likes: post.likes ? post.likes.summary ? post.likes.summary.total_count : post.likes : 0,
-        reactions: post.reactions ? post.reactions.data : [],
-        comments: post.comments ? post.comments.data.map(comment => ({
-          id: comment.id,
-          message: comment.message,
-          from: comment.from,
-          created_time: comment.created_time,
-          like_count: comment.like_count || 0,
-          comment_count: comment.comment_count || 0,
-          user_likes: comment.user_likes || false,
-          reactions: comment.reactions ? comment.reactions.data : []
-        })) : []
+        reactions: post.reactions ? post.reactions.data : []
       };
       
       // Insert post in MongoDB

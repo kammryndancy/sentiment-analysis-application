@@ -8,6 +8,8 @@ const path = require('path');
 const DataProcessor = require('./services/utils/dataProcessorManager').default; 
 const PageManager = require('./services/utils/PageManager');
 const KeywordManager = require('./services/utils/KeywordManager');
+const session = require('express-session');
+const authMiddleware = require('./middleware/authMiddleware');
 
 // Load environment variables
 dotenv.config();
@@ -17,15 +19,29 @@ const pageRoutes = require('./routes/pageRoutes');
 const keywordRoutes = require('./routes/keywordRoutes');
 const scraperRoutes = require('./routes/scraperRoutes');
 const dataProcessorRoutes = require('./routes/dataProcessorRoutes');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173', // Vite dev server
+    'http://localhost:3000', // Backend (if serving frontend in prod)
+  ],
+  credentials: true,
+}));
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'keyboardcat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -55,10 +71,12 @@ mongoose.connect(process.env.MONGO_URI, {
   app.locals.dataProcessor = dataProcessorInstance;
 
   // Initialize routes after database is ready
-  app.use('/api/pages', pageRoutes);
-  app.use('/api/keywords', keywordRoutes);
-  app.use('/api/scraper', scraperRoutes);
-  app.use('/api/data-processor', dataProcessorRoutes);
+  app.use('/api/pages', authMiddleware, pageRoutes);
+  app.use('/api/keywords', authMiddleware, keywordRoutes);
+  app.use('/api/scraper', authMiddleware, scraperRoutes);
+  app.use('/api/data-processor', authMiddleware, dataProcessorRoutes);
+  app.use('/api/auth', authRoutes);
+  app.use('/api/users', userRoutes);
 
   // Health check endpoint
   app.get('/health', async (req, res) => {
@@ -79,7 +97,8 @@ mongoose.connect(process.env.MONGO_URI, {
         pages: '/api/pages',
         keywords: '/api/keywords',
         scraper: '/api/scraper',
-        dataProcessor: '/api/data-processor'
+        dataProcessor: '/api/data-processor',
+        auth: '/api/auth'
       }
     });
   });

@@ -196,12 +196,76 @@ class DataProcessor {
     // Analyze sentiment using both Hugging Face and Google Cloud NLP
     const hybridSentiment = await this.analyzeHybridSentiment(processedText.text);
 
+    // Compute weighted sentiment based on likes/reactions
+    const likeWeight = 1;
+    const reactionWeights = {
+      LIKE: 1,
+      LOVE: 2,
+      HAHA: 1,
+      WOW: 1,
+      SAD: -1,
+      ANGRY: -2
+    };
+    let reactionWeightSum = 0;
+    if (comment.reactions && Array.isArray(comment.reactions)) {
+      for (const reaction of comment.reactions) {
+        const type = (reaction.type || '').toUpperCase();
+        reactionWeightSum += reactionWeights[type] || 0;
+      }
+    }
+    const engagement = 1 + (comment.like_count || 0) * likeWeight + reactionWeightSum;
+    const weightedSentiment = hybridSentiment * engagement;
+
     return {
       ...anonymizedComment,
       original_message: comment.message,
       processed_message: processedText.text,
       tokens: processedText.tokens,
       sentiment: hybridSentiment,
+      weighted_sentiment: weightedSentiment,
+      engagement,
+      processed_at: new Date()
+    };
+  }
+
+  async processPost(post, options = {}) {
+    // Preprocess the post message
+    const processedText = preprocessText(post.message, options);
+
+    // Anonymize the post data
+    const anonymizedPost = anonymizeData(post, options);
+
+    // Analyze sentiment using both Hugging Face and Google Cloud NLP
+    const hybridSentiment = await this.analyzeHybridSentiment(processedText.text);
+
+    // Compute weighted sentiment based on likes/reactions
+    const likeWeight = 1;
+    const reactionWeights = {
+      LIKE: 1,
+      LOVE: 2,
+      HAHA: 1,
+      WOW: 1,
+      SAD: -1,
+      ANGRY: -2
+    };
+    let reactionWeightSum = 0;
+    if (post.reactions && Array.isArray(post.reactions)) {
+      for (const reaction of post.reactions) {
+        const type = (reaction.type || '').toUpperCase();
+        reactionWeightSum += reactionWeights[type] || 0;
+      }
+    }
+    const engagement = 1 + (post.likes || 0) * likeWeight + reactionWeightSum;
+    const weightedSentiment = hybridSentiment * engagement;
+
+    return {
+      ...anonymizedPost,
+      original_message: post.message,
+      processed_message: processedText.text,
+      tokens: processedText.tokens,
+      sentiment: hybridSentiment,
+      weighted_sentiment: weightedSentiment,
+      engagement,
       processed_at: new Date()
     };
   }

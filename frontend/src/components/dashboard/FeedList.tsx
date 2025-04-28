@@ -28,7 +28,15 @@ const dummyFeeds = [
 const FeedList = () => (
   <div className="feed-list">
     {dummyFeeds.map((feed, idx) => (
-      <FeedCard key={idx} {...feed} />
+      <FeedCard
+        key={idx}
+        {...feed}
+        sentiment={
+          feed.sentiment === 'positive' || feed.sentiment === 'negative' || feed.sentiment === 'neutral'
+            ? feed.sentiment
+            : 'neutral'
+        }
+      />
     ))}
   </div>
 );

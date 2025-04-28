@@ -141,7 +141,10 @@ class CommentManager {
           from_id: comment.from ? comment.from.id : null,
           from_name: comment.from ? comment.from.name : null,
           scraped_at: new Date(),
-          contains_keywords: this.keywordManager.isAvonRelated(comment.message || '')
+          contains_keywords: this.keywordManager.isAvonRelated(comment.message || ''),
+          // Save likes and reactions summary if present
+          likes: comment.likes ? comment.likes.summary ? comment.likes.summary.total_count : comment.likes : 0,
+          reactions: comment.reactions ? comment.reactions.data : []
         };
         
         // Insert comment in MongoDB

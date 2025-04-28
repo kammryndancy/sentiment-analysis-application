@@ -75,7 +75,10 @@ class PageManager {
         description: description || '',
         created_at: new Date(),
         last_updated: new Date(),
-        last_scraped: null
+        last_scraped: null,
+        // Save likes and reactions summary if present
+        likes: post.likes ? post.likes.summary ? post.likes.summary.total_count : post.likes : 0,
+        reactions: post.reactions ? post.reactions.data : []
       };
 
       // Insert into database
