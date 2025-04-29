@@ -24,43 +24,14 @@ class PageManager {
         if (fs.existsSync(defaultPagesPath)) {
           // Load page IDs from JSON file
           const pageIdsData = fs.readFileSync(defaultPagesPath, 'utf8');
-          const pageIds = JSON.parse(pageIdsData);
-          
-          console.log(`Found ${pageIds.length} page IDs in JSON file. Adding to database...`);
-          
-          const added = [];
-          for (const pageId of pageIds) {
-            const result = await this.addPageId(pageId);
-            if (result.success) {
-              added.push(pageId);
-            }
-          }
-          
-          console.log(`Added ${added.length} page IDs to database from JSON file.`);
-          return {
-            success: true,
-            message: `Added ${added.length} page IDs to database from JSON file.`
-          };
-        } else {
-          console.log('No page_ids.json file found. Using default page IDs.');
-          return {
-            success: true,
-            message: 'No page_ids.json file found. Using default page IDs.'
-          };
+          let pageIds = JSON.parse(pageIdsData);
+          // Add enabled: true by default if not present
+          pageIds = pageIds.map(p => ({ ...p, enabled: p.enabled !== false, added_at: new Date(), last_updated: new Date() }));
+          await this.page_ids_collection.insertMany(pageIds);
         }
-      } else {
-        console.log(`Database already has ${existingPageIds.length} page IDs.`);
-        return {
-          success: true,
-          message: `Database already has ${existingPageIds.length} page IDs.`
-        };
       }
-    } catch (error) {
-      console.error('Error initializing page IDs:', error);
-      return {
-        success: false,
-        error: error.message
-      };
+    } catch (err) {
+      console.error('Failed to initialize page ids:', err);
     }
   }
 
@@ -87,7 +58,8 @@ class PageManager {
         description,
         last_scraped: null,
         added_at: new Date(),
-        last_updated: new Date()
+        last_updated: new Date(),
+        enabled: true // Add enabled: true by default
       };
       
       // Insert or update page in MongoDB
@@ -134,6 +106,11 @@ class PageManager {
       console.error('Error getting page IDs:', error);
       return [];
     }
+  }
+
+  // Only return enabled page ids
+  async getEnabledPageIds() {
+    return this.page_ids_collection.find({ enabled: true }).toArray();
   }
 
   // List all pages in the database with details
@@ -250,5 +227,9 @@ class PageManager {
     }
   }
 }
+
+// Example usage in scraping function:
+// const enabledPages = await this.getEnabledPageIds();
+// for (const page of enabledPages) { ... scrape ... }
 
 module.exports = PageManager;

@@ -1,0 +1,17 @@
+[
+  {
+    "model_id": "distilbert-base-uncased-finetuned-sst-2-english",
+    "name": "DistilBERT SST-2",
+    "description": "DistilBERT base uncased finetuned on SST-2 for sentiment analysis."
+  },
+  {
+    "model_id": "nlptown/bert-base-multilingual-uncased-sentiment",
+    "name": "BERT Multilingual Sentiment",
+    "description": "BERT base multilingual uncased for sentiment analysis."
+  },
+  {
+    "model_id": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+    "name": "Twitter RoBERTa Sentiment",
+    "description": "RoBERTa base model trained on Twitter data for sentiment analysis."
+  }
+]

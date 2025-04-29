@@ -39,4 +39,10 @@ router.delete('/:keyword', keywordController.removeKeyword);
  */
 router.post('/import', keywordController.importKeywords);
 
+/**
+ * @route   PATCH /api/keywords/:keyword/enabled
+ * @desc    Enable or disable a keyword
+ */
+router.patch('/:keyword/enabled', keywordController.setKeywordEnabled);
+
 module.exports = router;

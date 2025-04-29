@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
   roles: { type: [String], enum: ['admin', 'user'], default: ['user'] },
   pendingRoles: { type: [String], enum: ['admin', 'user'], default: [] },
   createdAt: { type: Date, default: Date.now },
-  approved: { type: Boolean, default: false }, // New: must be approved by admin
+  enabled: { type: Boolean, default: false }, // New: must be enabled by admin
+  updatedAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('User', userSchema);

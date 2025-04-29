@@ -41,7 +41,8 @@ class KeywordManager {
             category,
             description,
             added_at: new Date(),
-            last_updated: new Date()
+            last_updated: new Date(),
+            enabled: typeof keywordData.enabled === 'boolean' ? keywordData.enabled : true
           };
         });
 
@@ -63,8 +64,8 @@ class KeywordManager {
   // Compile regex pattern from current keywords
   async compileKeywordPattern() {
     try {
-      // Get all keywords from database
-      const keywords = await this.getAllKeywords();
+      // Get all enabled keywords from database
+      const keywords = await this.getEnabledKeywords();
       
       if (!keywords || keywords.length === 0) {
         // Fallback to a basic pattern if no keywords are found
@@ -113,6 +114,9 @@ class KeywordManager {
       const description = typeof keywordData === 'object' ? 
         keywordData.description || null : null;
       
+      const enabled = typeof keywordData === 'object' ? 
+        keywordData.enabled || true : true;
+      
       // Check if keyword already exists
       const existing = await this.collection.findOne({ 
         keyword: keyword.toLowerCase().trim() 
@@ -126,6 +130,7 @@ class KeywordManager {
             $set: {
               category: category,
               description: description,
+              enabled: enabled,
               last_updated: new Date()
             }
           }
@@ -149,6 +154,7 @@ class KeywordManager {
             keyword,
             category,
             description,
+            enabled,
             last_updated: new Date()
           }
         };
@@ -159,6 +165,7 @@ class KeywordManager {
         keyword: keyword.toLowerCase().trim(),
         category,
         description,
+        enabled,
         added_at: new Date(),
         last_updated: new Date()
       };
@@ -223,6 +230,15 @@ class KeywordManager {
     }
   }
   
+  // Get all enabled keywords from the database
+  async getEnabledKeywords() {
+    try {
+      return await this.collection.find({ enabled: true }).toArray();
+    } catch (error) {
+      throw new Error(`Error getting enabled keywords: ${error.message}`);
+    }
+  }
+  
   // Import multiple keywords at once
   async importKeywords(keywordsList) {
     try {
@@ -253,10 +269,14 @@ class KeywordManager {
           keywordData.description || null : 
           null;
 
+        const enabled = typeof keywordData === 'object' ? 
+          keywordData.enabled || true : true;
+
         return {
           keyword: keyword.toLowerCase().trim(),
           category,
           description,
+          enabled,
           added_at: new Date(),
           last_updated: new Date()
         };
@@ -296,8 +316,8 @@ class KeywordManager {
    */
   async extractMatchedKeywords(text) {
     if (!text) return [];
-    // Get all keywords from the DB
-    const keywords = await this.getAllKeywords();
+    // Get all enabled keywords from the DB
+    const keywords = await this.getEnabledKeywords();
     const matched = [];
     for (const k of keywords) {
       const kw = k.keyword;

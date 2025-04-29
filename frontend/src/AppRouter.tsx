@@ -9,7 +9,7 @@ import DashboardPage from './components/dashboard/DashboardPage';
 import SettingsPage from './components/settings/SettingsPage';
 import MonitoringPage from './components/monitoring/MonitoringPage';
 import DataPage from './components/data/DataPage';
-import EntitiesPage from './components/entities/EntitiesPage';
+import UsersPage from './components/users/UsersPage';
 
 const AppRouter = () => (
   <Router>
@@ -22,7 +22,7 @@ const AppRouter = () => (
       <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
       <Route path="/monitoring" element={<ProtectedRoute><MonitoringPage /></ProtectedRoute>} />
       <Route path="/data" element={<ProtectedRoute><DataPage /></ProtectedRoute>} />
-      <Route path="/entities" element={<ProtectedRoute><EntitiesPage /></ProtectedRoute>} />
+      <Route path="/users" element={<ProtectedRoute><UsersPage /></ProtectedRoute>} />
       <Route
         path="/dashboard/*"
         element={

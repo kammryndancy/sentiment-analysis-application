@@ -32,7 +32,7 @@ exports.login = async (req, res) => {
   if (!user) {
     return res.status(401).json({ success: false, message: 'Invalid credentials' });
   }
-  if (!user.approved) {
+  if (!user.enabled) {
     return res.status(403).json({ success: false, message: 'Account pending admin approval.' });
   }
   const valid = await bcrypt.compare(password, user.password);

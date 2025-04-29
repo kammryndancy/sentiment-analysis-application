@@ -123,3 +123,25 @@ export const importKeywords = async (req, res) => {
     });
   }
 };
+
+export const setKeywordEnabled = async (req, res) => {
+  try {
+    const keywordManager = req.app.locals.keywordManager;
+    const { keyword } = req.params;
+    const { enabled } = req.body;
+    if (typeof enabled !== 'boolean') {
+      return res.status(400).json({ success: false, error: 'enabled must be a boolean' });
+    }
+    const result = await keywordManager.collection.updateOne(
+      { keyword: keyword.toLowerCase().trim() },
+      { $set: { enabled, last_updated: new Date() } }
+    );
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ success: false, error: 'Keyword not found' });
+    }
+    res.status(200).json({ success: true, message: `Keyword ${enabled ? 'enabled' : 'disabled'} successfully` });
+  } catch (error) {
+    console.error('Error updating keyword enabled status:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+};

@@ -10,7 +10,7 @@ const Sidebar = () => {
     { label: 'DASHBOARD', path: '/dashboard' },
     { label: 'MONITORING', path: '/monitoring' },
     { label: 'DATA', path: '/data' },
-    { label: 'ENTITIES', path: '/entities' },
+    { label: 'USERS', path: '/users' },
   ];
 
   return (

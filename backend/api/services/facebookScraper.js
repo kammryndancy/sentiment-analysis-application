@@ -1,5 +1,29 @@
 const FB = require('fb');
 require('mongodb');
+const FacebookCredential = require('../models/FacebookCredential');
+const crypto = require('crypto');
+
+// Copied from settingsController.js for decrypting credentials
+const ENCRYPTION_KEY = (process.env.FB_CRED_ENCRYPTION_KEY || 'default_fb_cred_key_32b!').padEnd(32, '!').slice(0, 32); // 32 bytes for AES-256
+const IV_LENGTH = 16; // AES block size is 16 bytes for aes-256-cbc
+
+function encrypt(text) {
+  let iv = crypto.randomBytes(IV_LENGTH);
+  let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(ENCRYPTION_KEY), iv);
+  let encrypted = cipher.update(text);
+  encrypted = Buffer.concat([encrypted, cipher.final()]);
+  return iv.toString('hex') + ':' + encrypted.toString('hex');
+}
+
+function decrypt(text) {
+  let textParts = text.split(':');
+  let iv = Buffer.from(textParts.shift(), 'hex');
+  let encryptedText = Buffer.from(textParts.join(':'), 'hex');
+  let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(ENCRYPTION_KEY), iv);
+  let decrypted = decipher.update(encryptedText);
+  decrypted = Buffer.concat([decrypted, decipher.final()]);
+  return decrypted.toString();
+}
 
 // Import utility classes
 const KeywordManager = require('./utils/KeywordManager');
@@ -8,26 +32,44 @@ const CommentManager = require('./utils/CommentManager');
 
 class FacebookScraper {
   constructor(db) {
-    // Initialize Facebook Graph API
-    FB.options({
-      appId: process.env.FACEBOOK_APP_ID,
-      appSecret: process.env.FACEBOOK_APP_SECRET,
-      version: 'v16.0'
-    });
-    
-    FB.setAccessToken(process.env.FACEBOOK_ACCESS_TOKEN);
-    
-    // Initialize the DB
     this.db = db;
-    
-    // Initialize utility managers
     this.keywordManager = new KeywordManager(db);
-    this.pageManager = new PageManager(db, this.fbPromise.bind(this));
+    this.pageManager = new PageManager(db, this.fbPromise?.bind(this));
     this.commentManager = new CommentManager(db, this.keywordManager);
+    this.fbInitialized = false;
   }
   
+  async initializeFB() {
+    // Try to get credentials from DB
+    const cred = await FacebookCredential.findOne();
+    let appId, appSecret, accessToken;
+    if (cred) {
+      appId = decrypt(cred.facebook_app_id);
+      appSecret = decrypt(cred.facebook_app_secret);
+      accessToken = decrypt(cred.facebook_access_token);
+    } else {
+      appId = process.env.FACEBOOK_APP_ID;
+      appSecret = process.env.FACEBOOK_APP_SECRET;
+      accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
+    }
+    FB.options({
+      appId,
+      appSecret,
+      version: 'v16.0'
+    });
+    FB.setAccessToken(accessToken);
+    this.fbInitialized = true;
+  }
+
+  async ensureFBInitialized() {
+    if (!this.fbInitialized) {
+      await this.initializeFB();
+    }
+  }
+
   // Initialize all required dependencies
   async initialize() {
+    await this.ensureFBInitialized();
     await this.keywordManager.initializeKeywords();
     await this.pageManager.initializePageIds();
     return true;

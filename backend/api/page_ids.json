@@ -1,8 +1,50 @@
 [
-    "AvonInsider",
-    "AvonUK",
-    "AvonUSA",
-    "141628782532797",
-    "YourBeautyWithAvon",
-    "Avon"
+    {
+        "page_id": "AvonInsider",
+        "enabled": true,
+        "description": "Avon Insider page",
+        "last_scraped": null,
+        "added_at": null,
+        "last_updated": null
+    },
+    {
+        "page_id": "AvonUK",
+        "enabled": true,
+        "description": "Avon UK page",
+        "last_scraped": null,
+        "added_at": null,
+        "last_updated": null
+    },
+    {
+        "page_id": "AvonUSA",
+        "enabled": true,
+        "description": "Avon USA page",
+        "last_scraped": null,
+        "added_at": null,
+        "last_updated": null
+    },
+    {
+        "page_id": "141628782532797",
+        "enabled": true,
+        "description": "Avon page ID",
+        "last_scraped": null,
+        "added_at": null,
+        "last_updated": null
+    },
+    {
+        "page_id": "YourBeautyWithAvon",
+        "enabled": true,
+        "description": "Your Beauty with Avon page",
+        "last_scraped": null,
+        "added_at": null,
+        "last_updated": null
+    },
+    {
+        "page_id": "Avon",
+        "enabled": true,
+        "description": "Avon page",
+        "last_scraped": null,
+        "added_at": null,
+        "last_updated": null
+    }
 ]

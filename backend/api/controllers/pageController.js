@@ -125,3 +125,26 @@ exports.importPages = async (req, res) => {
     });
   }
 };
+
+// Enable or disable a page by page_id
+exports.setPageEnabled = async (req, res) => {
+  try {
+    const pageManager = req.app.locals.pageManager;
+    const { page_id } = req.params;
+    const { enabled } = req.body;
+    if (typeof enabled !== 'boolean') {
+      return res.status(400).json({ success: false, error: 'enabled must be a boolean' });
+    }
+    const result = await pageManager.page_ids_collection.updateOne(
+      { page_id },
+      { $set: { enabled, last_updated: new Date() } }
+    );
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ success: false, error: 'Page not found' });
+    }
+    res.status(200).json({ success: true, message: `Page ${enabled ? 'enabled' : 'disabled'} successfully` });
+  } catch (error) {
+    console.error('Error updating page enabled status:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+};

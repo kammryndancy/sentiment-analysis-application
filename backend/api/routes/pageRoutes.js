@@ -40,4 +40,10 @@ router.delete('/:page_id', pageController.removePage);
  */
 router.post('/import', pageController.importPages);
 
+/**
+ * @route   PATCH /api/pages/:page_id/enabled
+ * @desc    Enable or disable a page ID
+ */
+router.patch('/:page_id/enabled', pageController.setPageEnabled);
+
 module.exports = router;
