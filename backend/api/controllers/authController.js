@@ -2,9 +2,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
-// Simple in-memory user for demonstration
-// const DEMO_USER = { username: 'demo', password: 'demo' };
-
 // Registration endpoint
 exports.register = async (req, res) => {
   const { username, password, role } = req.body;

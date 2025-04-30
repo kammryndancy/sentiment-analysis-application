@@ -52,17 +52,3 @@
 .header-export:hover {
   background: #5bb75b;
 }
-.header-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #2f3e2f;
-  display: inline-block;
-  margin-left: 2px;
-}
-.header-icon.user {
-  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/70% no-repeat, #2f3e2f;
-}
-.header-icon.settings {
-  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/60% no-repeat, #2f3e2f;
-}

@@ -74,7 +74,7 @@ mongoose.connect(process.env.MONGO_URI, {
   app.locals.db = nativeDb; // Store native db object
   
   // --- Insert Hugging Face models from JSON config if not present ---
-  const modelsPath = path.join(__dirname, 'huggingface_models.json');
+  const modelsPath = path.join(__dirname, 'scripts', 'util', 'huggingface_models.json');
   if (fs.existsSync(modelsPath)) {
     const modelsData = JSON.parse(fs.readFileSync(modelsPath, 'utf-8'));
     for (const model of modelsData) {

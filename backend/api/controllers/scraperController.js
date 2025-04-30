@@ -1,5 +1,3 @@
-const FacebookScraper = require('../services/facebookScraper');
-
 exports.runScraper = async (req, res) => {
   try {
     const scraper = req.app.locals.scraper;
@@ -61,17 +59,8 @@ exports.getComments = async (req, res) => {
     const scraper = req.app.locals.scraper;
     const { startDate, endDate, pageId, limit = 100, skip = 0 } = req.query;
 
-    // Convert query parameters to proper format
-    const queryParams = {
-      startDate: startDate ? new Date(startDate) : undefined,
-      endDate: endDate ? new Date(endDate) : undefined,
-      pageId,
-      limit: parseInt(limit),
-      skip: parseInt(skip)
-    };
-
-    // Use the comment manager directly since FacebookScraper doesn't have a getComments method
-    const comments = await scraper.commentManager.getComments(queryParams);
+    // Use CommentManager's new getCommentsFromDb method
+    const comments = await scraper.commentManager.getCommentsFromDb({ startDate, endDate, pageId, limit, skip });
 
     res.status(200).json({
       success: true,

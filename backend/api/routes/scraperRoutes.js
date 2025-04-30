@@ -92,7 +92,7 @@ router.get('/comments', async (req, res) => {
     
     // Get the comments from MongoDB
     const db = req.app.locals.db;
-    const collection = db.collection(process.env.MONGO_COLLECTION);
+    const collection = db.collection(process.env.MONGO_SCRAPED_COMMENTS_COLLECTION || 'scraped_comments');
     
     const comments = await collection
       .find(query)
@@ -126,13 +126,13 @@ router.get('/comments', async (req, res) => {
 router.get('/stats', async (req, res) => {
   try {
     const db = req.app.locals.db;
-    const collection = db.collection(process.env.MONGO_COLLECTION);
-    const scraped_posts = db.collection('scraped_posts');
+    const collection = db.collection(process.env.MONGO_SCRAPED_COMMENTS_COLLECTION || 'scraped_comments');
+    const scraped_posts = db.collection(process.env.MONGO_SCRAPED_POSTS_COLLECTION || 'scraped_posts');
     
     // Get total counts
     const totalComments = await collection.countDocuments();
     const totalPosts = await scraped_posts.countDocuments();
-    const totalPages = await db.collection('page_ids').countDocuments();
+    const totalPages = await db.collection(process.env.MONGO_PAGE_IDS_COLLECTION || 'page_ids').countDocuments();
     
     // Get comments per page
     const commentsPerPage = await collection.aggregate([
@@ -142,16 +142,43 @@ router.get('/stats', async (req, res) => {
     
     // Get comments over time (by month)
     const commentsOverTime = await collection.aggregate([
-      { 
-        $group: { 
-          _id: { 
-            year: { $year: '$created_time' }, 
-            month: { $month: '$created_time' } 
-          }, 
-          count: { $sum: 1 } 
-        } 
+      {
+        $addFields: {
+          created_time_date: {
+            $cond: [
+              { $eq: [{ $type: "$created_time" }, "date"] },
+              "$created_time",
+              {
+                $cond: [
+                  { $eq: [{ $type: "$created_time" }, "string"] },
+                  { $toDate: "$created_time" },
+                  {
+                    $cond: [
+                      { $eq: [{ $type: "$created_time" }, "int"] },
+                      { $toDate: "$created_time" },
+                      null
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
       },
-      { $sort: { '_id.year': 1, '_id.month': 1 } }
+      {
+        $match: { created_time_date: { $type: "date" } }
+      },
+      {
+        $group: {
+          _id: {
+            year: { $year: "$created_time_date" },
+            month: { $month: "$created_time_date" },
+            day: { $dayOfMonth: "$created_time_date" }
+          },
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { "_id.year": 1, "_id.month": 1, "_id.day": 1 } }
     ]).toArray();
     
     res.json({ 

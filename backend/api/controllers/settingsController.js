@@ -3,7 +3,7 @@ const AppSettings = require('../models/AppSettings');
 const HuggingFaceModel = require('../models/HuggingFaceModel');
 const crypto = require('crypto');
 
-const ENCRYPTION_KEY = (process.env.FB_CRED_ENCRYPTION_KEY || 'default_fb_cred_key_32b!').padEnd(32, '!').slice(0, 32); // 32 bytes for AES-256
+const ENCRYPTION_KEY = (process.env.CRED_ENCRYPTION_KEY || 'default_fb_cred_key_32b!').padEnd(32, '!').slice(0, 32); // 32 bytes for AES-256
 const IV_LENGTH = 16; // AES block size is 16 bytes for aes-256-cbc
 
 function encrypt(text) {
@@ -43,10 +43,10 @@ exports.saveFacebookCredentials = async (req, res) => {
     const { facebook_app_id, facebook_app_secret } = req.body;
     // Request a long-lived app access token from Facebook
     const fetch = require('node-fetch');
-    // const tokenRes = await fetch(
-    //   `https://graph.facebook.com/oauth/access_token?client_id=${encodeURIComponent(facebook_app_id)}&client_secret=${encodeURIComponent(facebook_app_secret)}&grant_type=client_credentials`
-    // );
-    const tokenData = { access_token: ';{ARf4Ax4]!4]+f5kC,tACcT1y0}1wBk' };
+    const tokenRes = await fetch(
+      `https://graph.facebook.com/oauth/access_token?client_id=${encodeURIComponent(facebook_app_id)}&client_secret=${encodeURIComponent(facebook_app_secret)}&grant_type=client_credentials`
+    );
+    const tokenData = await tokenRes.json();
     if (!tokenData.access_token) {
       return res.status(400).json({ error: 'Failed to fetch Facebook app access token' });
     }

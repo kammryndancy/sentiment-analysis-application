@@ -4,6 +4,9 @@ import Header from '../layout/Header';
 import '../../App.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../auth';
+import FacebookCredentialsSection from './FacebookCredentialsSection';
+import GoogleNlpSection from './GoogleNlpSection';
+import HuggingFaceSection from './HuggingFaceSection';
 
 const SettingsPage: React.FC = () => {
   const auth = useContext(AuthContext);
@@ -175,171 +178,40 @@ const SettingsPage: React.FC = () => {
         <Header title="Settings" />
         <div className="main-content">
           {isAdmin && (
-            <>
-              <h2>Facebook API Credentials</h2>
-              {loading ? (
-                <div>Loading...</div>
-              ) : (
-                <form onSubmit={handleSubmit} style={{ maxWidth: 500, margin: '0 auto' }}>
-                  <div className="form-group">
-                    <label htmlFor="facebook_app_id">App ID</label>
-                    <input
-                      type="text"
-                      id="facebook_app_id"
-                      name="facebook_app_id"
-                      value={credentials.facebook_app_id}
-                      onChange={handleChange}
-                      className="form-control"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="facebook_app_secret">App Secret</label>
-                    <input
-                      type="password"
-                      id="facebook_app_secret"
-                      name="facebook_app_secret"
-                      value={credentials.facebook_app_secret}
-                      onChange={handleChange}
-                      className="form-control"
-                      required
-                      autoComplete="current-password"
-                    />
-                  </div>
-                  {error && <div style={{ color: 'red', marginBottom: 10 }}>{error}</div>}
-                  {success && <div style={{ color: 'green', marginBottom: 10 }}>{success}</div>}
-                  <button type="submit" className="btn btn-primary" disabled={saving}>
-                    {saving ? 'Saving...' : 'Save Credentials'}
-                  </button>
-                </form>
-              )}
-              <hr style={{ margin: '2rem 0' }} />
-            </>
+            <FacebookCredentialsSection
+              loading={loading}
+              credentials={credentials}
+              error={error}
+              success={success}
+              saving={saving}
+              isAdmin={isAdmin}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+            />
           )}
-
-          {/* Google Cloud NLP Section */}
-          <h2>Google Cloud NLP API Key</h2>
-          <form onSubmit={handleGoogleKeySubmit} style={{ maxWidth: 500, margin: '0 auto' }}>
-            <div className="form-group">
-              <label htmlFor="google_cloud_nlp_api_key">Google Cloud NLP API Key</label>
-              {isAdmin ? (
-                <>
-                  <input
-                    type="password"
-                    id="google_cloud_nlp_api_key"
-                    name="google_cloud_nlp_api_key"
-                    value={googleKeyInput}
-                    onChange={handleGoogleKeyChange}
-                    className="form-control"
-                    required
-                    autoComplete="new-password"
-                    placeholder={googleKeyExists ? 'Key is set (enter new to update)' : 'Enter API key'}
-                  />
-                  <div style={{ marginTop: 5 }}>
-                    {googleKeyExists ? (
-                      <span style={{ color: 'green' }}>&#10003; Key is set</span>
-                    ) : (
-                      <span style={{ color: 'red' }}>No key set</span>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <div style={{ marginTop: 5 }}>
-                  {googleKeyExists ? (
-                    <span style={{ color: 'green' }}>&#10003; Key is set</span>
-                  ) : (
-                    <span style={{ color: 'red' }}>No key set</span>
-                  )}
-                </div>
-              )}
-            </div>
-            {isAdmin && (
-              <>
-                {googleKeyError && <div style={{ color: 'red', marginBottom: 10 }}>{googleKeyError}</div>}
-                {googleKeySuccess && <div style={{ color: 'green', marginBottom: 10 }}>{googleKeySuccess}</div>}
-                <button type="submit" className="btn btn-primary" disabled={googleKeySaving}>
-                  {googleKeySaving ? 'Saving...' : (googleKeyExists ? 'Update Key' : 'Set Key')}
-                </button>
-              </>
-            )}
-          </form>
-
-          <hr style={{ margin: '2rem 0' }} />
-          <h2>Hugging Face API Key & Model</h2>
-          <form onSubmit={handleHfSubmit} style={{ maxWidth: 500, margin: '0 auto' }}>
-            <div className="form-group">
-              <label htmlFor="huggingface_api_key">Hugging Face API Key</label>
-              {isAdmin ? (
-                <>
-                  <input
-                    type="password"
-                    id="huggingface_api_key"
-                    name="huggingface_api_key"
-                    value={hfKeyInput}
-                    onChange={handleHfKeyChange}
-                    className="form-control"
-                    autoComplete="new-password"
-                    placeholder={hfKeyExists ? 'Key is set (enter new to update)' : 'Enter API key'}
-                  />
-                  <div style={{ marginTop: 5 }}>
-                    {hfKeyExists ? (
-                      <span style={{ color: 'green' }}>&#10003; Key is set</span>
-                    ) : (
-                      <span style={{ color: 'red' }}>No key set</span>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <div style={{ marginTop: 5 }}>
-                  {hfKeyExists ? (
-                    <span style={{ color: 'green' }}>&#10003; Key is set</span>
-                  ) : (
-                    <span style={{ color: 'red' }}>No key set</span>
-                  )}
-                </div>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="huggingface_model_id">Sentiment Model</label>
-              {isAdmin ? (
-                <select
-                  id="huggingface_model_id"
-                  name="huggingface_model_id"
-                  value={hfSelectedModel}
-                  onChange={handleHfModelChange}
-                  className="form-control"
-                  required
-                >
-                  <option value="" disabled>Select a model...</option>
-                  {hfModels.map(m => (
-                    <option key={m.model_id} value={m.model_id}>
-                      {m.name} - {m.description}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <div style={{ marginTop: 5 }}>
-                  {(() => {
-                    const selected = hfModels.find(m => m.model_id === hfSelectedModel);
-                    return selected ? (
-                      <span>{selected.name} - {selected.description}</span>
-                    ) : (
-                      <span style={{ color: 'red' }}>No model selected</span>
-                    );
-                  })()}
-                </div>
-              )}
-            </div>
-            {isAdmin && (
-              <>
-                {hfKeyError && <div style={{ color: 'red', marginBottom: 10 }}>{hfKeyError}</div>}
-                {hfKeySuccess && <div style={{ color: 'green', marginBottom: 10 }}>{hfKeySuccess}</div>}
-                <button type="submit" className="btn btn-primary" disabled={hfKeySaving}>
-                  {hfKeySaving ? 'Saving...' : 'Save Hugging Face Settings'}
-                </button>
-              </>
-            )}
-          </form>
+          <GoogleNlpSection
+            isAdmin={isAdmin}
+            googleKeyExists={googleKeyExists}
+            googleKeyInput={googleKeyInput}
+            googleKeySaving={googleKeySaving}
+            googleKeySuccess={googleKeySuccess}
+            googleKeyError={googleKeyError}
+            handleGoogleKeyChange={handleGoogleKeyChange}
+            handleGoogleKeySubmit={handleGoogleKeySubmit}
+          />
+          <HuggingFaceSection
+            isAdmin={isAdmin}
+            hfKeyExists={hfKeyExists}
+            hfKeyInput={hfKeyInput}
+            hfKeySaving={hfKeySaving}
+            hfKeySuccess={hfKeySuccess}
+            hfKeyError={hfKeyError}
+            hfModels={hfModels}
+            hfSelectedModel={hfSelectedModel}
+            handleHfKeyChange={handleHfKeyChange}
+            handleHfModelChange={handleHfModelChange}
+            handleHfSubmit={handleHfSubmit}
+          />
         </div>
       </div>
     </div>

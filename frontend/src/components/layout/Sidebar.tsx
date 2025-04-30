@@ -36,13 +36,13 @@ const Sidebar = () => {
         </ul>
       </nav>
       <div className="sidebar-bottom-actions">
-        <span className="header-icon user"
+        <span className="sidebar-icon user"
           style={{ cursor: 'pointer' }}
           onClick={() => navigate('/account')}
           title="Account settings"
         ></span>
         <span
-          className="header-icon settings"
+          className="sidebar-icon settings"
           style={{ cursor: 'pointer' }}
           onClick={() => navigate('/settings')}
           title="Application Settings"

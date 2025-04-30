@@ -19,7 +19,7 @@ class MockPageManager {
     if (pageId === '12345') {
       return {
         success: true,
-        page: { page_id: pageId, name, description }
+        page: { page_id: pageId, name: name ?? null, description: description ?? null }
       };
     }
     return {

@@ -1,7 +1,7 @@
 class CommentManager {
   constructor(db, keywordManager) {
     this.db = db;
-    this.collection = db.collection(process.env.MONGO_COLLECTION || 'comments');
+    this.collection = db.collection(process.env.MONGO_SCRAPED_COMMENTS_COLLECTION || 'scraped_comments');
     this.keywordManager = keywordManager;
   }
 
@@ -88,7 +88,11 @@ class CommentManager {
             created_time: new Date(comment.created_time),
             from_id: comment.from ? comment.from.id : null,
             from_name: comment.from ? comment.from.name : null,
-            scraped_at: new Date()
+            scraped_at: new Date(),
+            matched_keywords: this.keywordManager.extractMatchedKeywords(comment.message || ''),
+            // Save likes and reactions summary if present
+            likes: comment.likes ? comment.likes.summary ? comment.likes.summary.total_count : comment.likes : 0,
+            reactions: comment.reactions ? comment.reactions.data : []
           };
           
           // Insert comment in MongoDB
@@ -106,7 +110,7 @@ class CommentManager {
   }
 
   // Save all comments for a post regardless of their content
-  async saveAllComments(commentsData, postId, pageId) {
+  async saveAllComments(commentsData, postId, pageId, matchedKeywords) {
     try {
       if (!commentsData || commentsData.length === 0) {
         return 0;
@@ -141,7 +145,7 @@ class CommentManager {
           from_id: comment.from ? comment.from.id : null,
           from_name: comment.from ? comment.from.name : null,
           scraped_at: new Date(),
-          contains_keywords: this.keywordManager.isAvonRelated(comment.message || ''),
+          matched_keywords: matchedKeywords,
           // Save likes and reactions summary if present
           likes: comment.likes ? comment.likes.summary ? comment.likes.summary.total_count : comment.likes : 0,
           reactions: comment.reactions ? comment.reactions.data : []
@@ -158,6 +162,16 @@ class CommentManager {
       console.error(`Error saving comments for post ${postId}:`, error);
       return 0;
     }
+  }
+
+  // Get comments from MongoDB by query params
+  async getCommentsFromDb({ startDate, endDate, pageId, limit = 100, skip = 0 }) {
+    const query = {};
+    if (pageId) query.page_id = pageId;
+    if (startDate) query.created_time = { ...query.created_time, $gte: new Date(startDate) };
+    if (endDate) query.created_time = { ...query.created_time, $lte: new Date(endDate) };
+    const cursor = this.collection.find(query).sort({ created_time: -1 }).skip(skip).limit(limit);
+    return await cursor.toArray();
   }
 }
 

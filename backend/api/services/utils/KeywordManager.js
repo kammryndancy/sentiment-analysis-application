@@ -1,12 +1,10 @@
-const { NlpManager } = require('node-nlp');
 const fs = require('fs');
 const path = require('path');
 
 class KeywordManager {
   constructor(db) {
     this.db = db;
-    this.collection = db.collection('keywords');
-    this.nlpManager = new NlpManager({ languages: ['en'] });
+    this.collection = db.collection(process.env.MONGO_KEYWORDS_COLLECTION || 'keywords');
     this.avonPattern = null;
   }
   

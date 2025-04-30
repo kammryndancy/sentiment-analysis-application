@@ -1,92 +1,151 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+/* Reset sidebar styles for new layout */
 .sidebar {
-  background: #101a10;
-  color: #e5ffde;
-  width: 220px;
-  min-height: 100vh;
-  padding-top: 32px;
+  background: #121c13;
+  color: #fff;
+  width: 260px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-start;
   justify-content: flex-start;
   position: fixed;
   left: 0;
   top: 0;
-  bottom: 0;
   z-index: 100;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.07);
 }
+
 .sidebar-logo {
   display: flex;
   align-items: center;
-  margin-left: 32px;
-  margin-bottom: 48px;
-  gap: 10px;
-}
-.sidebar-logo-img {
-  height: 40px;
-  width: 40px;
-  margin-right: 8px;
-}
-.sidebar-logo-text {
-  font-size: 2rem;
-  font-weight: bold;
-  letter-spacing: 4px;
-  color: #7dd87d;
-  font-family: 'Bebas Neue', Arial, sans-serif;
-}
-
-.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  flex-direction: row;
+  gap: 16px;
+  padding: 32px 32px 16px 32px;
   width: 100%;
-}
-.sidebar-nav li {
-  font-size: 1.2rem;
-  padding: 18px 32px 18px 0;
-  cursor: pointer;
-  letter-spacing: 1.5px;
-  border-left: 4px solid transparent;
-  transition: background 0.2s, border-color 0.2s;
-  text-align: right;
-  justify-content: flex-end;
-  display: flex;
-  color: #e5ffde;
-}
-.sidebar-nav li.active, .sidebar-nav li:hover {
-  background: #1a2a1a;
-  border-left: 4px solid #7dd87d;
-  color: #7dd87d;
+  box-sizing: border-box;
 }
 
-.sidebar-bottom-actions {
+.sidebar-logo-img {
+  width: 45px;
+  height: 45px;
+  display: block;
+}
+
+.sidebar-logo-text {
+  font-size: 45px;
+  line-height: 45px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 45px;
+}
+
+.flex-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 18px;
-  background: #223322;
-  border-top: 1px solid #2f3e2f;
-  padding: 16px 0 12px 0;
+  gap: 16px;
+}
+
+.sidebar-nav {
   width: 100%;
+  margin-top: 24px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0 0 0 0;
   margin: 0;
-  min-height: 60px;
-  box-sizing: border-box;
+}
+.sidebar-nav li {
+  padding: 14px 32px;
+  color: #91a994;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  border-left: 4px solid transparent;
+}
+.sidebar-nav li.active {
+  background: #253227;
+  color: #aef4c2;
+  border-left: 4px solid #aef4c2;
+}
+.sidebar-nav li:hover {
+  background: #0e2812;
+  color: #aef4c2;
+}
+
+.sidebar-bottom-actions {
+  margin-top: auto;
+  width: 100%;
+  padding-bottom: 20px;
+  padding-left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: flex-start;
+  position: static;
 }
 .sidebar-bottom-actions .header-icon {
   width: 36px;
   height: 36px;
+  background: none;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background 0.15s;
+}
+.sidebar-bottom-actions .header-icon:hover {
+  background: #215c2a;
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    width: 60px;
+    min-width: 60px;
+  }
+  .sidebar-logo-text {
+    display: none;
+  }
+  .sidebar-logo {
+    padding: 32px 10px 16px 10px;
+  }
+  .sidebar-nav li {
+    padding: 14px 10px;
+    font-size: 1rem;
+  }
+  .sidebar-bottom-actions {
+    padding-left: 10px;
+  }
+}
+
+.sidebar-icon {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #2f3e2f;
   display: inline-block;
   margin-left: 2px;
-  border: 2px solid #7dd87d;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-.sidebar-bottom-actions .header-icon.user {
-  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/cover no-repeat, #597459;
+
+.sidebar-icon.user {
+  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/70% no-repeat, #475847;
 }
-.sidebar-bottom-actions .header-icon.settings {
-  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/60% no-repeat, #597459;
+
+.sidebar-icon.user:hover {
+  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/70% no-repeat, #528052;
+}
+  
+
+.sidebar-icon.settings {
+  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/60% no-repeat, #475847;
+}
+
+.sidebar-icon.settings:hover {
+  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/60% no-repeat, #528052;
 }

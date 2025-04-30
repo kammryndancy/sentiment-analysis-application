@@ -7,7 +7,6 @@ page_ids = [
 ]
 reaction_types = ["LIKE", "LOVE", "HAHA", "SAD", "ANGRY", "WOW"]
 
-start_date = datetime(2025, 4, 1, 8, 0, 0)
 posts = []
 
 good_messages = [
@@ -55,7 +54,9 @@ keywords = [
 for i in range(300):
     post_id = f"{1000001 + i}"
     page_id = page_ids[i % len(page_ids)]
-    created_time = start_date + timedelta(minutes=30 * i)
+    # Randomly assign a created_time between today and three months ago
+    days_ago = random.randint(0, 90)
+    created_time = datetime.utcnow() - timedelta(days=days_ago)
     likes = random.randint(0, 50)
     num_reactions = random.randint(0, 5)
     reactions = [
@@ -71,7 +72,7 @@ for i in range(300):
         message = random.choice(bad_messages)
     else:
         message = random.choice(neutral_messages)
-    matched_keywords = random.sample(keywords, k=random.randint(0, 3))
+    matched_keywords = random.sample(keywords, k=random.randint(1, 3))
     posts.append({
         "post_id": post_id,
         "page_id": page_id,
@@ -83,6 +84,6 @@ for i in range(300):
         "matched_keywords": matched_keywords
     })
 
-with open("dummy_scraped_posts.json", "w") as f:
+with open("./dummy_scraped_posts.json", "w") as f:
     json.dump(posts, f, indent=2)
 print(f"Dummy scraped posts generation complete. {len(posts)} posts written to dummy_scraped_posts.json.")

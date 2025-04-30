@@ -15,10 +15,10 @@ const sentiment = new Sentiment();
 
 class DataProcessor {
   constructor(db) {
-    this.mongoUri = process.env.MONGO_URI;
-    this.dbName = process.env.MONGO_DB;
-    this.sourceCollection = process.env.MONGO_COLLECTION;
-    this.processedCollection = 'processed_comments';
+    this.mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017';
+    this.dbName = process.env.MONGO_DB || 'tonique';
+    this.sourceCollection = process.env.MONGO_SCRAPED_COMMENTS_COLLECTION || 'scraped_comments';
+    this.processedCollection = process.env.MONGO_PROCESSED_COMMENTS_COLLECTION || 'processed_comments';
     this.client = null;
     this.db = db;
   }
@@ -218,6 +218,7 @@ class DataProcessor {
 
     return {
       ...anonymizedComment,
+      matched_keywords: comment.matched_keywords,
       original_message: comment.message,
       processed_message: processedText.text,
       tokens: processedText.tokens,
@@ -260,6 +261,7 @@ class DataProcessor {
 
     return {
       ...anonymizedPost,
+      matched_keywords: post.matched_keywords,
       original_message: post.message,
       processed_message: processedText.text,
       tokens: processedText.tokens,
@@ -268,6 +270,69 @@ class DataProcessor {
       engagement,
       processed_at: new Date()
     };
+  }
+
+  /**
+   * Process all posts in the source collection
+   * @param {Object} options - Processing options
+   */
+  async processAllPosts(options = {}) {
+    const {
+      batchSize = 100,
+      startDate = null,
+      endDate = null,
+      removeStopwords = true,
+      performLemmatization = true,
+      anonymizePII = true,
+      anonymizeUsernames = true,
+      analyzeSentiment = true
+    } = options;
+    try {
+      if (!this.db) {
+        await this.connect();
+      }
+      const sourceCollection = this.db.collection(process.env.MONGO_SCRAPED_POSTS_COLLECTION || 'scraped_posts');
+      const processedCollection = this.db.collection('processed_posts');
+      // Build query for date range
+      const query = {};
+      if (startDate) query.created_time = { ...query.created_time, $gte: new Date(startDate) };
+      if (endDate) query.created_time = { ...query.created_time, $lte: new Date(endDate) };
+      const totalCount = await sourceCollection.countDocuments(query);
+      let processedCount = 0;
+      let cursor = sourceCollection.find(query).batchSize(batchSize);
+      let processingBatch = [];
+      for await (const post of cursor) {
+        // Use the same processPost logic as before
+        const processedPost = await this.processPost(post, {
+          removeStopwords,
+          performLemmatization,
+          anonymizePII,
+          anonymizeUsernames,
+          analyzeSentiment
+        });
+        processingBatch.push(processedPost);
+        if (processingBatch.length >= batchSize) {
+          await processedCollection.insertMany(processingBatch);
+          processedCount += processingBatch.length;
+          processingBatch = [];
+        }
+      }
+      if (processingBatch.length > 0) {
+        await processedCollection.insertMany(processingBatch);
+        processedCount += processingBatch.length;
+      }
+      return {
+        success: true,
+        processedCount,
+        totalCount
+      };
+    } catch (error) {
+      console.error('Error processing posts:', error);
+      return {
+        success: false,
+        error: error.message
+      };
+    }
   }
 
   /**
@@ -289,7 +354,7 @@ class DataProcessor {
       // Get avg token count
       const tokenStats = await processedCollection.aggregate([
         {
-          $match: { tokens: { $exists: true } }
+          $match: { tokens: { $exists: true, $ne: null, $type: 'array' } }
         },
         {
           $project: {

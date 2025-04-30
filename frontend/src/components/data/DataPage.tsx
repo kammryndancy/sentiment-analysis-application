@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../layout/Sidebar';
 import Header from '../layout/Header';
+import PageIdSection from './PageIdSection';
+import KeywordSection from './KeywordSection';
 import '../../App.css';
 
 interface PageIdRow {
@@ -340,288 +342,62 @@ const DataPage: React.FC = () => {
       <div className="main-area">
         <Header title="Data" />
         <div className="main-content">
-          <h2>Page IDs</h2>
-          <div style={{ marginBottom: 12 }}>
-            <input
-              type="text"
-              placeholder="Search page IDs, names, or descriptions..."
-              value={pageSearch}
-              onChange={e => setPageSearch(e.target.value)}
-              style={{ padding: 8, width: 320 }}
-            />
-          </div>
-          {loading ? (
-            <div>Loading...</div>
-          ) : error ? (
-            <div style={{ color: 'red' }}>{error}</div>
-          ) : (
-            <div style={{ overflowX: 'auto', marginBottom: 32 }}>
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th style={{ cursor: 'pointer' }} onClick={() => handlePageSort('page_id')}>Page ID {pageSort.field === 'page_id' ? (pageSort.asc ? '▲' : '▼') : ''}</th>
-                    <th style={{ cursor: 'pointer' }} onClick={() => handlePageSort('name')}>Name {pageSort.field === 'name' ? (pageSort.asc ? '▲' : '▼') : ''}</th>
-                    <th style={{ cursor: 'pointer' }} onClick={() => handlePageSort('description')}>Description {pageSort.field === 'description' ? (pageSort.asc ? '▲' : '▼') : ''}</th>
-                    <th style={{ cursor: 'pointer' }} onClick={() => handlePageSort('enabled')}>Enabled {pageSort.field === 'enabled' ? (pageSort.asc ? '▲' : '▼') : ''}</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pagedPages.map(page => (
-                    <tr key={page.page_id}>
-                      <td>{page.page_id}</td>
-                      <td>
-                        {editMode[page.page_id] ? (
-                          <input
-                            type="text"
-                            value={editName[page.page_id] ?? page.name ?? ''}
-                            onChange={e => setEditName(prev => ({ ...prev, [page.page_id]: e.target.value }))}
-                            style={{ width: 140 }}
-                          />
-                        ) : (
-                          page.name
-                        )}
-                      </td>
-                      <td>
-                        {editMode[page.page_id] ? (
-                          <input
-                            type="text"
-                            value={editDesc[page.page_id] ?? page.description ?? ''}
-                            onChange={e => handleEditDesc(page.page_id, e.target.value)}
-                            style={{ width: 220 }}
-                          />
-                        ) : (
-                          page.description || ''
-                        )}
-                      </td>
-                      <td>
-                        <button
-                          className={page.enabled ? 'primary-btn' : 'secondary-btn'}
-                          style={{ minWidth: 90 }}
-                          disabled={actionLoading === page.page_id}
-                          onClick={() => handleEnable(page.page_id, page.enabled)}
-                        >
-                          {page.enabled ? 'Enabled' : 'Disabled'}
-                        </button>
-                      </td>
-                      <td>
-                        {editMode[page.page_id] ? (
-                          <>
-                            <button
-                              className="primary-btn"
-                              style={{ marginRight: 8 }}
-                              disabled={actionLoading === page.page_id}
-                              onClick={() => handleSaveDesc(page)}
-                            >
-                              Save
-                            </button>
-                            <button
-                              className="secondary-btn"
-                              onClick={() => {
-                                setEditMode(prev => ({ ...prev, [page.page_id]: false }));
-                                setEditName(prev => {
-                                  const n = { ...prev };
-                                  delete n[page.page_id];
-                                  return n;
-                                });
-                              }}
-                            >
-                              Cancel
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button
-                              className="secondary-btn"
-                              style={{ marginRight: 8 }}
-                              onClick={() => {
-                                setEditName(prev => ({ ...prev, [page.page_id]: page.name ?? '' }));
-                                setEditMode(prev => ({ ...prev, [page.page_id]: true }));
-                              }}
-                            >
-                              Edit
-                            </button>
-                            <button
-                              className="danger-btn"
-                              disabled={actionLoading === page.page_id}
-                              onClick={() => handleDeletePage(page.page_id)}
-                            >
-                              Delete
-                            </button>
-                          </>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div style={{ marginTop: 12, display: 'flex', gap: 8, alignItems: 'center' }}>
-                <button className="secondary-btn" disabled={pagePage === 1} onClick={() => setPagePage(p => Math.max(1, p - 1))}>Prev</button>
-                <span>Page {pagePage} of {pageCount}</span>
-                <button className="secondary-btn" disabled={pagePage === pageCount || pageCount === 0} onClick={() => setPagePage(p => Math.min(pageCount, p + 1))}>Next</button>
-              </div>
-            </div>
-          )}
-          <form onSubmit={handleAddPage} style={{ marginBottom: 32, display: 'flex', gap: 12, alignItems: 'center' }}>
-            <input
-              type="text"
-              placeholder="New Page ID"
-              value={addPageId}
-              onChange={e => setAddPageId(e.target.value)}
-              required
-              style={{ width: 140 }}
-            />
-            <input
-              type="text"
-              placeholder="Description (optional)"
-              value={addDesc}
-              onChange={e => setAddDesc(e.target.value)}
-              style={{ width: 220 }}
-            />
-            <button className="primary-btn" type="submit" disabled={addLoading}>
-              Add Page
-            </button>
-          </form>
-
-          <h2>Keywords</h2>
-          <div style={{ marginBottom: 12 }}>
-            <input
-              type="text"
-              placeholder="Search keywords, categories, or descriptions..."
-              value={keywordSearch}
-              onChange={e => setKeywordSearch(e.target.value)}
-              style={{ padding: 8, width: 320 }}
-            />
-          </div>
-          {kwLoading ? (
-            <div>Loading...</div>
-          ) : kwError ? (
-            <div style={{ color: 'red' }}>{kwError}</div>
-          ) : (
-            <div style={{ overflowX: 'auto', marginBottom: 32 }}>
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th style={{ cursor: 'pointer' }} onClick={() => handleKeywordSort('keyword')}>Keyword {keywordSort.field === 'keyword' ? (keywordSort.asc ? '▲' : '▼') : ''}</th>
-                    <th style={{ cursor: 'pointer' }} onClick={() => handleKeywordSort('category')}>Category {keywordSort.field === 'category' ? (keywordSort.asc ? '▲' : '▼') : ''}</th>
-                    <th style={{ cursor: 'pointer' }} onClick={() => handleKeywordSort('description')}>Description {keywordSort.field === 'description' ? (keywordSort.asc ? '▲' : '▼') : ''}</th>
-                    <th style={{ cursor: 'pointer' }} onClick={() => handleKeywordSort('enabled')}>Enabled {keywordSort.field === 'enabled' ? (keywordSort.asc ? '▲' : '▼') : ''}</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pagedKeywords.map(kw => (
-                    <tr key={kw.keyword}>
-                      <td>{kw.keyword}</td>
-                      <td>
-                        {kwEditMode[kw.keyword] ? (
-                          <input
-                            type="text"
-                            value={kwEdit[kw.keyword]?.category ?? kw.category ?? ''}
-                            onChange={e => handleEditKeyword(kw.keyword, 'category', e.target.value)}
-                            style={{ width: 120 }}
-                          />
-                        ) : (
-                          kw.category || ''
-                        )}
-                      </td>
-                      <td>
-                        {kwEditMode[kw.keyword] ? (
-                          <input
-                            type="text"
-                            value={kwEdit[kw.keyword]?.description ?? kw.description ?? ''}
-                            onChange={e => handleEditKeyword(kw.keyword, 'description', e.target.value)}
-                            style={{ width: 220 }}
-                          />
-                        ) : (
-                          kw.description || ''
-                        )}
-                      </td>
-                      <td>
-                        <button
-                          className={kw.enabled ? 'primary-btn' : 'secondary-btn'}
-                          style={{ minWidth: 90 }}
-                          disabled={kwActionLoading === kw.keyword}
-                          onClick={() => handleEnableKeyword(kw.keyword, kw.enabled)}
-                        >
-                          {kw.enabled ? 'Enabled' : 'Disabled'}
-                        </button>
-                      </td>
-                      <td>
-                        {kwEditMode[kw.keyword] ? (
-                          <>
-                            <button
-                              className="primary-btn"
-                              style={{ marginRight: 8 }}
-                              disabled={kwActionLoading === kw.keyword}
-                              onClick={() => handleSaveKeyword(kw)}
-                            >
-                              Save
-                            </button>
-                            <button
-                              className="secondary-btn"
-                              onClick={() => setKwEditMode(prev => ({ ...prev, [kw.keyword]: false }))}
-                            >
-                              Cancel
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button
-                              className="secondary-btn"
-                              style={{ marginRight: 8 }}
-                              onClick={() => setKwEditMode(prev => ({ ...prev, [kw.keyword]: true }))}
-                            >
-                              Edit
-                            </button>
-                            <button
-                              className="danger-btn"
-                              disabled={kwActionLoading === kw.keyword}
-                              onClick={() => handleDeleteKeyword(kw.keyword)}
-                            >
-                              Delete
-                            </button>
-                          </>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div style={{ marginTop: 12, display: 'flex', gap: 8, alignItems: 'center' }}>
-                <button className="secondary-btn" disabled={keywordPage === 1} onClick={() => setKeywordPage(p => Math.max(1, p - 1))}>Prev</button>
-                <span>Page {keywordPage} of {keywordCount}</span>
-                <button className="secondary-btn" disabled={keywordPage === keywordCount || keywordCount === 0} onClick={() => setKeywordPage(p => Math.min(keywordCount, p + 1))}>Next</button>
-              </div>
-            </div>
-          )}
-          <form onSubmit={handleAddKeyword} style={{ marginBottom: 32, display: 'flex', gap: 12, alignItems: 'center' }}>
-            <input
-              type="text"
-              placeholder="New Keyword"
-              value={kwAdd}
-              onChange={e => setKwAdd(e.target.value)}
-              required
-              style={{ width: 140 }}
-            />
-            <input
-              type="text"
-              placeholder="Category (optional)"
-              value={kwAddCategory}
-              onChange={e => setKwAddCategory(e.target.value)}
-              style={{ width: 120 }}
-            />
-            <input
-              type="text"
-              placeholder="Description (optional)"
-              value={kwAddDesc}
-              onChange={e => setKwAddDesc(e.target.value)}
-              style={{ width: 220 }}
-            />
-            <button className="primary-btn" type="submit" disabled={kwAddLoading}>
-              Add Keyword
-            </button>
-          </form>
+          <PageIdSection
+            pageSearch={pageSearch}
+            setPageSearch={setPageSearch}
+            loading={loading}
+            error={error}
+            pagedPages={pagedPages}
+            pageSort={pageSort}
+            handlePageSort={handlePageSort}
+            editMode={editMode}
+            editName={editName}
+            setEditName={setEditName}
+            editDesc={editDesc}
+            handleEditDesc={handleEditDesc}
+            actionLoading={actionLoading}
+            handleEnable={handleEnable}
+            handleSaveDesc={handleSaveDesc}
+            setEditMode={setEditMode}
+            handleDeletePage={handleDeletePage}
+            pagePage={pagePage}
+            pageCount={pageCount}
+            setPagePage={setPagePage}
+            addPageId={addPageId}
+            setAddPageId={setAddPageId}
+            addDesc={addDesc}
+            setAddDesc={setAddDesc}
+            addLoading={addLoading}
+            handleAddPage={handleAddPage}
+          />
+          <KeywordSection
+            keywordSearch={keywordSearch}
+            setKeywordSearch={setKeywordSearch}
+            kwLoading={kwLoading}
+            kwError={kwError}
+            pagedKeywords={pagedKeywords}
+            keywordSort={keywordSort}
+            handleKeywordSort={handleKeywordSort}
+            kwEditMode={kwEditMode}
+            kwEdit={kwEdit}
+            handleEditKeyword={handleEditKeyword}
+            kwActionLoading={kwActionLoading}
+            handleEnableKeyword={handleEnableKeyword}
+            handleSaveKeyword={handleSaveKeyword}
+            setKwEditMode={setKwEditMode}
+            handleDeleteKeyword={handleDeleteKeyword}
+            keywordPage={keywordPage}
+            keywordCount={keywordCount}
+            setKeywordPage={setKeywordPage}
+            kwAdd={kwAdd}
+            setKwAdd={setKwAdd}
+            kwAddCategory={kwAddCategory}
+            setKwAddCategory={setKwAddCategory}
+            kwAddDesc={kwAddDesc}
+            setKwAddDesc={setKwAddDesc}
+            kwAddLoading={kwAddLoading}
+            handleAddKeyword={handleAddKeyword}
+          />
         </div>
       </div>
     </div>
