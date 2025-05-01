@@ -1,0 +1,35 @@
+.comments-overtime-section {
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 28px 24px 24px 24px;
+  margin-bottom: 32px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.comments-overtime-section h2 {
+  color: #7dd87d;
+  margin-bottom: 12px;
+}
+.comments-overtime-chart {
+  width: 100%;
+  min-height: 300px;
+  background: #1c271c;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 18px;
+  overflow-x: auto;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.comments-overtime-error {
+  color: #ff6d6d;
+  text-align: center;
+  margin: 10px 0;
+}
+.comments-overtime-loading {
+  color: #aef4c2;
+  text-align: center;
+  margin: 10px 0;
+}

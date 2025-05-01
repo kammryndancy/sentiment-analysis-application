@@ -15,52 +15,53 @@ const GoogleNlpSection: React.FC<Props> = ({
   isAdmin, googleKeyExists, googleKeyInput, googleKeySaving, googleKeySuccess, googleKeyError, handleGoogleKeyChange, handleGoogleKeySubmit
 }) => (
   <section>
-    <h2>Google Cloud NLP API Key</h2>
-    <form onSubmit={handleGoogleKeySubmit} style={{ maxWidth: 500, margin: '0 auto' }}>
-      <div className="form-group">
-        <label htmlFor="google_cloud_nlp_api_key">Google Cloud NLP API Key</label>
+    <h2>Google Cloud NLP</h2>
+    <form onSubmit={handleGoogleKeySubmit} className="settings-section-form">
+      <div className="settings-label-badge-row">
+        <label htmlFor="google_nlp_api_key" className="settings-section-label">API Key:</label>
+        <span className={`settings-section-badge ${googleKeyExists ? "badge-success" : "badge-error"}`}>
+          {googleKeyExists ? (
+            <>
+              <span className="badge-dot badge-dot-success" />
+              Key is set/configured
+            </>
+          ) : (
+            <>
+              <span className="badge-dot badge-dot-error" />
+              No key set/configured
+            </>
+          )}
+        </span>
+      </div>
         {isAdmin ? (
           <>
             <input
               type="password"
-              id="google_cloud_nlp_api_key"
-              name="google_cloud_nlp_api_key"
+              id="google_nlp_api_key"
+              name="google_nlp_api_key"
               value={googleKeyInput}
               onChange={handleGoogleKeyChange}
-              className="form-control"
+              className="form-control settings-section-input input-field"
               required
               autoComplete="new-password"
               placeholder={googleKeyExists ? 'Key is set (enter new to update)' : 'Enter API key'}
             />
-            <div style={{ marginTop: 5 }}>
-              {googleKeyExists ? (
-                <span style={{ color: 'green' }}>&#10003; Key is set</span>
-              ) : (
-                <span style={{ color: 'red' }}>No key set</span>
-              )}
-            </div>
           </>
         ) : (
-          <div style={{ marginTop: 5 }}>
-            {googleKeyExists ? (
-              <span style={{ color: 'green' }}>&#10003; Key is set</span>
-            ) : (
-              <span style={{ color: 'red' }}>No key set</span>
-            )}
-          </div>
+          <div className="settings-section-info-msg">
+          You need admin role to update these fields.
+        </div>
         )}
-      </div>
       {isAdmin && (
         <>
-          {googleKeyError && <div style={{ color: 'red', marginBottom: 10 }}>{googleKeyError}</div>}
-          {googleKeySuccess && <div style={{ color: 'green', marginBottom: 10 }}>{googleKeySuccess}</div>}
-          <button type="submit" className="btn btn-primary" disabled={googleKeySaving}>
-            {googleKeySaving ? 'Saving...' : (googleKeyExists ? 'Update Key' : 'Set Key')}
+          {googleKeyError && <div className="settings-section-error">{googleKeyError}</div>}
+          {googleKeySuccess && <div className="settings-section-success">{googleKeySuccess}</div>}
+          <button type="submit" className="settings-section-btn" disabled={googleKeySaving}>
+            {googleKeySaving ? 'Saving...' : (googleKeyExists ? 'Update' : 'Save')} Key
           </button>
         </>
       )}
     </form>
-    <hr style={{ margin: '2rem 0' }} />
   </section>
 );
 

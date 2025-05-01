@@ -1,0 +1,71 @@
+.commentprocessing-section {
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 28px 24px 24px 24px;
+  margin-bottom: 32px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.commentprocessing-section h2 {
+  color: #7dd87d;
+  margin-bottom: 12px;
+}
+.commentprocessing-section .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.commentprocessing-section .form-label {
+  color: #aef4c2;
+  font-weight: 500;
+  margin-right: 8px;
+  display: block;
+  width: 100%;
+  margin-bottom: 2px;
+}
+.commentprocessing-section .form-input {
+  background: #1c271c;
+  color: #e2fae2;
+  border-radius: 6px;
+  border: 1px solid #2f3e2f;
+  padding: 8px 12px;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 2px;
+}
+.commentprocessing-section .form-btn {
+  background: #2b5f30;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 18px;
+  transition: background 0.18s;
+  align-self: flex-start;
+}
+.commentprocessing-section .form-btn:hover {
+  background: #2c5834;
+}
+.commentprocessing-section .processing-status {
+  margin-top: 12px;
+  color: #aef4c2;
+  font-size: 1rem;
+}
+.commentprocessing-section .checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.commentprocessing-section .checkbox-row .form-label {
+  margin-bottom: 0;
+  width: auto;
+}
+.commentprocessing-section .checkbox-row .form-input[type="checkbox"] {
+  width: auto;
+  margin-bottom: 0;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from '../layout/Sidebar';
 import Header from '../layout/Header';
 import '../../App.css';
+import './AccountPage.css';
 import { useAuth } from '../../auth';
 
 const ALL_ROLES = ['admin', 'user'];
@@ -65,22 +66,27 @@ const AccountPage: React.FC = () => {
     <div className="dashboard-app">
       <Sidebar />
       <div className="main-area">
-        <Header title="Account Settings" showSearch={false} showExport={false} />
-        <div className="main-content" style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
-          <div style={{ maxWidth: 480, width: '100%', background: '#fff', borderRadius: 12, boxShadow: '0 2px 8px #0001', padding: 32, margin: '40px 0' }}>
-            <div style={{ marginBottom: 12, textAlign: 'center', color: '#222' }}>
-              <strong>Username:</strong> {username}
+        <Header title="Account" showSearch={false} showExport={false} />
+        <div className="main-content account-main-content">
+          <div className="account-container">
+            <div className="account-header">
+              <h2>Account IAM</h2>
             </div>
-            <div style={{ marginBottom: 18, textAlign: 'center', color: '#222' }}>
-              <strong>Your Roles:</strong> {roles.join(', ')}
-            </div>
-            {pendingRoles && pendingRoles.length > 0 && (
-              <div style={{ marginBottom: 18, textAlign: 'center', color: '#888' }}>
-                <strong>Pending Roles:</strong> {pendingRoles.join(', ')}
+            <div className="account-details-row">
+              <div className="account-username">
+                <strong>Username:</strong> {username}
               </div>
-            )}
-            <form onSubmit={handlePasswordUpdate} style={{ marginBottom: 24 }}>
-              <label htmlFor="old-password" style={{ fontWeight: 500, color: '#222' }}>Old Password:</label>
+              <div className="account-roles">
+                <strong>Roles:</strong> {roles.join(', ')}
+              </div>
+              {pendingRoles && pendingRoles.length > 0 && (
+                <div className="account-pending-roles">
+                  <strong>Pending Roles:</strong> {pendingRoles.join(', ')}
+                </div>
+              )}
+            </div>
+            <form onSubmit={handlePasswordUpdate} className="account-form">
+              <label htmlFor="old-password" className="account-label">Old Password:</label>
               <input
                 className="input-field"
                 id="old-password"
@@ -89,9 +95,8 @@ const AccountPage: React.FC = () => {
                 value={oldPassword}
                 onChange={e => setOldPassword(e.target.value)}
                 required
-                style={{ color: '#222', background: '#f7f8fa', border: '1px solid #ccc' }}
               />
-              <label htmlFor="password" style={{ fontWeight: 500, marginTop: 8, color: '#222' }}>New Password:</label>
+              <label htmlFor="password" className="account-label account-label-margin">New Password:</label>
               <input
                 className="input-field"
                 id="password"
@@ -100,13 +105,12 @@ const AccountPage: React.FC = () => {
                 value={newPassword}
                 onChange={e => setNewPassword(e.target.value)}
                 required
-                style={{ color: '#222', background: '#f7f8fa', border: '1px solid #ccc' }}
               />
-              <button className="primary-btn" type="submit" style={{ width: '100%', marginTop: 16 }}>Update Password</button>
-              {passwordMsg && <div className="form-success" style={{ marginTop: 10 }}>{passwordMsg}</div>}
+              <button className="account-btn" type="submit">Update Password</button>
+              {passwordMsg && <div className="account-msg">{passwordMsg}</div>}
             </form>
-            <form onSubmit={handleRoleRequest}>
-              <label htmlFor="role-request" style={{ fontWeight: 500, color: '#222' }}>Request Additional Role:</label>
+            <form onSubmit={handleRoleRequest} className="account-form">
+              <label htmlFor="role-request" className="account-label">Request Additional Role:</label>
               <select
                 className="input-field"
                 id="role-request"
@@ -114,7 +118,6 @@ const AccountPage: React.FC = () => {
                 onChange={e => setRequestedRole(e.target.value)}
                 required
                 disabled={availableRoles.length === 0}
-                style={{ color: '#222', background: '#f7f8fa', border: '1px solid #ccc' }}
               >
                 <option value="" disabled>
                   {availableRoles.length === 0 ? 'No roles available' : 'Select role'}
@@ -123,8 +126,8 @@ const AccountPage: React.FC = () => {
                   <option key={r} value={r}>{r.charAt(0).toUpperCase() + r.slice(1)}</option>
                 ))}
               </select>
-              <button className="primary-btn" type="submit" disabled={availableRoles.length === 0} style={{ width: '100%', marginTop: 10 }}>Request Role</button>
-              {roleMsg && <div className="form-success" style={{ marginTop: 10 }}>{roleMsg}</div>}
+              <button className="account-btn" type="submit" disabled={availableRoles.length === 0}>Request Role</button>
+              {roleMsg && <div className="account-msg">{roleMsg}</div>}
             </form>
           </div>
         </div>

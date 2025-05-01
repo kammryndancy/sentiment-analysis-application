@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../layout/Sidebar';
 import Header from '../layout/Header';
 import '../../App.css';
+import './MonitoringPage.css';
 import ScraperStatsSection from './ScraperStatsSection';
 import CommentsOverTimeSection from './CommentsOverTimeSection';
 import DataProcessorStatsSection from './DataProcessorStatsSection';
@@ -41,7 +42,8 @@ const MonitoringPage: React.FC = () => {
   const [scraperStatusLoading, setScraperStatusLoading] = useState(false);
   const [scraperStatusError, setScraperStatusError] = useState<string | null>(null);
 
-  const [commentsOverTime, setCommentsOverTime] = useState<any[]>([]);
+  const [processedCommentsOverTime, setProcessedCommentsOverTime] = useState<any[]>([]);
+  const [processedPostsOverTime, setProcessedPostsOverTime] = useState<any[]>([]);
   const [commentsOverTimeLoading, setCommentsOverTimeLoading] = useState(false);
   const [commentsOverTimeError, setCommentsOverTimeError] = useState<string | null>(null);
 
@@ -75,62 +77,41 @@ const MonitoringPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const fetchStats = async () => {
+    const fetchAllStats = async () => {
       setLoading(true);
       setError('');
-      try {
-        const [scraperRes, processorRes] = await Promise.all([
-          fetch('/api/scraper/stats', { credentials: 'include' }),
-          fetch('/api/data-processor/stats', { credentials: 'include' })
-        ]);
-        const scraperData = await scraperRes.json();
-        const processorData = await processorRes.json();
-        if (!scraperData.success) throw new Error(scraperData.message || 'Failed to load scraper stats');
-        if (!processorData.success) throw new Error(processorData.message || 'Failed to load processor stats');
-        setScraperStats(scraperData);
-        setDataProcessorStats(processorData);
-      } catch (e: any) {
-        setError(e.message || 'Failed to load stats');
-      }
-      setLoading(false);
-    };
-    fetchStats();
-
-    const fetchScraperStatus = async () => {
-      setScraperStatusLoading(true);
-      setScraperStatusError(null);
-      try {
-        const res = await fetch('/api/scraper/status');
-        const data = await res.json();
-        if (data.success) {
-          setScraperStatus(data.data);
-        } else {
-          setScraperStatusError(data.message || 'Failed to fetch scraper status');
-        }
-      } catch (err: any) {
-        setScraperStatusError(err.message || 'Failed to fetch scraper status');
-      }
-      setScraperStatusLoading(false);
-    };
-    fetchScraperStatus();
-
-    const fetchCommentsOverTime = async () => {
       setCommentsOverTimeLoading(true);
       setCommentsOverTimeError(null);
       try {
-        const res = await fetch('/api/scraper/stats');
-        const data = await res.json();
-        if (data.success && data.data && data.data.commentsOverTime) {
-          setCommentsOverTime(data.data.commentsOverTime);
+        const [scraperRes, processorRes, scraperStatusRes] = await Promise.all([
+          fetch('/api/scraper/stats', { credentials: 'include' }),
+          fetch('/api/data-processor/stats', { credentials: 'include' }),
+          fetch('/api/scraper/status')
+        ]);
+        const scraperData = await scraperRes.json();
+        const processorData = await processorRes.json();
+        const scraperStatusData = await scraperStatusRes.json();
+        if (!scraperData.success) throw new Error(scraperData.message || 'Failed to load scraper stats');
+        if (!processorData.success) throw new Error(processorData.message || 'Failed to load processor stats');
+        if (!scraperStatusData.success) throw new Error(scraperStatusData.message || 'Failed to fetch scraper status');
+        setScraperStats(scraperData);
+        setDataProcessorStats(processorData.data);
+        setScraperStatus(scraperStatusData.data);
+        // Processed over time data
+        if (scraperData.processedCommentsOverTime && scraperData.processedPostsOverTime) {
+          setProcessedCommentsOverTime(scraperData.processedCommentsOverTime);
+          setProcessedPostsOverTime(scraperData.processedPostsOverTime);
         } else {
-          setCommentsOverTimeError(data.message || 'Failed to fetch comments over time');
+          setCommentsOverTimeError(scraperData.message || 'Failed to fetch processed data over time');
         }
-      } catch (err: any) {
-        setCommentsOverTimeError(err.message || 'Failed to fetch comments over time');
+      } catch (e: any) {
+        setError(e.message || 'Failed to load stats');
+        setCommentsOverTimeError(e.message || 'Failed to fetch processed data over time');
       }
+      setLoading(false);
       setCommentsOverTimeLoading(false);
     };
-    fetchCommentsOverTime();
+    fetchAllStats();
   }, []);
 
   const handleProcessComments = async () => {
@@ -201,63 +182,77 @@ const MonitoringPage: React.FC = () => {
     <div className="dashboard-app">
       <Sidebar />
       <div className="main-area">
-        <Header title="Monitoring" />
+        <Header title="Monitoring" showSearch={false} showExport={false}/>
         <div className="main-content">
-          {loading ? <div>Loading statistics...</div> : error ? <div style={{ color: 'red' }}>{error}</div> : (
-            <div>
-              <ScraperStatsSection scraperStats={scraperStats} />
-              <CommentsOverTimeSection commentsOverTime={commentsOverTime} loading={commentsOverTimeLoading} error={commentsOverTimeError} />
-              <DataProcessorStatsSection dataProcessorStats={dataProcessorStats} />
-              <ScraperStatusSection scraperStatus={scraperStatus} loading={scraperStatusLoading} error={scraperStatusError} />
-              <CommentProcessingSection
-                batchSize={batchSize}
-                setBatchSize={setBatchSize}
-                startDate={startDate}
-                setStartDate={setStartDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
-                removeStopwords={removeStopwords}
-                setRemoveStopwords={setRemoveStopwords}
-                performLemmatization={performLemmatization}
-                setPerformLemmatization={setPerformLemmatization}
-                anonymizePII={anonymizePII}
-                setAnonymizePII={setAnonymizePII}
-                anonymizeUsernames={anonymizeUsernames}
-                setAnonymizeUsernames={setAnonymizeUsernames}
-                analyzeSentiment={analyzeSentiment}
-                setAnalyzeSentiment={setAnalyzeSentiment}
-                processingLoading={processingLoading}
-                processingResult={processingResult}
-                handleProcessComments={handleProcessComments}
-              />
-              <PostProcessingSection
-                postBatchSize={postBatchSize}
-                setPostBatchSize={setPostBatchSize}
-                postStartDate={postStartDate}
-                setPostStartDate={setPostStartDate}
-                postEndDate={postEndDate}
-                setPostEndDate={setPostEndDate}
-                postRemoveStopwords={postRemoveStopwords}
-                setPostRemoveStopwords={setPostRemoveStopwords}
-                postPerformLemmatization={postPerformLemmatization}
-                setPostPerformLemmatization={setPostPerformLemmatization}
-                postAnonymizePII={postAnonymizePII}
-                setPostAnonymizePII={setPostAnonymizePII}
-                postAnonymizeUsernames={postAnonymizeUsernames}
-                setPostAnonymizeUsernames={setPostAnonymizeUsernames}
-                postAnalyzeSentiment={postAnalyzeSentiment}
-                setPostAnalyzeSentiment={setPostAnalyzeSentiment}
-                postProcessingLoading={postProcessingLoading}
-                postProcessingResult={postProcessingResult}
-                handleProcessPosts={handleProcessPosts}
-              />
-              <RunScraperSection
-                scraperRunLoading={scraperRunLoading}
-                scraperRunResult={scraperRunResult}
-                scraperRunDaysBack={scraperRunDaysBack}
-                setScraperRunDaysBack={setScraperRunDaysBack}
-                handleRunScraper={handleRunScraper}
-              />
+          {loading ? <div className="monitoring-loading">Loading statistics...</div> : error ? <div className="monitoring-error">{error}</div> : (
+            <div className="monitoring-grid">
+              <div className="monitoring-grid-row">
+                <ScraperStatsSection scraperStats={scraperStats} />
+                <ScraperStatusSection scraperStatus={scraperStatus} loading={scraperStatusLoading} error={scraperStatusError} />
+              </div>
+              <div className="monitoring-grid-row">
+                <DataProcessorStatsSection dataProcessorStats={dataProcessorStats} />
+                <CommentsOverTimeSection 
+                  processedCommentsOverTime={processedCommentsOverTime} 
+                  processedPostsOverTime={processedPostsOverTime} 
+                  loading={commentsOverTimeLoading} 
+                  error={commentsOverTimeError} 
+                />
+              </div>
+              <div className="monitoring-grid-row">
+                <CommentProcessingSection
+                  batchSize={batchSize}
+                  setBatchSize={setBatchSize}
+                  startDate={startDate}
+                  setStartDate={setStartDate}
+                  endDate={endDate}
+                  setEndDate={setEndDate}
+                  removeStopwords={removeStopwords}
+                  setRemoveStopwords={setRemoveStopwords}
+                  performLemmatization={performLemmatization}
+                  setPerformLemmatization={setPerformLemmatization}
+                  anonymizePII={anonymizePII}
+                  setAnonymizePII={setAnonymizePII}
+                  anonymizeUsernames={anonymizeUsernames}
+                  setAnonymizeUsernames={setAnonymizeUsernames}
+                  analyzeSentiment={analyzeSentiment}
+                  setAnalyzeSentiment={setAnalyzeSentiment}
+                  processingLoading={processingLoading}
+                  processingResult={processingResult}
+                  handleProcessComments={handleProcessComments}
+                />
+                <PostProcessingSection
+                  postBatchSize={postBatchSize}
+                  setPostBatchSize={setPostBatchSize}
+                  postStartDate={postStartDate}
+                  setPostStartDate={setPostStartDate}
+                  postEndDate={postEndDate}
+                  setPostEndDate={setPostEndDate}
+                  postRemoveStopwords={postRemoveStopwords}
+                  setPostRemoveStopwords={setPostRemoveStopwords}
+                  postPerformLemmatization={postPerformLemmatization}
+                  setPostPerformLemmatization={setPostPerformLemmatization}
+                  postAnonymizePII={postAnonymizePII}
+                  setPostAnonymizePII={setPostAnonymizePII}
+                  postAnonymizeUsernames={postAnonymizeUsernames}
+                  setPostAnonymizeUsernames={setPostAnonymizeUsernames}
+                  postAnalyzeSentiment={postAnalyzeSentiment}
+                  setPostAnalyzeSentiment={setPostAnalyzeSentiment}
+                  postProcessingLoading={postProcessingLoading}
+                  postProcessingResult={postProcessingResult}
+                  handleProcessPosts={handleProcessPosts}
+                />
+              </div>
+              <div className="monitoring-grid-row">
+                <RunScraperSection
+                  scraperRunLoading={scraperRunLoading}
+                  scraperRunResult={scraperRunResult}
+                  scraperRunDaysBack={scraperRunDaysBack}
+                  setScraperRunDaysBack={setScraperRunDaysBack}
+                  handleRunScraper={handleRunScraper}
+                />
+                <div />
+              </div>
             </div>
           )}
         </div>

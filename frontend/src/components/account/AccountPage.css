@@ -1,0 +1,109 @@
+.account-main-content {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.account-container {
+  max-width: 480px;
+  width: 100%;
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 32px;
+  margin: 40px 0;
+}
+
+.account-container .account-username,
+.account-container .account-roles,
+.account-container .account-pending-roles {
+  margin-bottom: 18px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.account-container .account-pending-roles {
+  color: #888;
+}
+
+.account-container label {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.input-field {
+  color: #262927;
+  background: #c9eee3;
+  border: 1px solid #ccc;
+}
+
+.account-form {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.account-label {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.account-label-margin {
+  margin-top: 8px;
+}
+
+.account-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px 0;
+  background: #2b5f30;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.account-btn:hover {
+  background: #2c5834;
+}
+.account-btn:disabled {
+  background: #a5bba9;
+  color: #525252c7;
+  cursor: not-allowed;
+}
+
+.account-msg {
+  margin-top: 10px;
+  text-align: center;
+  color: #229d50;
+  font-weight: 500;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #4c6e50;
+  background: #d0eec9;
+}
+
+.account-header {
+  margin-bottom: 24px;
+}
+
+.account-details-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vw;
+  justify-content: flex-start;
+}
+.account-details-row > div {
+  white-space: nowrap;
+  font-size: 1.07rem;
+  color: #fff;
+}
+.account-details-row .account-pending-roles {
+  color: #aef4c2;
+}

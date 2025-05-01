@@ -7,6 +7,7 @@ import { AuthContext } from '../../auth';
 import FacebookCredentialsSection from './FacebookCredentialsSection';
 import GoogleNlpSection from './GoogleNlpSection';
 import HuggingFaceSection from './HuggingFaceSection';
+import './SettingsSections.css';
 
 const SettingsPage: React.FC = () => {
   const auth = useContext(AuthContext);
@@ -20,6 +21,7 @@ const SettingsPage: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [facebookCredsSet, setFacebookCredsSet] = useState(false);
 
   // --- Google Cloud NLP Key State ---
   const [googleKeyExists, setGoogleKeyExists] = useState<boolean | null>(null);
@@ -49,6 +51,7 @@ const SettingsPage: React.FC = () => {
             facebook_app_id: data.facebook_app_id,
             facebook_app_secret: data.facebook_app_secret
           });
+          setFacebookCredsSet(true);
         }
         setLoading(false);
       })
@@ -98,6 +101,7 @@ const SettingsPage: React.FC = () => {
       const data = await res.json();
       if (data.success) {
         setSuccess('Credentials saved successfully!');
+        setFacebookCredsSet(true);
       } else {
         setError(data.error || 'Failed to save credentials');
       }
@@ -175,9 +179,9 @@ const SettingsPage: React.FC = () => {
     <div className="dashboard-app">
       <Sidebar />
       <div className="main-area">
-        <Header title="Settings" />
-        <div className="main-content">
-          {isAdmin && (
+        <Header title="Settings" showSearch={false} showExport={false}/>
+        <div className="main-content settings-sections-container">
+          <div className="settings-section-card">
             <FacebookCredentialsSection
               loading={loading}
               credentials={credentials}
@@ -187,31 +191,36 @@ const SettingsPage: React.FC = () => {
               isAdmin={isAdmin}
               handleChange={handleChange}
               handleSubmit={handleSubmit}
+              facebookCredsSet={facebookCredsSet}
             />
-          )}
-          <GoogleNlpSection
-            isAdmin={isAdmin}
-            googleKeyExists={googleKeyExists}
-            googleKeyInput={googleKeyInput}
-            googleKeySaving={googleKeySaving}
-            googleKeySuccess={googleKeySuccess}
-            googleKeyError={googleKeyError}
-            handleGoogleKeyChange={handleGoogleKeyChange}
-            handleGoogleKeySubmit={handleGoogleKeySubmit}
-          />
-          <HuggingFaceSection
-            isAdmin={isAdmin}
-            hfKeyExists={hfKeyExists}
-            hfKeyInput={hfKeyInput}
-            hfKeySaving={hfKeySaving}
-            hfKeySuccess={hfKeySuccess}
-            hfKeyError={hfKeyError}
-            hfModels={hfModels}
-            hfSelectedModel={hfSelectedModel}
-            handleHfKeyChange={handleHfKeyChange}
-            handleHfModelChange={handleHfModelChange}
-            handleHfSubmit={handleHfSubmit}
-          />
+          </div>
+          <div className="settings-section-card">
+            <GoogleNlpSection
+              isAdmin={isAdmin}
+              googleKeyExists={googleKeyExists}
+              googleKeyInput={googleKeyInput}
+              googleKeySaving={googleKeySaving}
+              googleKeySuccess={googleKeySuccess}
+              googleKeyError={googleKeyError}
+              handleGoogleKeyChange={handleGoogleKeyChange}
+              handleGoogleKeySubmit={handleGoogleKeySubmit}
+            />
+          </div>
+          <div className="settings-section-card">
+            <HuggingFaceSection
+              isAdmin={isAdmin}
+              hfKeyExists={hfKeyExists}
+              hfKeyInput={hfKeyInput}
+              hfKeySaving={hfKeySaving}
+              hfKeySuccess={hfKeySuccess}
+              hfKeyError={hfKeyError}
+              hfModels={hfModels}
+              hfSelectedModel={hfSelectedModel}
+              handleHfKeyChange={handleHfKeyChange}
+              handleHfModelChange={handleHfModelChange}
+              handleHfSubmit={handleHfSubmit}
+            />
+          </div>
         </div>
       </div>
     </div>

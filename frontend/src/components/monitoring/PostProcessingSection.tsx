@@ -1,4 +1,5 @@
 import React from 'react';
+import './PostProcessingSection.css';
 
 interface Props {
   postBatchSize: number;
@@ -28,38 +29,41 @@ const PostProcessingSection: React.FC<Props> = ({
   postAnonymizePII, setPostAnonymizePII, postAnonymizeUsernames, setPostAnonymizeUsernames,
   postAnalyzeSentiment, setPostAnalyzeSentiment, postProcessingLoading, postProcessingResult, handleProcessPosts
 }) => (
-  <div>
-    <h3>Start Post Processing</h3>
-    <form style={{ marginBottom: 10 }} onSubmit={e => { e.preventDefault(); handleProcessPosts(); }}>
-      <div style={{ marginBottom: 8 }}>
-        <label><b>Batch Size:</b> <input type="number" min={1} value={postBatchSize} onChange={e => setPostBatchSize(Number(e.target.value))} disabled={postProcessingLoading} /></label>
+  <div className="postprocessing-section">
+    <h2>Post Processing</h2>
+    <form onSubmit={e => { e.preventDefault(); handleProcessPosts(); }} className="form-row">
+      <div className="form-label">Batch Size:</div>
+      <input type="number" min={1} value={postBatchSize} onChange={e => setPostBatchSize(Number(e.target.value))} disabled={postProcessingLoading} className="form-input" />
+      <div className="form-label">Start Date:</div>
+      <input type="date" value={postStartDate} onChange={e => setPostStartDate(e.target.value)} disabled={postProcessingLoading} className="form-input" />
+      <div className="form-label">End Date:</div>
+      <input type="date" value={postEndDate} onChange={e => setPostEndDate(e.target.value)} disabled={postProcessingLoading} className="form-input" />
+      <div className="checkbox-row">
+        <div className="form-label">Remove Stopwords:</div>
+        <input type="checkbox" checked={postRemoveStopwords} onChange={e => setPostRemoveStopwords(e.target.checked)} disabled={postProcessingLoading} className="form-input" />
       </div>
-      <div style={{ marginBottom: 8 }}>
-        <label><b>Start Date:</b> <input type="date" value={postStartDate} onChange={e => setPostStartDate(e.target.value)} disabled={postProcessingLoading} /></label>
+      <div className="checkbox-row">
+        <div className="form-label">Perform Lemmatization:</div>
+        <input type="checkbox" checked={postPerformLemmatization} onChange={e => setPostPerformLemmatization(e.target.checked)} disabled={postProcessingLoading} className="form-input" />
       </div>
-      <div style={{ marginBottom: 8 }}>
-        <label><b>End Date:</b> <input type="date" value={postEndDate} onChange={e => setPostEndDate(e.target.value)} disabled={postProcessingLoading} /></label>
+      <div className="checkbox-row">
+        <div className="form-label">Anonymize PII:</div>
+        <input type="checkbox" checked={postAnonymizePII} onChange={e => setPostAnonymizePII(e.target.checked)} disabled={postProcessingLoading} className="form-input" />
       </div>
-      <div style={{ marginBottom: 8 }}>
-        <label><input type="checkbox" checked={postRemoveStopwords} onChange={e => setPostRemoveStopwords(e.target.checked)} disabled={postProcessingLoading} /> Remove Stopwords</label>
+      <div className="checkbox-row">
+        <div className="form-label">Anonymize Usernames:</div>
+        <input type="checkbox" checked={postAnonymizeUsernames} onChange={e => setPostAnonymizeUsernames(e.target.checked)} disabled={postProcessingLoading} className="form-input" />
       </div>
-      <div style={{ marginBottom: 8 }}>
-        <label><input type="checkbox" checked={postPerformLemmatization} onChange={e => setPostPerformLemmatization(e.target.checked)} disabled={postProcessingLoading} /> Perform Lemmatization</label>
+      <div className="checkbox-row">
+        <div className="form-label">Analyze Sentiment:</div>
+        <input type="checkbox" checked={postAnalyzeSentiment} onChange={e => setPostAnalyzeSentiment(e.target.checked)} disabled={postProcessingLoading} className="form-input" />
       </div>
-      <div style={{ marginBottom: 8 }}>
-        <label><input type="checkbox" checked={postAnonymizePII} onChange={e => setPostAnonymizePII(e.target.checked)} disabled={postProcessingLoading} /> Anonymize PII</label>
-      </div>
-      <div style={{ marginBottom: 8 }}>
-        <label><input type="checkbox" checked={postAnonymizeUsernames} onChange={e => setPostAnonymizeUsernames(e.target.checked)} disabled={postProcessingLoading} /> Anonymize Usernames</label>
-      </div>
-      <div style={{ marginBottom: 8 }}>
-        <label><input type="checkbox" checked={postAnalyzeSentiment} onChange={e => setPostAnalyzeSentiment(e.target.checked)} disabled={postProcessingLoading} /> Analyze Sentiment</label>
-      </div>
-      <button type="submit" disabled={postProcessingLoading} style={{ marginBottom: 10 }}>
+      <button type="submit" disabled={postProcessingLoading} className="form-btn">
         {postProcessingLoading ? 'Processing...' : 'Start Post Processing'}
       </button>
     </form>
-    {postProcessingResult && <div style={{ color: postProcessingResult.startsWith('Error') ? 'red' : 'green' }}>{postProcessingResult}</div>}
+    {postProcessingLoading && <div className="processing-status">Processing...</div>}
+    {postProcessingResult && <div className={`processing-status ${postProcessingResult.startsWith('Error') ? 'error' : 'success'}`}>{postProcessingResult}</div>}
   </div>
 );
 

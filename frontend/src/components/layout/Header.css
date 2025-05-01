@@ -3,9 +3,10 @@
   justify-content: space-between;
   align-items: center;
   background: #223322;
-  padding: 18px 32px 18px 32px;
-  border-bottom: 1px solid #2f3e2f;
+  padding: 0 32px 0 32px;
   min-height: 60px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .header-left {
   display: flex;

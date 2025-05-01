@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../auth';
 import '../../SharedStyles.css';
-import styles from './LoginPage.module.css';
+import './LoginPage.css';
 
 const LoginPage: React.FC = () => {
   const { login } = useAuth();
@@ -25,10 +25,11 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className={styles['login-root']}>
-      <div>
-        <h2 className="form-title">Login</h2>
-        <form className="form-card" onSubmit={handleSubmit}>
+    <div className="loginpage-container">
+      <div className="loginpage-card">
+        <h2 className="loginpage-title">Login</h2>
+        <form className="loginpage-form" onSubmit={handleSubmit}>
+          {error && <div className="loginpage-error">{error}</div>}
           <input
             className="input-field"
             type="text"
@@ -45,8 +46,7 @@ const LoginPage: React.FC = () => {
             onChange={e => setPassword(e.target.value)}
             required
           />
-          <button className="primary-btn" type="submit">Login</button>
-          {error && <div className="form-error">{error}</div>}
+          <button className="loginpage-btn" type="submit">Login</button>
         </form>
         <div className="link" style={{ marginTop: 16 }}>
           Don't have an account? <Link className="link" to="/register">Register</Link>

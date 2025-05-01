@@ -351,6 +351,13 @@ class DataProcessor {
       const processedComments = await processedCollection.countDocuments();
       const processingRatio = totalComments > 0 ? (processedComments / totalComments) * 100 : 0;
 
+      // Post stats
+      const postSourceCollection = this.db.collection(process.env.MONGO_SCRAPED_POSTS_COLLECTION || 'scraped_posts');
+      const postProcessedCollection = this.db.collection(process.env.MONGO_PROCESSED_POSTS_COLLECTION || 'processed_posts');
+      const totalPosts = await postSourceCollection.countDocuments();
+      const processedPosts = await postProcessedCollection.countDocuments();
+      const postProcessingRatio = totalPosts > 0 ? (processedPosts / totalPosts) * 100 : 0;
+
       // Get avg token count
       const tokenStats = await processedCollection.aggregate([
         {
@@ -375,7 +382,10 @@ class DataProcessor {
         totalComments,
         processedComments,
         processingRatio: processingRatio.toFixed(2) + '%',
-        tokenStats: tokenStats.length > 0 ? tokenStats[0] : null
+        tokenStats: tokenStats.length > 0 ? tokenStats[0] : null,
+        totalPosts,
+        processedPosts,
+        postProcessingRatio: postProcessingRatio.toFixed(2) + '%'
       };
 
       return stats;

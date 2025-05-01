@@ -4,6 +4,7 @@ import Header from '../layout/Header';
 import PageIdSection from './PageIdSection';
 import KeywordSection from './KeywordSection';
 import '../../App.css';
+import './DataPage.css';
 
 interface PageIdRow {
   page_id: string;
@@ -50,10 +51,6 @@ const DataPage: React.FC = () => {
   const [pageSearch, setPageSearch] = useState('');
   const [keywordSearch, setKeywordSearch] = useState('');
 
-  const PAGE_SIZE = 10;
-  const [pagePage, setPagePage] = useState(1);
-  const [keywordPage, setKeywordPage] = useState(1);
-
   const [pageSort, setPageSort] = useState<{ field: keyof PageIdRow; asc: boolean }>({ field: 'page_id', asc: true });
   const [keywordSort, setKeywordSort] = useState<{ field: keyof KeywordRow; asc: boolean }>({ field: 'keyword', asc: true });
 
@@ -88,12 +85,6 @@ const DataPage: React.FC = () => {
 
   const sortedPages = sortFn(filteredPages, pageSort.field, pageSort.asc);
   const sortedKeywords = sortFn(filteredKeywords, keywordSort.field, keywordSort.asc);
-
-  const pagedPages = sortedPages.slice((pagePage - 1) * PAGE_SIZE, pagePage * PAGE_SIZE);
-  const pagedKeywords = sortedKeywords.slice((keywordPage - 1) * PAGE_SIZE, keywordPage * PAGE_SIZE);
-
-  const pageCount = Math.ceil(sortedPages.length / PAGE_SIZE);
-  const keywordCount = Math.ceil(sortedKeywords.length / PAGE_SIZE);
 
   const handlePageSort = (field: keyof PageIdRow) => {
     setPageSort(s => ({ field, asc: s.field === field ? !s.asc : true }));
@@ -336,18 +327,26 @@ const DataPage: React.FC = () => {
     setKwActionLoading(null);
   };
 
+  const refreshPages = async () => {
+    await fetchPages();
+  };
+
+  const refreshKeywords = async () => {
+    await fetchKeywords();
+  };
+
   return (
     <div className="dashboard-app">
       <Sidebar />
       <div className="main-area">
-        <Header title="Data" />
-        <div className="main-content">
+        <Header title="Data" showSearch={false} showExport={false}/>
+        <div className="main-content datapage-sections-container">
           <PageIdSection
             pageSearch={pageSearch}
             setPageSearch={setPageSearch}
             loading={loading}
             error={error}
-            pagedPages={pagedPages}
+            pages={sortedPages}
             pageSort={pageSort}
             handlePageSort={handlePageSort}
             editMode={editMode}
@@ -360,22 +359,21 @@ const DataPage: React.FC = () => {
             handleSaveDesc={handleSaveDesc}
             setEditMode={setEditMode}
             handleDeletePage={handleDeletePage}
-            pagePage={pagePage}
-            pageCount={pageCount}
-            setPagePage={setPagePage}
             addPageId={addPageId}
             setAddPageId={setAddPageId}
             addDesc={addDesc}
             setAddDesc={setAddDesc}
             addLoading={addLoading}
             handleAddPage={handleAddPage}
+            className="datapage-section-card"
+            onRefresh={refreshPages}
           />
           <KeywordSection
             keywordSearch={keywordSearch}
             setKeywordSearch={setKeywordSearch}
             kwLoading={kwLoading}
             kwError={kwError}
-            pagedKeywords={pagedKeywords}
+            keywords={sortedKeywords}
             keywordSort={keywordSort}
             handleKeywordSort={handleKeywordSort}
             kwEditMode={kwEditMode}
@@ -386,9 +384,6 @@ const DataPage: React.FC = () => {
             handleSaveKeyword={handleSaveKeyword}
             setKwEditMode={setKwEditMode}
             handleDeleteKeyword={handleDeleteKeyword}
-            keywordPage={keywordPage}
-            keywordCount={keywordCount}
-            setKeywordPage={setKeywordPage}
             kwAdd={kwAdd}
             setKwAdd={setKwAdd}
             kwAddCategory={kwAddCategory}
@@ -397,6 +392,7 @@ const DataPage: React.FC = () => {
             setKwAddDesc={setKwAddDesc}
             kwAddLoading={kwAddLoading}
             handleAddKeyword={handleAddKeyword}
+            onRefresh={refreshKeywords}
           />
         </div>
       </div>

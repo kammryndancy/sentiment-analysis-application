@@ -126,22 +126,26 @@ router.get('/comments', async (req, res) => {
 router.get('/stats', async (req, res) => {
   try {
     const db = req.app.locals.db;
-    const collection = db.collection(process.env.MONGO_SCRAPED_COMMENTS_COLLECTION || 'scraped_comments');
-    const scraped_posts = db.collection(process.env.MONGO_SCRAPED_POSTS_COLLECTION || 'scraped_posts');
+    // Only use processed collections
+    const processed_comments = db.collection(process.env.MONGO_PROCESSED_COMMENTS_COLLECTION || 'processed_comments');
+    const processed_posts = db.collection(process.env.MONGO_PROCESSED_POSTS_COLLECTION || 'processed_posts');
     
-    // Get total counts
-    const totalComments = await collection.countDocuments();
-    const totalPosts = await scraped_posts.countDocuments();
+    // Get total counts (processed only)
+    const totalProcessedComments = await processed_comments.countDocuments();
+    const totalProcessedPosts = await processed_posts.countDocuments();
     const totalPages = await db.collection(process.env.MONGO_PAGE_IDS_COLLECTION || 'page_ids').countDocuments();
-    
-    // Get comments per page
-    const commentsPerPage = await collection.aggregate([
+
+    // Get page IDs list
+    const pageIds = await db.collection(process.env.MONGO_PAGE_IDS_COLLECTION || 'page_ids').find({}, { projection: { _id: 0, page_id: 1, name: 1 } }).toArray();
+
+    // Get processed comments per page
+    const commentsPerPage = await processed_comments.aggregate([
       { $group: { _id: '$page_id', count: { $sum: 1 } } },
       { $sort: { count: -1 } }
     ]).toArray();
-    
-    // Get comments over time (by month)
-    const commentsOverTime = await collection.aggregate([
+
+    // Get processed comments over time (by day)
+    const processedCommentsOverTime = await processed_comments.aggregate([
       {
         $addFields: {
           created_time_date: {
@@ -180,19 +184,60 @@ router.get('/stats', async (req, res) => {
       },
       { $sort: { "_id.year": 1, "_id.month": 1, "_id.day": 1 } }
     ]).toArray();
-    
-    res.json({ 
-      success: true, 
-      data: {
-        totalComments,
-        totalPosts,
-        totalPages,
-        commentsPerPage,
-        commentsOverTime
-      }
+
+    // Get processed posts over time (by day)
+    const processedPostsOverTime = await processed_posts.aggregate([
+      {
+        $addFields: {
+          created_time_date: {
+            $cond: [
+              { $eq: [{ $type: "$created_time" }, "date"] },
+              "$created_time",
+              {
+                $cond: [
+                  { $eq: [{ $type: "$created_time" }, "string"] },
+                  { $toDate: "$created_time" },
+                  {
+                    $cond: [
+                      { $eq: [{ $type: "$created_time" }, "int"] },
+                      { $toDate: "$created_time" },
+                      null
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        $match: { created_time_date: { $type: "date" } }
+      },
+      {
+        $group: {
+          _id: {
+            year: { $year: "$created_time_date" },
+            month: { $month: "$created_time_date" },
+            day: { $dayOfMonth: "$created_time_date" }
+          },
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { "_id.year": 1, "_id.month": 1, "_id.day": 1 } }
+    ]).toArray();
+
+    res.json({
+      success: true,
+      totalProcessedComments,
+      totalProcessedPosts,
+      totalPages,
+      pageIds,
+      commentsPerPage,
+      processedCommentsOverTime,
+      processedPostsOverTime
     });
   } catch (error) {
-    console.error('Error getting stats:', error);
+    console.error('Error getting processed data:', error);
     res.status(500).json({ success: false, message: error.message });
   }
 });

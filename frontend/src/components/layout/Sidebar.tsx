@@ -36,13 +36,12 @@ const Sidebar = () => {
         </ul>
       </nav>
       <div className="sidebar-bottom-actions">
-        <span className="sidebar-icon user"
+        <span className={location.pathname.startsWith('/account') ? 'active sidebar-icon user' : 'sidebar-icon user' }
           style={{ cursor: 'pointer' }}
           onClick={() => navigate('/account')}
           title="Account settings"
         ></span>
-        <span
-          className="sidebar-icon settings"
+        <span className={location.pathname.startsWith('/settings') ? 'active sidebar-icon settings' : 'sidebar-icon settings' }
           style={{ cursor: 'pointer' }}
           onClick={() => navigate('/settings')}
           title="Application Settings"

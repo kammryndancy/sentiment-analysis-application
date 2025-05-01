@@ -4,7 +4,7 @@
 .sidebar {
   background: #121c13;
   color: #fff;
-  width: 260px;
+  width: 14vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -84,12 +84,11 @@
 .sidebar-bottom-actions {
   margin-top: auto;
   width: 100%;
-  padding-bottom: 20px;
-  padding-left: 32px;
+  padding-bottom: 50px;
   display: flex;
   align-items: center;
-  gap: 18px;
-  justify-content: flex-start;
+  gap: 25px;
+  justify-content: center;
   position: static;
 }
 .sidebar-bottom-actions .header-icon {
@@ -125,8 +124,8 @@
 }
 
 .sidebar-icon {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #2f3e2f;
   display: inline-block;
@@ -134,18 +133,26 @@
 }
 
 .sidebar-icon.user {
-  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/70% no-repeat, #475847;
+  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/95% no-repeat, #475847;
 }
 
 .sidebar-icon.user:hover {
-  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/70% no-repeat, #528052;
+  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/95% no-repeat, #528052;
 }
   
 
 .sidebar-icon.settings {
-  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/60% no-repeat, #475847;
+  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/95% no-repeat, #475847;
 }
 
 .sidebar-icon.settings:hover {
-  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/60% no-repeat, #528052;
+  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/95% no-repeat, #528052;
+}
+
+.sidebar-icon.user.active {
+  background: url('https://img.icons8.com/ios-filled/50/000000/user-male-circle.png') center/95%no-repeat,#aef4c2;
+}
+
+.sidebar-icon.settings.active {
+  background: url('https://img.icons8.com/ios-filled/50/000000/settings.png') center/95%no-repeat,#aef4c2;
 }

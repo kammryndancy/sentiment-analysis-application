@@ -1,0 +1,122 @@
+.scraperstats-section {
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 28px 24px 24px 24px;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+.scraperstats-section h2,
+.scraperstats-section h3 {
+  color: #7dd87d;
+  margin-bottom: 12px;
+  margin-top: 0px;
+}
+.scraperstats-section ul {
+  margin-bottom: 18px;
+}
+.scraperstats-section table {
+  background: #1c271c;
+  color: #e2fae2;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 10px;
+}
+.scraperstats-section th, .scraperstats-section td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #2f3e2f;
+}
+.scraperstats-section th {
+  background: #243c24;
+  color: #aef4c2;
+  font-weight: 600;
+}
+.scraperstats-section tr:last-child td {
+  border-bottom: none;
+}
+.scraperstats-badges {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+  justify-content: flex-start;
+}
+.scraperstats-badge {
+  display: inline-block;
+  background: #283c28;
+  color: #aef4c2;
+  font-weight: 600;
+  border-radius: 18px;
+  padding: 6px 18px;
+  font-size: 1rem;
+  box-shadow: 0 1px 4px #0002;
+  border: 1px solid #2f3e2f;
+  letter-spacing: 0.04em;
+}
+.scraperstats-badge.stats-comments {
+  background: #204d35;
+  color: #7dd87d;
+}
+.scraperstats-badge.stats-posts {
+  background: #253c4d;
+  color: #7db7d8;
+}
+.scraperstats-badge.stats-pages {
+  background: #4d3920;
+  color: #d8b87d;
+}
+.scraperstats-table-controls {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+.scraperstats-search {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #2f3e2f;
+  font-size: 1rem;
+  background: #1c271c;
+  color: #e2fae2;
+}
+.scraperstats-search:focus {
+  outline: none;
+  border-color: #4c6e50;
+  background: #d0eec9;
+  color: #262927;
+}
+.scraperstats-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 10px;
+}
+.scraperstats-page-btn {
+  background: #2b5f30;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 16px;
+  transition: background 0.18s;
+}
+.scraperstats-page-btn:disabled {
+  background: #3b3b3b;
+  color: #aaa;
+  cursor: not-allowed;
+}
+.scraperstats-page-info {
+  color: #aef4c2;
+  font-size: 1rem;
+}
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+th.sortable:hover {
+  background: #2a3c2a;
+}

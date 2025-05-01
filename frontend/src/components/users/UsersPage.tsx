@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import Sidebar from '../layout/Sidebar';
 import Header from '../layout/Header';
 import '../../App.css';
+import './UsersPage.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../auth';
 
@@ -163,91 +164,111 @@ const UsersPage: React.FC = () => {
     setActionLoading(null);
   };
 
+  const fetchUsers = () => {
+    setLoading(true);
+    fetch('/api/users/list', { credentials: 'include' })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) setUsers(data.users);
+        else setError(data.message || 'Failed to load users');
+        setLoading(false);
+      })
+      .catch(() => {
+        setError('Failed to load users');
+        setLoading(false);
+      });
+  };
+
   return (
     <div className="dashboard-app">
       <Sidebar />
       <div className="main-area">
-        <Header title="Users" />
-        <div className="main-content">
-          <div style={{ marginBottom: 16 }}>
-            <input
-              type="text"
-              placeholder="Search by username or role..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{ padding: 8, width: 300 }}
-            />
-          </div>
-          {error && <div style={{ color: 'red', marginBottom: 10 }}>{error}</div>}
-          <div style={{ overflowX: 'auto' }}>
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th onClick={() => handleSort('username')} style={{ cursor: 'pointer' }}>Username {sortField === 'username' ? (sortAsc ? '▲' : '▼') : ''}</th>
-                  <th onClick={() => handleSort('roles')} style={{ cursor: 'pointer' }}>Roles {sortField === 'roles' ? (sortAsc ? '▲' : '▼') : ''}</th>
-                  <th onClick={() => handleSort('createdAt')} style={{ cursor: 'pointer' }}>Created At {sortField === 'createdAt' ? (sortAsc ? '▲' : '▼') : ''}</th>
-                  <th onClick={() => handleSort('updatedAt')} style={{ cursor: 'pointer' }}>Updated At {sortField === 'updatedAt' ? (sortAsc ? '▲' : '▼') : ''}</th>
-                  <th onClick={() => handleSort('enabled')} style={{ cursor: 'pointer' }}>Enabled {sortField === 'enabled' ? (sortAsc ? '▲' : '▼') : ''}</th>
-                  {isAdmin && <th>Pending Roles</th>}
-                  {isAdmin && <th>Actions</th>}
-                  {isAdmin && <th>Admin Actions</th>}
-                </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr><td colSpan={isAdmin ? 8 : 5}>Loading...</td></tr>
-                ) : sortedUsers.length === 0 ? (
-                  <tr><td colSpan={isAdmin ? 8 : 5}>No users found</td></tr>
-                ) : (
-                  sortedUsers.map(u => (
-                    <tr key={u.username}>
-                      <td>{u.username}</td>
-                      <td>{u.roles.join(', ')}</td>
-                      <td>{new Date(u.createdAt).toLocaleString()}</td>
-                      <td>{u.updatedAt ? new Date(u.updatedAt).toLocaleString() : '-'}</td>
-                      <td>{u.enabled ? <span style={{ color: 'green' }}>Yes</span> : <span style={{ color: 'red' }}>No</span>}</td>
-                      {isAdmin && <td>{(u.pendingRoles && u.pendingRoles.length > 0) ? u.pendingRoles.join(', ') : '-'}</td>}
-                      {isAdmin && <td>
-                        {u.enabled ? (
-                          <button
-                            className="btn btn-sm btn-danger"
-                            disabled={actionLoading === u.username + '-disable' || u.username === auth?.username}
-                            onClick={() => handleDisableUser(u.username)}
-                            title={u.username === auth?.username ? 'You cannot disable your own account' : ''}
-                          >{actionLoading === u.username + '-disable' ? 'Disabling...' : 'Disable User'}</button>
-                        ) : (
-                          <button
-                            className="btn btn-sm btn-success"
-                            disabled={actionLoading === u.username + '-enable'}
-                            onClick={() => handleEnableUser(u.username)}
-                          >{actionLoading === u.username + '-enable' ? 'Enabling...' : 'Enable User'}</button>
-                        )}
-                        {u.pendingRoles && u.pendingRoles.length > 0 && u.pendingRoles.map(role => (
-                          <button
-                            key={role}
-                            className="btn btn-sm btn-primary"
-                            style={{ marginLeft: 4 }}
-                            disabled={actionLoading === u.username + '-role-' + role}
-                            onClick={() => handleApproveRole(u.username, role)}
-                          >{actionLoading === u.username + '-role-' + role ? `Approving ${role}...` : `Approve ${role}`}</button>
-                        ))}
-                      </td>}
-                      {isAdmin && <td>
-                        {u.roles.includes('admin') && auth.username !== u.username ? (
-                          <button
-                            className="danger-btn"
-                            disabled={actionLoading === u.username + '-remove-admin'}
-                            onClick={() => handleRemoveAdmin(u.username)}
-                          >
-                            Remove Admin
-                          </button>
-                        ) : null}
-                      </td>}
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+        <Header title="Users" showSearch={false} showExport={false}/>
+        <div className="main-content userspage-sections-container">
+          <div className="userspage-section-card">
+            <div className="userspage-search-bar">
+              <input
+                type="text"
+                placeholder="Search by username or role..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="userspage-search-input input-field"
+              />
+              <button className="userspage-refresh-btn" onClick={fetchUsers} title="Refresh users" style={{marginLeft: 10}}>
+                &#x21bb; Refresh
+              </button>
+            </div>
+            {error && <div className="userspage-error">{error}</div>}
+            <div className="userspage-table-wrapper">
+              <table className="table table-striped userspage-table">
+                <thead>
+                  <tr className="userspage-table-header">
+                    <th onClick={() => handleSort('username')} className="userspage-sortable">Username {sortField === 'username' ? (sortAsc ? '▲' : '▼') : ''}</th>
+                    <th onClick={() => handleSort('roles')} className="userspage-sortable">Roles {sortField === 'roles' ? (sortAsc ? '▲' : '▼') : ''}</th>
+                    <th onClick={() => handleSort('createdAt')} className="userspage-sortable">Created At {sortField === 'createdAt' ? (sortAsc ? '▲' : '▼') : ''}</th>
+                    <th onClick={() => handleSort('updatedAt')} className="userspage-sortable">Updated At {sortField === 'updatedAt' ? (sortAsc ? '▲' : '▼') : ''}</th>
+                    <th onClick={() => handleSort('enabled')} className="userspage-sortable">Enabled {sortField === 'enabled' ? (sortAsc ? '▲' : '▼') : ''}</th>
+                    {isAdmin && <th>Pending Roles</th>}
+                    {isAdmin && <th>Actions</th>}
+                    {isAdmin && <th>Admin Actions</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {loading ? (
+                    <tr><td colSpan={isAdmin ? 8 : 5}>Loading...</td></tr>
+                  ) : sortedUsers.length === 0 ? (
+                    <tr><td colSpan={isAdmin ? 8 : 5}>No users found</td></tr>
+                  ) : (
+                    sortedUsers.map(u => (
+                      <tr key={u.username} className={!u.enabled ? 'userspage-row-disabled' : ''}>
+                        <td>{u.username}</td>
+                        <td>{u.roles.join(', ')}</td>
+                        <td>{new Date(u.createdAt).toLocaleString()}</td>
+                        <td>{u.updatedAt ? new Date(u.updatedAt).toLocaleString() : '-'}</td>
+                        <td>{u.enabled ? <span style={{ color: 'green' }}>Yes</span> : <span style={{ color: 'red' }}>No</span>}</td>
+                        {isAdmin && <td>{(u.pendingRoles && u.pendingRoles.length > 0) ? u.pendingRoles.join(', ') : '-'}</td>}
+                        {isAdmin && <td>
+                          {u.enabled ? (
+                            <button
+                              className="btn btn-sm btn-danger"
+                              disabled={actionLoading === u.username + '-disable' || u.username === auth?.username}
+                              onClick={() => handleDisableUser(u.username)}
+                              title={u.username === auth?.username ? 'You cannot disable your own account' : ''}
+                            >{actionLoading === u.username + '-disable' ? 'Disabling...' : 'Disable User'}</button>
+                          ) : (
+                            <button
+                              className="btn btn-sm btn-success"
+                              disabled={actionLoading === u.username + '-enable'}
+                              onClick={() => handleEnableUser(u.username)}
+                            >{actionLoading === u.username + '-enable' ? 'Enabling...' : 'Enable User'}</button>
+                          )}
+                          {u.pendingRoles && u.pendingRoles.length > 0 && u.pendingRoles.map(role => (
+                            <button
+                              key={role}
+                              className="btn btn-sm btn-primary"
+                              style={{ marginLeft: 4 }}
+                              disabled={actionLoading === u.username + '-role-' + role}
+                              onClick={() => handleApproveRole(u.username, role)}
+                            >{actionLoading === u.username + '-role-' + role ? `Approving ${role}...` : `Approve ${role}`}</button>
+                          ))}
+                        </td>}
+                        {isAdmin && <td>
+                          {u.roles.includes('admin') && auth?.username !== u.username ? (
+                            <button
+                              className="danger-btn"
+                              disabled={actionLoading === u.username + '-remove-admin'}
+                              onClick={() => handleRemoveAdmin(u.username)}
+                            >
+                              Remove Admin
+                            </button>
+                          ) : null}
+                        </td>}
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

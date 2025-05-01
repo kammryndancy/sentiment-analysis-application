@@ -1,20 +1,27 @@
 import React from 'react';
 import CommentsOverTimeChart, { CommentOverTimeDatum } from './CommentsOverTimeChart';
+import './CommentsOverTimeSection.css';
 
 const CommentsOverTimeSection: React.FC<{
-  commentsOverTime: CommentOverTimeDatum[];
+  processedCommentsOverTime: CommentOverTimeDatum[];
+  processedPostsOverTime: CommentOverTimeDatum[];
   loading: boolean;
   error: string | null;
-}> = ({ commentsOverTime, loading, error }) => (
-  <div>
-    <h3>Comments Over Time</h3>
-    {loading ? (
-      <div>Loading chart...</div>
-    ) : error ? (
-      <div style={{ color: 'red' }}>{error}</div>
-    ) : (
-      <CommentsOverTimeChart data={commentsOverTime} />
-    )}
+}> = ({ processedCommentsOverTime, processedPostsOverTime, loading, error }) => (
+  <div className="comments-overtime-section">
+    <h2>Processed Comments and Posts Over Time</h2>
+    <div className="comments-overtime-chart">
+      {loading ? (
+        <div className="comments-overtime-loading">Loading chart...</div>
+      ) : error ? (
+        <div className="comments-overtime-error">{error}</div>
+      ) : (
+        <CommentsOverTimeChart
+          processedCommentsOverTime={processedCommentsOverTime}
+          processedPostsOverTime={processedPostsOverTime}
+        />
+      )}
+    </div>
   </div>
 );
 

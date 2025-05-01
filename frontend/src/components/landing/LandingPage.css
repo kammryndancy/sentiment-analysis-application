@@ -29,3 +29,84 @@
 .login-link:hover {
   background: #004999;
 }
+
+.landing-root {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--primary-bg, #1a2a1a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e5ffde;
+  transition: background 0.3s;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.landing-card {
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 40px 34px 34px 34px;
+  max-width: 430px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+}
+.landing-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #7dd87d;
+  margin-bottom: 18px;
+  letter-spacing: 1.5px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  text-align: center;
+  width: 100%;
+  word-break: break-word;
+}
+.landing-desc {
+  font-size: 1.08rem;
+  color: #b7e3b7;
+  text-align: center;
+  margin-bottom: 28px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+.landing-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  align-items: center;
+}
+.landing-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px 0;
+  background: #2b5f30;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.landing-btn:hover {
+  background: #2c5834;
+}
+.landing-link {
+  color: #a5ffb0;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: color 0.15s;
+}
+.landing-link:hover {
+  color: white;
+}
+

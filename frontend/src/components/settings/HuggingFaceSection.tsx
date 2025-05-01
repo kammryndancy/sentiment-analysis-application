@@ -24,10 +24,26 @@ const HuggingFaceSection: React.FC<Props> = ({
   isAdmin, hfKeyExists, hfKeyInput, hfKeySaving, hfKeySuccess, hfKeyError, hfModels, hfSelectedModel, handleHfKeyChange, handleHfModelChange, handleHfSubmit
 }) => (
   <section>
-    <h2>Hugging Face API Key & Model</h2>
-    <form onSubmit={handleHfSubmit} style={{ maxWidth: 500, margin: '0 auto' }}>
-      <div className="form-group">
-        <label htmlFor="huggingface_api_key">Hugging Face API Key</label>
+    <h2>Hugging Face</h2>
+    <form onSubmit={handleHfSubmit} className="settings-section-form">
+        <div className="settings-label-badge-row">
+          <label htmlFor="huggingface_api_key" className="settings-section-label">
+            API Key:
+          </label>
+          <span className={`settings-section-badge ${hfKeyExists ? "badge-success" : "badge-error"}`}> 
+            {hfKeyExists ? (
+              <>
+                <span className="badge-dot badge-dot-success" />
+                Key is set/configured
+              </>
+            ) : (
+              <>
+                <span className="badge-dot badge-dot-error" />
+                No key set/configured
+              </>
+            )}
+          </span>
+        </div>
         {isAdmin ? (
           <>
             <input
@@ -36,37 +52,37 @@ const HuggingFaceSection: React.FC<Props> = ({
               name="huggingface_api_key"
               value={hfKeyInput}
               onChange={handleHfKeyChange}
-              className="form-control"
+              className="form-control settings-section-input input-field"
               autoComplete="new-password"
               placeholder={hfKeyExists ? 'Key is set (enter new to update)' : 'Enter API key'}
             />
-            <div style={{ marginTop: 5 }}>
-              {hfKeyExists ? (
-                <span style={{ color: 'green' }}>&#10003; Key is set</span>
-              ) : (
-                <span style={{ color: 'red' }}>No key set</span>
-              )}
-            </div>
           </>
         ) : (
-          <div style={{ marginTop: 5 }}>
-            {hfKeyExists ? (
-              <span style={{ color: 'green' }}>&#10003; Key is set</span>
-            ) : (
-              <span style={{ color: 'red' }}>No key set</span>
-            )}
-          </div>
+          <></>
         )}
-      </div>
-      <div className="form-group">
-        <label htmlFor="huggingface_model_id">Sentiment Model</label>
+        <div className="settings-label-badge-row">
+        <label htmlFor="huggingface_model_id" className="settings-section-label">Sentiment Model:</label>
+        <span className={`settings-section-badge ${hfSelectedModel ? "badge-success" : "badge-error"}`}> 
+            {hfSelectedModel ? (
+              <>
+                <span className="badge-dot badge-dot-success" />
+                Model is set/configured
+              </>
+            ) : (
+              <>
+                <span className="badge-dot badge-dot-error" />
+                No model set/configured
+              </>
+            )}
+          </span>
+        </div>
         {isAdmin ? (
           <select
             id="huggingface_model_id"
             name="huggingface_model_id"
             value={hfSelectedModel}
             onChange={handleHfModelChange}
-            className="form-control"
+            className="form-control settings-section-input input-field"
             required
           >
             <option value="" disabled>Select a model...</option>
@@ -77,23 +93,27 @@ const HuggingFaceSection: React.FC<Props> = ({
             ))}
           </select>
         ) : (
-          <div style={{ marginTop: 5 }}>
+          <>
             {(() => {
               const selected = hfModels.find(m => m.model_id === hfSelectedModel);
               return selected ? (
-                <span>{selected.name} - {selected.description}</span>
+                <div className="settings-section-status">
+                  <span>{selected.name} - {selected.description}</span>
+                </div>
               ) : (
-                <span style={{ color: 'red' }}>No model selected</span>
+                <></>
               );
             })()}
+          <div className="settings-section-info-msg">
+            You need admin role to update these fields.
           </div>
+          </>
         )}
-      </div>
       {isAdmin && (
         <>
-          {hfKeyError && <div style={{ color: 'red', marginBottom: 10 }}>{hfKeyError}</div>}
-          {hfKeySuccess && <div style={{ color: 'green', marginBottom: 10 }}>{hfKeySuccess}</div>}
-          <button type="submit" className="btn btn-primary" disabled={hfKeySaving}>
+          {hfKeyError && <div className="settings-section-error">{hfKeyError}</div>}
+          {hfKeySuccess && <div className="settings-section-success">{hfKeySuccess}</div>}
+          <button type="submit" className="settings-section-btn" disabled={hfKeySaving}>
             {hfKeySaving ? 'Saving...' : 'Save Hugging Face Settings'}
           </button>
         </>

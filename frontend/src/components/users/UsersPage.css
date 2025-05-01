@@ -1,0 +1,96 @@
+.userspage-search-bar {
+  margin-bottom: 16px;
+}
+
+.userspage-search-input {
+  padding: 8px;
+  width: 300px;
+}
+
+.userspage-error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.userspage-sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+.userspage-section-card {
+  width: 100%;
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 32px;
+  margin: 40px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.userspage-table-wrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+.userspage-table {
+  background: #1c271c;
+  color: #e2fae2;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.userspage-table th, .userspage-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #2f3e2f;
+}
+
+.userspage-table th {
+  background: #243c24;
+  color: #aef4c2;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: 6px;
+}
+
+.userspage-table tr:last-child td {
+  border-bottom: none;
+}
+
+.userspage-row-disabled {
+  background: #2a2323;
+  color: #a2a2a2;
+}
+
+.userspage-sortable {
+  cursor: pointer;
+}
+
+.userspage-table-header {
+  background: #243c24;
+  height: 48px;
+}
+
+.userspage-refresh-btn {
+  background: #2b5f30;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 18px;
+  margin-left: 10px;
+  transition: background 0.18s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.userspage-refresh-btn:hover {
+  background: #2c5834;
+}

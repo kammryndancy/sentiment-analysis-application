@@ -1,0 +1,91 @@
+.scraperstatus-section {
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 28px 24px 24px 24px;
+  margin-bottom: 32px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+.scraperstatus-section h2 {
+  color: #7dd87d;
+  margin-bottom: 12px;
+  margin-top: 0px;
+}
+.scraperstatus-section ul {
+  margin-bottom: 18px;
+}
+.scraperstatus-section li {
+  padding: 6px 0;
+}
+.scraperstatus-table {
+  background: #1c271c;
+  color: #e2fae2;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.scraperstatus-table th, .scraperstatus-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #2f3e2f;
+}
+.scraperstatus-table th {
+  background: #243c24;
+  color: #aef4c2;
+  font-weight: 600;
+}
+.scraperstatus-table tr:last-child td {
+  border-bottom: none;
+}
+.scraperstatus-table tr:hover td {
+  background: #223322;
+}
+.scraperstatus-table-controls {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+.scraperstatus-search {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #2f3e2f;
+  font-size: 1rem;
+  background: #1c271c;
+  color: #e2fae2;
+}
+.scraperstatus-search:focus {
+  outline: none;
+  border-color: #4c6e50;
+  background: #d0eec9;
+  color: #262927;
+}
+.scraperstatus-pagination {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+.scraperstatus-page-btn {
+  background: #2b5f30;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 16px;
+  transition: background 0.18s;
+}
+.scraperstatus-page-btn:disabled {
+  background: #3b3b3b;
+  color: #aaa;
+  cursor: not-allowed;
+}
+.scraperstatus-page-info {
+  color: #aef4c2;
+  font-size: 1rem;
+}
