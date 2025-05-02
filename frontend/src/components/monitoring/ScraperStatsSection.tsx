@@ -61,40 +61,42 @@ const ScraperStatsSection: React.FC<{ scraperStats: any }> = ({ scraperStats }) 
           />
         </div>
       )}
-      <table>
-        <thead>
-          <tr>
-            <th
-              className="sortable"
-              onClick={() => {
-                if (sortKey === 'pageId') setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
-                setSortKey('pageId');
-              }}
-            >
-              Page ID {sortKey === 'pageId' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
-            </th>
-            <th>Name</th>
-            <th
-              className="sortable"
-              onClick={() => {
-                if (sortKey === 'count') setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
-                setSortKey('count');
-              }}
-            >
-              Comments {sortKey === 'count' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {paged.map((row: any) => (
-            <tr key={row._id}>
-              <td>{row._id}</td>
-              <td>{pageIdToName[row._id] || row._id}</td>
-              <td>{row.count}</td>
+      <div className="scraperstats-table-wrapper">
+        <table className="scraperstats-table">
+          <thead>
+            <tr>
+              <th
+                className="sortable"
+                onClick={() => {
+                  if (sortKey === 'pageId') setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
+                  setSortKey('pageId');
+                }}
+              >
+                Page ID {sortKey === 'pageId' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
+              </th>
+              <th>Name</th>
+              <th
+                className="sortable"
+                onClick={() => {
+                  if (sortKey === 'count') setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
+                  setSortKey('count');
+                }}
+              >
+                Comments {sortKey === 'count' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {paged.map((row: any) => (
+              <tr key={row._id}>
+                <td>{row._id}</td>
+                <td>{pageIdToName[row._id] || row._id}</td>
+                <td>{row.count}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {commentsPerPage.length > PAGE_SIZE && (
         <div className="scraperstats-pagination">
           <button

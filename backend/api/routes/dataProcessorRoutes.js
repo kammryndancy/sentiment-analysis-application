@@ -9,4 +9,10 @@ router.post('/process-posts', dataProcessorController.processPosts);
 // Statistics endpoint
 router.get('/stats', dataProcessorController.getStats);
 
+// Extremes endpoint
+router.get('/processed-comments/extremes', dataProcessorController.getProcessedCommentExtremes);
+
+// Word cloud endpoint
+router.get('/posts/wordcloud', dataProcessorController.getProcessedPostsWordCloud);
+
 module.exports = router;

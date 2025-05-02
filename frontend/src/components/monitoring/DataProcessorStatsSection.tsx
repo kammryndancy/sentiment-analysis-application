@@ -27,16 +27,29 @@ const DataProcessorStatsSection: React.FC<{ dataProcessorStats: any }> = ({ data
           <span className="dataprocessorstats-badge badge-ratio">Ratio: {dataProcessorStats?.postProcessingRatio}</span>
         </div>
       </div>
-      {dataProcessorStats?.tokenStats && (
+      {dataProcessorStats?.sentimentStats && (
         <div className="dataprocessorstats-row">
-          <h3 className="dataprocessorstats-header token-header">
-            Token Stats
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight:'6px',verticalAlign:'middle'}}><circle cx="9" cy="9" r="7" stroke="#e0c97d" strokeWidth="1.5"/><text x="9" y="13" textAnchor="middle" fontSize="8" fill="#e0c97d" fontFamily="monospace">#</text></svg>
+          <h3 className="dataprocessorstats-header sentiment-header">
+            Comment Sentiment Stats
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight:'6px',verticalAlign:'middle'}}><circle cx="9" cy="9" r="7" stroke="#e0c97d" strokeWidth="1.5"/><text x="9" y="13" textAnchor="middle" fontSize="8" fill="#e0c97d" fontFamily="monospace">S</text></svg>
           </h3>
           <div className="dataprocessorstats-badges">
-            <span className="dataprocessorstats-badge badge-avg">Avg: {dataProcessorStats.tokenStats.avgTokenCount?.toFixed(2)}</span>
-            <span className="dataprocessorstats-badge badge-min">Min: {dataProcessorStats.tokenStats.minTokenCount}</span>
-            <span className="dataprocessorstats-badge badge-max">Max: {dataProcessorStats.tokenStats.maxTokenCount}</span>
+            <span className="dataprocessorstats-badge badge-avg">Avg: {dataProcessorStats.sentimentStats.avgWeightedSentiment !== undefined ? dataProcessorStats.sentimentStats.avgWeightedSentiment.toFixed(2) : ''}</span>
+            <span className="dataprocessorstats-badge badge-min">Min: {dataProcessorStats.sentimentStats.minWeightedSentiment !== undefined ? dataProcessorStats.sentimentStats.minWeightedSentiment.toFixed(2) : ''}</span>
+            <span className="dataprocessorstats-badge badge-max">Max: {dataProcessorStats.sentimentStats.maxWeightedSentiment !== undefined ? dataProcessorStats.sentimentStats.maxWeightedSentiment.toFixed(2) : ''}</span>
+          </div>
+        </div>
+      )}
+      {dataProcessorStats?.postSentimentStats && (
+        <div className="dataprocessorstats-row">
+          <h3 className="dataprocessorstats-header sentiment-header">
+            Post Sentiment Stats
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight:'6px',verticalAlign:'middle'}}><rect x="3" y="3" width="12" height="12" rx="2" stroke="#e0c97d" strokeWidth="1.5"/><text x="9" y="13" textAnchor="middle" fontSize="8" fill="#e0c97d" fontFamily="monospace">S</text></svg>
+          </h3>
+          <div className="dataprocessorstats-badges">
+            <span className="dataprocessorstats-badge badge-avg">Avg: {dataProcessorStats.postSentimentStats.avgWeightedSentiment !== undefined ? dataProcessorStats.postSentimentStats.avgWeightedSentiment.toFixed(2) : ''}</span>
+            <span className="dataprocessorstats-badge badge-min">Min: {dataProcessorStats.postSentimentStats.minWeightedSentiment !== undefined ? dataProcessorStats.postSentimentStats.minWeightedSentiment.toFixed(2) : ''}</span>
+            <span className="dataprocessorstats-badge badge-max">Max: {dataProcessorStats.postSentimentStats.maxWeightedSentiment !== undefined ? dataProcessorStats.postSentimentStats.maxWeightedSentiment.toFixed(2) : ''}</span>
           </div>
         </div>
       )}

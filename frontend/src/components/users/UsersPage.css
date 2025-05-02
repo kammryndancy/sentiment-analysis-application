@@ -42,6 +42,8 @@
   border-radius: 8px;
   overflow: hidden;
   width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .userspage-table th, .userspage-table td {
@@ -54,7 +56,6 @@
   color: #aef4c2;
   font-weight: 600;
   font-size: 1.05rem;
-  border-radius: 6px;
 }
 
 .userspage-table tr:last-child td {

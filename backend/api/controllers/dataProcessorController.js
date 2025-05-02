@@ -79,8 +79,39 @@ const getStats = async (req, res) => {
   }
 };
 
+// Get processed comment extremes
+const getProcessedCommentExtremes = async (req, res) => {
+  try {
+    const dataProcessor = req.app.locals.dataProcessor;
+    const extremes = await dataProcessor.getProcessedCommentExtremes();
+    if (extremes) {
+      res.status(200).json({ success: true, data: extremes });
+    } else {
+      res.status(404).json({ success: false, error: 'No processed comments found' });
+    }
+  } catch (error) {
+    console.error('Error getting processed comment extremes:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
+// Get processed posts word cloud
+const getProcessedPostsWordCloud = async (req, res) => {
+  try {
+    const dataProcessor = req.app.locals.dataProcessor;
+    const topN = parseInt(req.query.topN, 10) || 50;
+    const wordCloud = await dataProcessor.getProcessedPostsWordCloud({ topN });
+    res.status(200).json({ success: true, data: wordCloud });
+  } catch (error) {
+    console.error('Error getting processed posts word cloud:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
 module.exports = {
   processComments,
   processPosts,
-  getStats
+  getStats,
+  getProcessedCommentExtremes,
+  getProcessedPostsWordCloud
 };

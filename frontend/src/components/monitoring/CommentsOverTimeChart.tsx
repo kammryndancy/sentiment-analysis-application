@@ -17,7 +17,8 @@ const CommentsOverTimeChart: React.FC<CommentsOverTimeChartProps> = ({ processed
   React.useEffect(() => {
     if ((!processedCommentsOverTime || processedCommentsOverTime.length === 0) && (!processedPostsOverTime || processedPostsOverTime.length === 0)) return;
     const margin = { top: 20, right: 30, bottom: 40, left: 50 };
-    const width = 600 - margin.left - margin.right;
+    const containerWidth = ref.current?.clientWidth || 600;
+    const width = containerWidth - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
 
     d3.select(ref.current).selectAll('*').remove();
@@ -25,8 +26,10 @@ const CommentsOverTimeChart: React.FC<CommentsOverTimeChartProps> = ({ processed
     const svg = d3
       .select(ref.current)
       .append('svg')
-      .attr('width', width + margin.left + margin.right)
+      .attr('width', '100%')
       .attr('height', height + margin.top + margin.bottom)
+      .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+      .attr('preserveAspectRatio', 'xMinYMin meet')
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -37,13 +40,17 @@ const CommentsOverTimeChart: React.FC<CommentsOverTimeChartProps> = ({ processed
       }));
     }
 
+    function toDayStart(date: Date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
     const processedCommentData = formatData(processedCommentsOverTime);
     const processedPostData = formatData(processedPostsOverTime);
 
-    // Merge all dates
+    // Merge all dates (normalized to day)
     const allDates = Array.from(new Set([
-      ...processedCommentData.map(d => d.date.getTime()),
-      ...processedPostData.map(d => d.date.getTime())
+      ...processedCommentData.map(d => toDayStart(d.date).getTime()),
+      ...processedPostData.map(d => toDayStart(d.date).getTime())
     ])).map(t => new Date(t));
     allDates.sort((a, b) => a.getTime() - b.getTime());
 
@@ -63,12 +70,15 @@ const CommentsOverTimeChart: React.FC<CommentsOverTimeChartProps> = ({ processed
       ])
       .range([height, 0]);
 
-    svg
-      .append('g')
+    const xAxis = d3.axisBottom(x)
+      .tickValues(allDates)
+      .tickFormat(d3.timeFormat('%b %d'));
+
+    svg.append('g')
       .attr('transform', `translate(0,${height})`)
-      .call(d3.axisBottom(x).ticks(10).tickFormat(d3.timeFormat('%b %d, %Y')))
+      .call(xAxis)
       .selectAll('text')
-      .attr('transform', 'rotate(-40)')
+      .attr('transform', 'rotate(-45)')
       .style('text-anchor', 'end');
 
     svg.append('g').call(d3.axisLeft(y));
@@ -82,18 +92,18 @@ const CommentsOverTimeChart: React.FC<CommentsOverTimeChartProps> = ({ processed
       .attr('stroke-width', 2)
       .attr('d', d3
         .line<{ date: Date; count: number }>()
-        .x((d: { date: Date; count: number }) => x(d.date))
+        .x((d: { date: Date; count: number }) => x(toDayStart(d.date)))
         .y((d: { date: Date; count: number }) => y(d.count))
       );
     svg
       .append('path')
       .datum(processedPostData)
       .attr('fill', 'none')
-      .attr('stroke', '#ff851b')
+      .attr('stroke', '#CADB9C')
       .attr('stroke-width', 2)
       .attr('d', d3
         .line<{ date: Date; count: number }>()
-        .x((d: { date: Date; count: number }) => x(d.date))
+        .x((d: { date: Date; count: number }) => x(toDayStart(d.date)))
         .y((d: { date: Date; count: number }) => y(d.count))
       );
 
@@ -103,7 +113,7 @@ const CommentsOverTimeChart: React.FC<CommentsOverTimeChartProps> = ({ processed
       .data(processedCommentData)
       .enter()
       .append('circle')
-      .attr('cx', (d: { date: Date; count: number }) => x(d.date))
+      .attr('cx', (d: { date: Date; count: number }) => x(toDayStart(d.date)))
       .attr('cy', (d: { date: Date; count: number }) => y(d.count))
       .attr('r', 4)
       .attr('fill', '#2ecc40');
@@ -113,15 +123,15 @@ const CommentsOverTimeChart: React.FC<CommentsOverTimeChartProps> = ({ processed
       .data(processedPostData)
       .enter()
       .append('circle')
-      .attr('cx', (d: { date: Date; count: number }) => x(d.date))
+      .attr('cx', (d: { date: Date; count: number }) => x(toDayStart(d.date)))
       .attr('cy', (d: { date: Date; count: number }) => y(d.count))
       .attr('r', 4)
-      .attr('fill', '#ff851b');
+      .attr('fill', '#CADB9C');
 
     // Add legend
     const legendData = [
       { label: 'Processed Comments', color: '#2ecc40' },
-      { label: 'Processed Posts', color: '#ff851b' }
+      { label: 'Processed Posts', color: '#CADB9C' }
     ];
     const legend = svg.append('g').attr('transform', `translate(0, -10)`);
     legendData.forEach((item, i) => {
@@ -138,11 +148,12 @@ const CommentsOverTimeChart: React.FC<CommentsOverTimeChartProps> = ({ processed
         .attr('y', 8)
         .text(item.label)
         .style('font-size', '13px')
+        .style('fill', '#fff')
         .attr('alignment-baseline', 'middle');
     });
   }, [processedCommentsOverTime, processedPostsOverTime]);
 
-  return <div ref={ref}></div>;
+  return <div ref={ref} style={{ width: '100%' }} className="comments-overtime-chart"></div>;
 };
 
 export default CommentsOverTimeChart;

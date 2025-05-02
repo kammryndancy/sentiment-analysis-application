@@ -7,6 +7,7 @@
   min-height: 60px;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 15px;
 }
 .header-left {
   display: flex;

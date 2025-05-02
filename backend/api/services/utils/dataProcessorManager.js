@@ -19,6 +19,7 @@ class DataProcessor {
     this.dbName = process.env.MONGO_DB || 'tonique';
     this.sourceCollection = process.env.MONGO_SCRAPED_COMMENTS_COLLECTION || 'scraped_comments';
     this.processedCollection = process.env.MONGO_PROCESSED_COMMENTS_COLLECTION || 'processed_comments';
+    this.processedPostCollection = process.env.MONGO_PROCESSED_POSTS_COLLECTION || 'processed_posts';
     this.client = null;
     this.db = db;
   }
@@ -188,7 +189,7 @@ class DataProcessor {
 
   async processComment(comment, options = {}) {
     // Preprocess the text
-    const processedText = preprocessText(comment.message, options);
+    const processedText = await preprocessText(comment.message, options);
 
     // Anonymize the data
     const anonymizedComment = anonymizeData(comment, options);
@@ -214,7 +215,13 @@ class DataProcessor {
       }
     }
     const engagement = 1 + (comment.like_count || 0) * likeWeight + reactionWeightSum;
-    const weightedSentiment = hybridSentiment * engagement;
+
+    // Use Google sentiment score for weighting
+    let googleScore = 0;
+    if (hybridSentiment && hybridSentiment.google && hybridSentiment.google.documentSentiment && typeof hybridSentiment.google.documentSentiment.score === 'number') {
+      googleScore = hybridSentiment.google.documentSentiment.score;
+    }
+    const weightedSentiment = googleScore * engagement;
 
     return {
       ...anonymizedComment,
@@ -230,10 +237,10 @@ class DataProcessor {
   }
 
   async processPost(post, options = {}) {
-    // Preprocess the post message
-    const processedText = preprocessText(post.message, options);
+    // Await the async preprocessing of text
+    const processedText = await preprocessText(post.message, options);
 
-    // Anonymize the post data
+    // Await the async anonymization of post data
     const anonymizedPost = anonymizeData(post, options);
 
     // Analyze sentiment using both Hugging Face and Google Cloud NLP
@@ -257,7 +264,13 @@ class DataProcessor {
       }
     }
     const engagement = 1 + (post.likes || 0) * likeWeight + reactionWeightSum;
-    const weightedSentiment = hybridSentiment * engagement;
+
+    // Use Google sentiment score for weighting
+    let googleScore = 0;
+    if (hybridSentiment && hybridSentiment.google && hybridSentiment.google.documentSentiment && typeof hybridSentiment.google.documentSentiment.score === 'number') {
+      googleScore = hybridSentiment.google.documentSentiment.score;
+    }
+    const weightedSentiment = googleScore * engagement;
 
     return {
       ...anonymizedPost,
@@ -358,22 +371,31 @@ class DataProcessor {
       const processedPosts = await postProcessedCollection.countDocuments();
       const postProcessingRatio = totalPosts > 0 ? (processedPosts / totalPosts) * 100 : 0;
 
-      // Get avg token count
-      const tokenStats = await processedCollection.aggregate([
+      // Get avg, min, max weighted sentiment
+      const sentimentStats = await processedCollection.aggregate([
         {
-          $match: { tokens: { $exists: true, $ne: null, $type: 'array' } }
-        },
-        {
-          $project: {
-            tokenCount: { $size: '$tokens' }
-          }
+          $match: { weighted_sentiment: { $exists: true, $ne: null, $type: 'number' } }
         },
         {
           $group: {
             _id: null,
-            avgTokenCount: { $avg: '$tokenCount' },
-            minTokenCount: { $min: '$tokenCount' },
-            maxTokenCount: { $max: '$tokenCount' }
+            avgWeightedSentiment: { $avg: '$weighted_sentiment' },
+            minWeightedSentiment: { $min: '$weighted_sentiment' },
+            maxWeightedSentiment: { $max: '$weighted_sentiment' }
+          }
+        }
+      ]).toArray();
+
+      const postSentimentStats = await postProcessedCollection.aggregate([
+        {
+          $match: { weighted_sentiment: { $exists: true, $ne: null, $type: 'number' } }
+        },
+        {
+          $group: {
+            _id: null,
+            avgWeightedSentiment: { $avg: '$weighted_sentiment' },
+            minWeightedSentiment: { $min: '$weighted_sentiment' },
+            maxWeightedSentiment: { $max: '$weighted_sentiment' }
           }
         }
       ]).toArray();
@@ -382,10 +404,11 @@ class DataProcessor {
         totalComments,
         processedComments,
         processingRatio: processingRatio.toFixed(2) + '%',
-        tokenStats: tokenStats.length > 0 ? tokenStats[0] : null,
+        sentimentStats: sentimentStats.length > 0 ? sentimentStats[0] : null,
         totalPosts,
         processedPosts,
-        postProcessingRatio: postProcessingRatio.toFixed(2) + '%'
+        postProcessingRatio: postProcessingRatio.toFixed(2) + '%',
+        postSentimentStats: postSentimentStats.length > 0 ? postSentimentStats[0] : null
       };
 
       return stats;
@@ -393,6 +416,73 @@ class DataProcessor {
       console.error('Error getting processing stats:', error);
       return null;
     }
+  }
+
+  /**
+   * Get processed comment extremes: highest, lowest, and neutralist weighted sentiment
+   */
+  async getProcessedCommentExtremes() {
+    if (!this.db) {
+      await this.connect();
+    }
+    const processedCollection = this.db.collection(this.processedPostCollection);
+    // Highest
+    const highest = await processedCollection.find({ weighted_sentiment: { $exists: true, $ne: null, $type: 'number' } })
+      .sort({ weighted_sentiment: -1 })
+      .limit(1)
+      .toArray();
+    // Lowest
+    const lowest = await processedCollection.find({ weighted_sentiment: { $exists: true, $ne: null, $type: 'number' } })
+      .sort({ weighted_sentiment: 1 })
+      .limit(1)
+      .toArray();
+    // Neutralist (closest to zero)
+    const neutralist = await processedCollection.aggregate([
+      {
+        $match: { weighted_sentiment: { $exists: true, $ne: null, $type: 'number' } }
+      },
+      {
+        $addFields: { absWeightedSentiment: { $abs: "$weighted_sentiment" } }
+      },
+      { $sort: { absWeightedSentiment: 1 } },
+      { $limit: 1 }
+    ]).toArray();
+    return {
+      highest: highest[0] || null,
+      lowest: lowest[0] || null,
+      neutralist: neutralist[0] || null
+    };
+  }
+
+  /**
+   * Get word cloud data for processed posts, weighted by weighted_sentiment, using tokens array
+   * Returns array of { word, count, weightedSentiment }
+   */
+  async getProcessedPostsWordCloud({ topN = 50 } = {}) {
+    if (!this.db) {
+      await this.connect();
+    }
+    const processedPosts = this.db.collection(this.processedPostCollection);
+    // Aggregate words from processed_posts.tokens (array of important words)
+    // 1. Unwind tokens
+    // 2. Group by token, count and sum/avg weighted_sentiment
+    // 3. Sort by count desc, limit topN
+    const pipeline = [
+      { $match: { tokens: { $exists: true, $ne: null, $type: 'array', $not: { $size: 0 } }, weighted_sentiment: { $exists: true, $type: 'number' } } },
+      { $unwind: "$tokens" },
+      { $match: { tokens: { $regex: /^[a-zA-Z]{3,}$/ } } }, // Only alpha words, min length 3
+      { $group: {
+          _id: "$tokens",
+          count: { $sum: 1 },
+          avgWeightedSentiment: { $avg: "$weighted_sentiment" },
+          sumWeightedSentiment: { $sum: "$weighted_sentiment" }
+        }
+      },
+      { $sort: { count: -1 } },
+      { $limit: topN },
+      { $project: { word: "$_id", count: 1, avgWeightedSentiment: 1, sumWeightedSentiment: 1, _id: 0 } }
+    ];
+    return await processedPosts.aggregate(pipeline).toArray();
   }
 }
 

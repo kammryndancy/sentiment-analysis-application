@@ -187,16 +187,25 @@ const MonitoringPage: React.FC = () => {
           {loading ? <div className="monitoring-loading">Loading statistics...</div> : error ? <div className="monitoring-error">{error}</div> : (
             <div className="monitoring-grid">
               <div className="monitoring-grid-row">
-                <ScraperStatsSection scraperStats={scraperStats} />
-                <ScraperStatusSection scraperStatus={scraperStatus} loading={scraperStatusLoading} error={scraperStatusError} />
-              </div>
-              <div className="monitoring-grid-row">
-                <DataProcessorStatsSection dataProcessorStats={dataProcessorStats} />
                 <CommentsOverTimeSection 
                   processedCommentsOverTime={processedCommentsOverTime} 
                   processedPostsOverTime={processedPostsOverTime} 
                   loading={commentsOverTimeLoading} 
                   error={commentsOverTimeError} 
+                />
+              </div>
+              <div className="monitoring-grid-row">
+                <ScraperStatsSection scraperStats={scraperStats} />
+                <ScraperStatusSection scraperStatus={scraperStatus} loading={scraperStatusLoading} error={scraperStatusError} />
+              </div>
+              <div className="monitoring-grid-row">
+                <DataProcessorStatsSection dataProcessorStats={dataProcessorStats} />
+                <RunScraperSection
+                  scraperRunLoading={scraperRunLoading}
+                  scraperRunResult={scraperRunResult}
+                  scraperRunDaysBack={scraperRunDaysBack}
+                  setScraperRunDaysBack={setScraperRunDaysBack}
+                  handleRunScraper={handleRunScraper}
                 />
               </div>
               <div className="monitoring-grid-row">
@@ -242,16 +251,6 @@ const MonitoringPage: React.FC = () => {
                   postProcessingResult={postProcessingResult}
                   handleProcessPosts={handleProcessPosts}
                 />
-              </div>
-              <div className="monitoring-grid-row">
-                <RunScraperSection
-                  scraperRunLoading={scraperRunLoading}
-                  scraperRunResult={scraperRunResult}
-                  scraperRunDaysBack={scraperRunDaysBack}
-                  setScraperRunDaysBack={setScraperRunDaysBack}
-                  handleRunScraper={handleRunScraper}
-                />
-                <div />
               </div>
             </div>
           )}

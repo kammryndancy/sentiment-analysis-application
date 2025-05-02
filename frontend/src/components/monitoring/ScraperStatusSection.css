@@ -20,6 +20,10 @@
 .scraperstatus-section li {
   padding: 6px 0;
 }
+.scraperstatus-table-wrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+}
 .scraperstatus-table {
   background: #1c271c;
   color: #e2fae2;
@@ -28,6 +32,7 @@
   margin-top: 10px;
   border-collapse: separate;
   border-spacing: 0;
+  overflow: hidden;
 }
 .scraperstatus-table th, .scraperstatus-table td {
   padding: 10px 14px;

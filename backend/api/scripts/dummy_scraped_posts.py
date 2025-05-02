@@ -19,7 +19,17 @@ good_messages = [
     "Exceeded my expectations!",
     "Fast delivery and excellent packaging.",
     "Five stars, will buy again.",
-    "Absolutely wonderful experience!"
+    "Absolutely wonderful experience!",
+    "The fragrance is so refreshing and lasts all day.",
+    "My skin feels so smooth after using this lotion.",
+    "The lipstick color is vibrant and stays on for hours.",
+    "Customer support resolved my issue quickly.",
+    "Love the packaging design, very elegant.",
+    "Got a free sample, and it was amazing!",
+    "Easy to order and track shipment.",
+    "Great value for the price.",
+    "My friends keep asking where I got this from.",
+    "Definitely buying more for gifts."
 ]
 bad_messages = [
     "Very disappointed with the product.",
@@ -31,7 +41,17 @@ bad_messages = [
     "Not as described, very misleading.",
     "Shipping took far too long.",
     "Packaging was terrible, item leaked.",
-    "Waste of money, avoid this."
+    "Waste of money, avoid this.",
+    "The scent was overpowering and unpleasant.",
+    "I had an allergic reaction to the cream.",
+    "Difficult to get a refund.",
+    "The bottle was half empty on arrival.",
+    "Instructions were missing from the box.",
+    "The shade did not match the description.",
+    "Customer support never replied to my emails.",
+    "Too expensive for the quality received.",
+    "The applicator broke after first use.",
+    "Left my skin feeling dry and irritated."
 ]
 neutral_messages = [
     "The product is okay.",
@@ -42,8 +62,17 @@ neutral_messages = [
     "Product matches the description.",
     "Neither good nor bad, just average.",
     "Arrived on time, works as intended.",
-    "Meets basic expectations.",
-    "No issues, but nothing outstanding either."
+    "The packaging was standard, nothing fancy.",
+    "Used it a few times, results are decent.",
+    "Shipping time was average.",
+    "No issues, but nothing stood out.",
+    "Color is close to what I expected.",
+    "The size is as described.",
+    "It does the job, but not remarkable.",
+    "I might buy again if on sale.",
+    "Instructions were clear and easy to follow.",
+    "Blends in with my other products just fine.",
+    "Met my basic expectations."
 ]
 
 keywords = [

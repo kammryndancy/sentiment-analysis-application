@@ -18,12 +18,18 @@
 .scraperstats-section ul {
   margin-bottom: 18px;
 }
-.scraperstats-section table {
+.scraperstats-table-wrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+}
+.scraperstats-table {
   background: #1c271c;
   color: #e2fae2;
   border-radius: 8px;
   width: 100%;
-  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
 }
 .scraperstats-section th, .scraperstats-section td {
   padding: 10px 14px;
