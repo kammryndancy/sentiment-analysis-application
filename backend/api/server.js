@@ -26,6 +26,7 @@ const dataProcessorRoutes = require('./routes/dataProcessorRoutes');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
+const sentimentOverTimeRoutes = require('./routes/sentimentOverTimeRoutes');
 
 // Initialize Express app
 const app = express();
@@ -113,6 +114,7 @@ mongoose.connect(process.env.MONGO_URI, {
   app.use('/api/auth', authRoutes);
   app.use('/api/users', userRoutes);
   app.use('/api/settings', authMiddleware, settingsRoutes);
+  app.use('/api/sentiment-over-time', sentimentOverTimeRoutes);
 
   // Health check endpoint
   app.get('/health', async (req, res) => {

@@ -16,6 +16,12 @@ async function importDummyPosts() {
     const db = client.db(dbName);
     const collection = db.collection(collectionName);
     const posts = JSON.parse(fs.readFileSync('./scripts/dummy_scraped_posts.json', 'utf-8'));
+    // Convert string dates to Date objects for created_time
+    posts.forEach(post => {
+      if (post.created_time && typeof post.created_time === 'string') {
+        post.created_time = new Date(post.created_time);
+      }
+    });
     // Remove all existing dummy posts (optional, comment out if not desired)
     await collection.deleteMany({});
     await collection.insertMany(posts);

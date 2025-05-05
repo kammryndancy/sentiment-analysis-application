@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const LandingPage: React.FC = () => (
   <div className="landing-root">
     <div className="landing-card">
-      <div className="landing-title">Welcome to Sentiment Analysis Tool</div>
+      <div className="landing-title">Welcome to Tonique</div>
       <div className="landing-desc">
         Effortlessly analyze and visualize sentiment in social media comments.<br />
         Filter product-related discussions and gain actionable insights for your brand.

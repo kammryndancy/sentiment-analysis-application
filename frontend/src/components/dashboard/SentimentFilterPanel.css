@@ -1,0 +1,67 @@
+.sentiment-filter-panel {
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 24px 20px 18px 20px;
+  margin: 0 0 20px 0;
+  color: #e2e2e2;
+  max-width: 420px;
+}
+
+.sentiment-filter-panel h3 {
+  color: #7dd87d;
+  margin-bottom: 12px;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.filter-row label {
+  min-width: 100px;
+  color: #b6f7b6;
+  font-size: 1.01em;
+}
+
+.filter-row select,
+.filter-row input[type="text"],
+.filter-row input[type="date"] {
+  background: #1c271c;
+  border: 1px solid #314d31;
+  border-radius: 6px;
+  color: #e2e2e2;
+  padding: 5px 10px;
+  font-size: 1em;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.filter-row select:focus,
+.filter-row input[type="text"]:focus,
+.filter-row input[type="date"]:focus {
+  border: 1.5px solid #7dd87d;
+}
+
+.sentiment-filter-panel button {
+  background: linear-gradient(90deg,#7dd87d 0,#6acb6a 100%);
+  color: #223322;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-weight: 600;
+  font-size: 1.08em;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sentiment-filter-panel button:hover {
+  background: #aef4c2;
+  color: #1c271c;
+}

@@ -1,0 +1,7009 @@
+[
+  {
+    "post_id": "1000001",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-29T18:34:21.841624Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user31"
+      },
+      {
+        "type": "HAHA",
+        "user": "user292"
+      },
+      {
+        "type": "WOW",
+        "user": "user152"
+      },
+      {
+        "type": "LOVE",
+        "user": "user244"
+      }
+    ],
+    "scraped_at": "2025-03-29T18:43:21.841624Z",
+    "message": "Shipping time was average.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon order",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000002",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-05T18:34:21.842628Z",
+    "likes": 35,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user170"
+      },
+      {
+        "type": "LOVE",
+        "user": "user164"
+      },
+      {
+        "type": "SAD",
+        "user": "user134"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user172"
+      },
+      {
+        "type": "LOVE",
+        "user": "user141"
+      }
+    ],
+    "scraped_at": "2025-03-05T18:36:21.842628Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon care",
+      "avon order",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000003",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-18T18:34:21.842628Z",
+    "likes": 24,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user3"
+      }
+    ],
+    "scraped_at": "2025-02-18T18:36:21.842628Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000004",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-24T18:34:21.842628Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user86"
+      },
+      {
+        "type": "LOVE",
+        "user": "user97"
+      },
+      {
+        "type": "WOW",
+        "user": "user173"
+      },
+      {
+        "type": "SAD",
+        "user": "user336"
+      }
+    ],
+    "scraped_at": "2025-03-24T18:44:21.842628Z",
+    "message": "Great customer service!",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000005",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-10T18:34:21.842628Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user95"
+      }
+    ],
+    "scraped_at": "2025-03-10T18:39:21.842628Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "avon order",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000006",
+    "page_id": "Avon",
+    "created_time": "2025-04-27T18:34:21.842628Z",
+    "likes": 29,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user248"
+      },
+      {
+        "type": "SAD",
+        "user": "user139"
+      }
+    ],
+    "scraped_at": "2025-04-27T18:40:21.842628Z",
+    "message": "I love this Avon product!",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000007",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-05T18:34:21.842628Z",
+    "likes": 15,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user63"
+      },
+      {
+        "type": "LIKE",
+        "user": "user137"
+      }
+    ],
+    "scraped_at": "2025-02-05T18:39:21.842628Z",
+    "message": "It does the job, but not remarkable.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000008",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-23T18:34:21.842628Z",
+    "likes": 30,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user195"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user279"
+      },
+      {
+        "type": "WOW",
+        "user": "user100"
+      },
+      {
+        "type": "LOVE",
+        "user": "user191"
+      },
+      {
+        "type": "LOVE",
+        "user": "user340"
+      }
+    ],
+    "scraped_at": "2025-04-23T18:35:21.842628Z",
+    "message": "Absolutely wonderful experience!",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000009",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-11T18:34:21.842628Z",
+    "likes": 1,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user155"
+      },
+      {
+        "type": "HAHA",
+        "user": "user310"
+      },
+      {
+        "type": "SAD",
+        "user": "user261"
+      }
+    ],
+    "scraped_at": "2025-03-11T18:37:21.842628Z",
+    "message": "Great customer service!",
+    "matched_keywords": [
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000010",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-26T18:34:21.842628Z",
+    "likes": 21,
+    "reactions": [],
+    "scraped_at": "2025-02-26T18:36:21.842628Z",
+    "message": "Customer support never replied to my emails.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000011",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-17T18:34:21.842628Z",
+    "likes": 7,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user225"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user192"
+      },
+      {
+        "type": "SAD",
+        "user": "user320"
+      }
+    ],
+    "scraped_at": "2025-03-17T18:40:21.842628Z",
+    "message": "Shipping time was average.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000012",
+    "page_id": "Avon",
+    "created_time": "2025-03-24T18:34:21.842628Z",
+    "likes": 16,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user303"
+      },
+      {
+        "type": "HAHA",
+        "user": "user76"
+      },
+      {
+        "type": "SAD",
+        "user": "user214"
+      },
+      {
+        "type": "LIKE",
+        "user": "user191"
+      }
+    ],
+    "scraped_at": "2025-03-24T18:44:21.842628Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "avon true",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000013",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-16T18:34:21.842628Z",
+    "likes": 42,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user201"
+      }
+    ],
+    "scraped_at": "2025-03-16T18:44:21.842628Z",
+    "message": "The fragrance is so refreshing and lasts all day.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000014",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-03T18:34:21.842628Z",
+    "likes": 12,
+    "reactions": [],
+    "scraped_at": "2025-02-03T18:36:21.842628Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon care",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000015",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-08T18:34:21.842628Z",
+    "likes": 4,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user216"
+      },
+      {
+        "type": "SAD",
+        "user": "user181"
+      },
+      {
+        "type": "WOW",
+        "user": "user205"
+      }
+    ],
+    "scraped_at": "2025-03-08T18:42:21.842628Z",
+    "message": "Met my basic expectations.",
+    "matched_keywords": [
+      "avon brochure",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000016",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-01T18:34:21.842628Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user323"
+      },
+      {
+        "type": "LIKE",
+        "user": "user14"
+      },
+      {
+        "type": "LIKE",
+        "user": "user113"
+      },
+      {
+        "type": "LOVE",
+        "user": "user307"
+      }
+    ],
+    "scraped_at": "2025-03-01T18:44:21.842628Z",
+    "message": "Highly recommend to everyone.",
+    "matched_keywords": [
+      "avon representative",
+      "avon discount",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000017",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-18T18:34:21.842628Z",
+    "likes": 49,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user126"
+      },
+      {
+        "type": "LOVE",
+        "user": "user175"
+      },
+      {
+        "type": "LOVE",
+        "user": "user88"
+      },
+      {
+        "type": "HAHA",
+        "user": "user291"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user260"
+      }
+    ],
+    "scraped_at": "2025-03-18T18:43:21.842628Z",
+    "message": "Very satisfied with my purchase.",
+    "matched_keywords": [
+      "avon representative",
+      "avon care",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000018",
+    "page_id": "Avon",
+    "created_time": "2025-04-09T18:34:21.842628Z",
+    "likes": 26,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user41"
+      },
+      {
+        "type": "SAD",
+        "user": "user155"
+      },
+      {
+        "type": "WOW",
+        "user": "user24"
+      },
+      {
+        "type": "WOW",
+        "user": "user200"
+      },
+      {
+        "type": "WOW",
+        "user": "user134"
+      }
+    ],
+    "scraped_at": "2025-04-09T18:43:21.842628Z",
+    "message": "Fast delivery and excellent packaging.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000019",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-16T18:34:21.842628Z",
+    "likes": 38,
+    "reactions": [],
+    "scraped_at": "2025-03-16T18:44:21.842628Z",
+    "message": "Nothing special, nothing bad.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon order",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000020",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-10T18:34:21.842628Z",
+    "likes": 29,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user2"
+      }
+    ],
+    "scraped_at": "2025-04-10T18:44:21.842628Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000021",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-28T18:34:21.842628Z",
+    "likes": 10,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user295"
+      },
+      {
+        "type": "LOVE",
+        "user": "user241"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user220"
+      }
+    ],
+    "scraped_at": "2025-03-28T18:44:21.842628Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000022",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-30T18:34:21.842628Z",
+    "likes": 38,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user182"
+      },
+      {
+        "type": "HAHA",
+        "user": "user298"
+      },
+      {
+        "type": "LIKE",
+        "user": "user177"
+      }
+    ],
+    "scraped_at": "2025-04-30T18:35:21.842628Z",
+    "message": "Very satisfied with my purchase.",
+    "matched_keywords": [
+      "avon care",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000023",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-05-02T18:34:21.842628Z",
+    "likes": 11,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user29"
+      },
+      {
+        "type": "HAHA",
+        "user": "user133"
+      },
+      {
+        "type": "LIKE",
+        "user": "user65"
+      },
+      {
+        "type": "SAD",
+        "user": "user344"
+      },
+      {
+        "type": "WOW",
+        "user": "user239"
+      }
+    ],
+    "scraped_at": "2025-05-02T18:38:21.842628Z",
+    "message": "Waste of money, avoid this.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000024",
+    "page_id": "Avon",
+    "created_time": "2025-04-07T18:34:21.842628Z",
+    "likes": 8,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user71"
+      }
+    ],
+    "scraped_at": "2025-04-07T18:37:21.842628Z",
+    "message": "Very satisfied with my purchase.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000025",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-22T18:34:21.842628Z",
+    "likes": 49,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user25"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user304"
+      }
+    ],
+    "scraped_at": "2025-04-22T18:42:21.842628Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000026",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-16T18:34:21.842628Z",
+    "likes": 15,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user292"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user175"
+      }
+    ],
+    "scraped_at": "2025-04-16T18:38:21.842628Z",
+    "message": "My friends keep asking where I got this from.",
+    "matched_keywords": [
+      "avon discount",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000027",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-01T18:34:21.842628Z",
+    "likes": 18,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user37"
+      },
+      {
+        "type": "LIKE",
+        "user": "user95"
+      },
+      {
+        "type": "WOW",
+        "user": "user32"
+      },
+      {
+        "type": "LOVE",
+        "user": "user158"
+      },
+      {
+        "type": "HAHA",
+        "user": "user68"
+      }
+    ],
+    "scraped_at": "2025-03-01T18:35:21.842628Z",
+    "message": "Instructions were clear and easy to follow.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon delivery",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000028",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-09T18:34:21.842628Z",
+    "likes": 19,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user317"
+      },
+      {
+        "type": "LOVE",
+        "user": "user324"
+      },
+      {
+        "type": "LIKE",
+        "user": "user279"
+      },
+      {
+        "type": "LIKE",
+        "user": "user134"
+      },
+      {
+        "type": "HAHA",
+        "user": "user70"
+      }
+    ],
+    "scraped_at": "2025-03-09T18:43:21.842628Z",
+    "message": "Difficult to get a refund.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000029",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-27T18:34:21.842628Z",
+    "likes": 40,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user299"
+      }
+    ],
+    "scraped_at": "2025-04-27T18:42:21.842628Z",
+    "message": "The packaging was standard, nothing fancy.",
+    "matched_keywords": [
+      "avon order",
+      "avon care",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000030",
+    "page_id": "Avon",
+    "created_time": "2025-03-15T18:34:21.842628Z",
+    "likes": 14,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user122"
+      },
+      {
+        "type": "LIKE",
+        "user": "user117"
+      }
+    ],
+    "scraped_at": "2025-03-15T18:40:21.842628Z",
+    "message": "This is the best product I've tried from Avon.",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000031",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-10T18:34:21.842628Z",
+    "likes": 0,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user30"
+      },
+      {
+        "type": "HAHA",
+        "user": "user136"
+      },
+      {
+        "type": "LOVE",
+        "user": "user42"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user176"
+      }
+    ],
+    "scraped_at": "2025-03-10T18:43:21.842628Z",
+    "message": "Too expensive for the quality received.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000032",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-14T18:34:21.842628Z",
+    "likes": 4,
+    "reactions": [],
+    "scraped_at": "2025-03-14T18:40:21.842628Z",
+    "message": "Neither good nor bad, just average.",
+    "matched_keywords": [
+      "avon order",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000033",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-01T18:34:21.842628Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user332"
+      }
+    ],
+    "scraped_at": "2025-03-01T18:35:21.842628Z",
+    "message": "The product stopped working after a week.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000034",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-09T18:34:21.842628Z",
+    "likes": 30,
+    "reactions": [],
+    "scraped_at": "2025-02-09T18:38:21.842628Z",
+    "message": "Average experience.",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000035",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-05T18:34:21.842628Z",
+    "likes": 6,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user52"
+      },
+      {
+        "type": "HAHA",
+        "user": "user269"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user245"
+      },
+      {
+        "type": "LIKE",
+        "user": "user35"
+      }
+    ],
+    "scraped_at": "2025-04-05T18:35:21.842628Z",
+    "message": "Got a free sample, and it was amazing!",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000036",
+    "page_id": "Avon",
+    "created_time": "2025-04-12T18:34:21.842628Z",
+    "likes": 11,
+    "reactions": [],
+    "scraped_at": "2025-04-12T18:39:21.842628Z",
+    "message": "Neither good nor bad, just average.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000037",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-16T18:34:21.842628Z",
+    "likes": 0,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user215"
+      },
+      {
+        "type": "WOW",
+        "user": "user70"
+      }
+    ],
+    "scraped_at": "2025-02-16T18:35:21.842628Z",
+    "message": "The packaging was standard, nothing fancy.",
+    "matched_keywords": [
+      "avon order",
+      "avon discount",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000038",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-13T18:34:21.842628Z",
+    "likes": 4,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user146"
+      },
+      {
+        "type": "LIKE",
+        "user": "user200"
+      },
+      {
+        "type": "LOVE",
+        "user": "user343"
+      },
+      {
+        "type": "LIKE",
+        "user": "user95"
+      }
+    ],
+    "scraped_at": "2025-02-13T18:37:21.842628Z",
+    "message": "The bottle was half empty on arrival.",
+    "matched_keywords": [
+      "avon discount",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000039",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-12T18:34:21.842628Z",
+    "likes": 31,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user42"
+      },
+      {
+        "type": "WOW",
+        "user": "user151"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user80"
+      },
+      {
+        "type": "LOVE",
+        "user": "user52"
+      }
+    ],
+    "scraped_at": "2025-02-12T18:44:21.842628Z",
+    "message": "Customer service was unhelpful.",
+    "matched_keywords": [
+      "avon care",
+      "avon delivery",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000040",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-12T18:34:21.842628Z",
+    "likes": 33,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user109"
+      },
+      {
+        "type": "HAHA",
+        "user": "user150"
+      },
+      {
+        "type": "LOVE",
+        "user": "user203"
+      },
+      {
+        "type": "LOVE",
+        "user": "user167"
+      }
+    ],
+    "scraped_at": "2025-04-12T18:41:21.842628Z",
+    "message": "The packaging was standard, nothing fancy.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000041",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-12T18:34:21.842628Z",
+    "likes": 22,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user304"
+      }
+    ],
+    "scraped_at": "2025-03-12T18:42:21.842628Z",
+    "message": "Five stars, will buy again.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000042",
+    "page_id": "Avon",
+    "created_time": "2025-04-10T18:34:21.842628Z",
+    "likes": 14,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user267"
+      }
+    ],
+    "scraped_at": "2025-04-10T18:37:21.842628Z",
+    "message": "I love this Avon product!",
+    "matched_keywords": [
+      "avon naturals",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000043",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-05T18:34:21.842628Z",
+    "likes": 6,
+    "reactions": [],
+    "scraped_at": "2025-02-05T18:41:21.842628Z",
+    "message": "Item arrived damaged.",
+    "matched_keywords": [
+      "avon discount",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000044",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-01T18:34:21.842628Z",
+    "likes": 45,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user34"
+      },
+      {
+        "type": "LIKE",
+        "user": "user316"
+      }
+    ],
+    "scraped_at": "2025-04-01T18:37:21.842628Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon care",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000045",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-25T18:34:21.842628Z",
+    "likes": 15,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user98"
+      }
+    ],
+    "scraped_at": "2025-04-25T18:44:21.842628Z",
+    "message": "Got a free sample, and it was amazing!",
+    "matched_keywords": [
+      "avon representative",
+      "avon brochure",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000046",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-15T18:34:21.842628Z",
+    "likes": 45,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user111"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user244"
+      }
+    ],
+    "scraped_at": "2025-04-15T18:42:21.842628Z",
+    "message": "Very disappointed with the product.",
+    "matched_keywords": [
+      "avon order",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000047",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-07T18:34:21.842628Z",
+    "likes": 43,
+    "reactions": [],
+    "scraped_at": "2025-02-07T18:41:21.842628Z",
+    "message": "Fast delivery and excellent packaging.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000048",
+    "page_id": "Avon",
+    "created_time": "2025-02-12T18:34:21.842628Z",
+    "likes": 15,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user236"
+      },
+      {
+        "type": "LIKE",
+        "user": "user338"
+      },
+      {
+        "type": "SAD",
+        "user": "user291"
+      }
+    ],
+    "scraped_at": "2025-02-12T18:35:21.842628Z",
+    "message": "Met my basic expectations.",
+    "matched_keywords": [
+      "avon brochure",
+      "anew clinical",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000049",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-29T18:34:21.842628Z",
+    "likes": 50,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user255"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user225"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user274"
+      },
+      {
+        "type": "WOW",
+        "user": "user249"
+      }
+    ],
+    "scraped_at": "2025-04-29T18:40:21.842628Z",
+    "message": "Item arrived damaged.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000050",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-04T18:34:21.842628Z",
+    "likes": 2,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user318"
+      },
+      {
+        "type": "LIKE",
+        "user": "user336"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user54"
+      },
+      {
+        "type": "LIKE",
+        "user": "user31"
+      }
+    ],
+    "scraped_at": "2025-04-04T18:37:21.842628Z",
+    "message": "Too expensive for the quality received.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon representative",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000051",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-31T18:34:21.842628Z",
+    "likes": 47,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user77"
+      }
+    ],
+    "scraped_at": "2025-03-31T18:44:21.842628Z",
+    "message": "Great value for the price.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000052",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-25T18:34:21.842628Z",
+    "likes": 49,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user145"
+      }
+    ],
+    "scraped_at": "2025-02-25T18:35:21.842628Z",
+    "message": "Neither good nor bad, just average.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000053",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-25T18:34:21.842628Z",
+    "likes": 33,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user52"
+      },
+      {
+        "type": "HAHA",
+        "user": "user96"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user55"
+      }
+    ],
+    "scraped_at": "2025-02-25T18:44:21.842628Z",
+    "message": "Fast delivery and excellent packaging.",
+    "matched_keywords": [
+      "avon order",
+      "avon brochure",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000054",
+    "page_id": "Avon",
+    "created_time": "2025-03-01T18:34:21.842628Z",
+    "likes": 36,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user22"
+      },
+      {
+        "type": "LIKE",
+        "user": "user78"
+      },
+      {
+        "type": "WOW",
+        "user": "user83"
+      },
+      {
+        "type": "WOW",
+        "user": "user229"
+      },
+      {
+        "type": "SAD",
+        "user": "user232"
+      }
+    ],
+    "scraped_at": "2025-03-01T18:38:21.842628Z",
+    "message": "Arrived on time, works as intended.",
+    "matched_keywords": [
+      "avon care",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000055",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-22T18:34:21.842628Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user291"
+      }
+    ],
+    "scraped_at": "2025-04-22T18:44:21.842628Z",
+    "message": "Five stars, will buy again.",
+    "matched_keywords": [
+      "avon representative",
+      "avon campaign",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000056",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-28T18:34:21.842628Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user220"
+      },
+      {
+        "type": "WOW",
+        "user": "user302"
+      },
+      {
+        "type": "HAHA",
+        "user": "user168"
+      },
+      {
+        "type": "HAHA",
+        "user": "user82"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user285"
+      }
+    ],
+    "scraped_at": "2025-04-28T18:37:21.842628Z",
+    "message": "Exceeded my expectations!",
+    "matched_keywords": [
+      "avon delivery",
+      "avon naturals",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000057",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-13T18:34:21.842628Z",
+    "likes": 22,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user313"
+      },
+      {
+        "type": "HAHA",
+        "user": "user113"
+      },
+      {
+        "type": "HAHA",
+        "user": "user149"
+      },
+      {
+        "type": "LOVE",
+        "user": "user250"
+      },
+      {
+        "type": "WOW",
+        "user": "user244"
+      }
+    ],
+    "scraped_at": "2025-03-13T18:37:21.842628Z",
+    "message": "Blends in with my other products just fine.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000058",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-06T18:34:21.842628Z",
+    "likes": 26,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user338"
+      },
+      {
+        "type": "SAD",
+        "user": "user341"
+      }
+    ],
+    "scraped_at": "2025-04-06T18:44:21.842628Z",
+    "message": "Exceeded my expectations!",
+    "matched_keywords": [
+      "avon delivery",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000059",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-24T18:34:21.842628Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user192"
+      },
+      {
+        "type": "LOVE",
+        "user": "user209"
+      },
+      {
+        "type": "SAD",
+        "user": "user34"
+      }
+    ],
+    "scraped_at": "2025-04-24T18:38:21.842628Z",
+    "message": "Customer support resolved my issue quickly.",
+    "matched_keywords": [
+      "avon representative",
+      "avon brochure",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000060",
+    "page_id": "Avon",
+    "created_time": "2025-04-08T18:34:21.842628Z",
+    "likes": 13,
+    "reactions": [],
+    "scraped_at": "2025-04-08T18:36:21.842628Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "avon care",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000061",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-04T18:34:21.842628Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user37"
+      },
+      {
+        "type": "LOVE",
+        "user": "user46"
+      },
+      {
+        "type": "SAD",
+        "user": "user240"
+      },
+      {
+        "type": "LIKE",
+        "user": "user231"
+      },
+      {
+        "type": "LIKE",
+        "user": "user288"
+      }
+    ],
+    "scraped_at": "2025-04-04T18:39:21.842628Z",
+    "message": "Not as described, very misleading.",
+    "matched_keywords": [
+      "avon care",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000062",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-20T18:34:21.842628Z",
+    "likes": 23,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user324"
+      },
+      {
+        "type": "HAHA",
+        "user": "user9"
+      },
+      {
+        "type": "WOW",
+        "user": "user337"
+      },
+      {
+        "type": "LIKE",
+        "user": "user69"
+      }
+    ],
+    "scraped_at": "2025-02-20T18:38:21.842628Z",
+    "message": "Packaging was terrible, item leaked.",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000063",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-23T18:34:21.842628Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user189"
+      },
+      {
+        "type": "HAHA",
+        "user": "user207"
+      }
+    ],
+    "scraped_at": "2025-04-23T18:37:21.842628Z",
+    "message": "I love this Avon product!",
+    "matched_keywords": [
+      "avon delivery",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000064",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-05T18:34:21.842628Z",
+    "likes": 43,
+    "reactions": [],
+    "scraped_at": "2025-03-05T18:39:21.842628Z",
+    "message": "Not as described, very misleading.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000065",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-01T18:34:21.842628Z",
+    "likes": 11,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user169"
+      },
+      {
+        "type": "LIKE",
+        "user": "user327"
+      },
+      {
+        "type": "SAD",
+        "user": "user164"
+      }
+    ],
+    "scraped_at": "2025-02-01T18:42:21.842628Z",
+    "message": "Waste of money, avoid this.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000066",
+    "page_id": "Avon",
+    "created_time": "2025-03-03T18:34:21.842628Z",
+    "likes": 10,
+    "reactions": [],
+    "scraped_at": "2025-03-03T18:35:21.842628Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon care",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000067",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-12T18:34:21.842628Z",
+    "likes": 13,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user297"
+      }
+    ],
+    "scraped_at": "2025-04-12T18:42:21.842628Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000068",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-27T18:34:21.843632Z",
+    "likes": 42,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user79"
+      }
+    ],
+    "scraped_at": "2025-02-27T18:41:21.843632Z",
+    "message": "My skin feels so smooth after using this lotion.",
+    "matched_keywords": [
+      "avon discount",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000069",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-29T18:34:21.843632Z",
+    "likes": 0,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user89"
+      },
+      {
+        "type": "SAD",
+        "user": "user135"
+      }
+    ],
+    "scraped_at": "2025-03-29T18:38:21.843632Z",
+    "message": "Customer support never replied to my emails.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon order",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000070",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-30T18:34:21.843632Z",
+    "likes": 9,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user45"
+      },
+      {
+        "type": "WOW",
+        "user": "user348"
+      }
+    ],
+    "scraped_at": "2025-04-30T18:40:21.843632Z",
+    "message": "The bottle was half empty on arrival.",
+    "matched_keywords": [
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000071",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-08T18:34:21.843632Z",
+    "likes": 46,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user114"
+      },
+      {
+        "type": "WOW",
+        "user": "user347"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user244"
+      },
+      {
+        "type": "SAD",
+        "user": "user40"
+      }
+    ],
+    "scraped_at": "2025-02-08T18:36:21.843632Z",
+    "message": "The applicator broke after first use.",
+    "matched_keywords": [
+      "avon discount",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000072",
+    "page_id": "Avon",
+    "created_time": "2025-05-02T18:34:21.843632Z",
+    "likes": 7,
+    "reactions": [],
+    "scraped_at": "2025-05-02T18:38:21.843632Z",
+    "message": "My friends keep asking where I got this from.",
+    "matched_keywords": [
+      "avon order",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000073",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-08T18:34:21.843632Z",
+    "likes": 11,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user255"
+      },
+      {
+        "type": "LIKE",
+        "user": "user164"
+      },
+      {
+        "type": "HAHA",
+        "user": "user282"
+      },
+      {
+        "type": "SAD",
+        "user": "user217"
+      },
+      {
+        "type": "LOVE",
+        "user": "user232"
+      }
+    ],
+    "scraped_at": "2025-04-08T18:44:21.843632Z",
+    "message": "Great customer service!",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000074",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-12T18:34:21.843632Z",
+    "likes": 18,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user175"
+      },
+      {
+        "type": "HAHA",
+        "user": "user278"
+      },
+      {
+        "type": "WOW",
+        "user": "user172"
+      },
+      {
+        "type": "SAD",
+        "user": "user48"
+      },
+      {
+        "type": "SAD",
+        "user": "user40"
+      }
+    ],
+    "scraped_at": "2025-04-12T18:43:21.843632Z",
+    "message": "Left my skin feeling dry and irritated.",
+    "matched_keywords": [
+      "avon true",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000075",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-07T18:34:21.843632Z",
+    "likes": 36,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user56"
+      },
+      {
+        "type": "LIKE",
+        "user": "user288"
+      },
+      {
+        "type": "SAD",
+        "user": "user2"
+      }
+    ],
+    "scraped_at": "2025-02-07T18:41:21.843632Z",
+    "message": "No issues, but nothing stood out.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000076",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-24T18:34:21.843632Z",
+    "likes": 46,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user269"
+      },
+      {
+        "type": "HAHA",
+        "user": "user272"
+      },
+      {
+        "type": "HAHA",
+        "user": "user317"
+      },
+      {
+        "type": "LIKE",
+        "user": "user264"
+      },
+      {
+        "type": "SAD",
+        "user": "user118"
+      }
+    ],
+    "scraped_at": "2025-04-24T18:36:21.843632Z",
+    "message": "Customer support never replied to my emails.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000077",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-06T18:34:21.843632Z",
+    "likes": 42,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user344"
+      },
+      {
+        "type": "HAHA",
+        "user": "user290"
+      }
+    ],
+    "scraped_at": "2025-04-06T18:38:21.843632Z",
+    "message": "Very disappointed with the product.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000078",
+    "page_id": "Avon",
+    "created_time": "2025-04-20T18:34:21.843632Z",
+    "likes": 50,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user48"
+      },
+      {
+        "type": "SAD",
+        "user": "user290"
+      },
+      {
+        "type": "WOW",
+        "user": "user13"
+      }
+    ],
+    "scraped_at": "2025-04-20T18:43:21.843632Z",
+    "message": "Packaging was terrible, item leaked.",
+    "matched_keywords": [
+      "avon care",
+      "avon representative",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000079",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-29T18:34:21.843632Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user2"
+      },
+      {
+        "type": "HAHA",
+        "user": "user132"
+      },
+      {
+        "type": "HAHA",
+        "user": "user191"
+      }
+    ],
+    "scraped_at": "2025-04-29T18:38:21.843632Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "avon discount",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000080",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-08T18:34:21.843632Z",
+    "likes": 13,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user64"
+      }
+    ],
+    "scraped_at": "2025-04-08T18:39:21.843632Z",
+    "message": "This is the best product I've tried from Avon.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon brochure",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000081",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-24T18:34:21.843632Z",
+    "likes": 27,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user136"
+      },
+      {
+        "type": "HAHA",
+        "user": "user224"
+      },
+      {
+        "type": "HAHA",
+        "user": "user283"
+      },
+      {
+        "type": "LOVE",
+        "user": "user342"
+      },
+      {
+        "type": "LOVE",
+        "user": "user235"
+      }
+    ],
+    "scraped_at": "2025-04-24T18:36:21.843632Z",
+    "message": "Highly recommend to everyone.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon order",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000082",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-03T18:34:21.843632Z",
+    "likes": 11,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user41"
+      }
+    ],
+    "scraped_at": "2025-02-03T18:40:21.843632Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000083",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-02T18:34:21.843632Z",
+    "likes": 48,
+    "reactions": [],
+    "scraped_at": "2025-02-02T18:42:21.843632Z",
+    "message": "Five stars, will buy again.",
+    "matched_keywords": [
+      "avon discount",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000084",
+    "page_id": "Avon",
+    "created_time": "2025-02-08T18:34:21.843632Z",
+    "likes": 39,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user348"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user14"
+      },
+      {
+        "type": "SAD",
+        "user": "user108"
+      },
+      {
+        "type": "LIKE",
+        "user": "user5"
+      }
+    ],
+    "scraped_at": "2025-02-08T18:42:21.843632Z",
+    "message": "Very disappointed with the product.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000085",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-10T18:34:21.843632Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user324"
+      },
+      {
+        "type": "WOW",
+        "user": "user112"
+      }
+    ],
+    "scraped_at": "2025-02-10T18:39:21.843632Z",
+    "message": "Difficult to get a refund.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000086",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-14T18:34:21.843632Z",
+    "likes": 22,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user286"
+      },
+      {
+        "type": "SAD",
+        "user": "user55"
+      },
+      {
+        "type": "SAD",
+        "user": "user47"
+      }
+    ],
+    "scraped_at": "2025-04-14T18:41:21.843632Z",
+    "message": "Customer service was unhelpful.",
+    "matched_keywords": [
+      "avon care",
+      "avon brochure",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000087",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-19T18:34:21.843632Z",
+    "likes": 9,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user18"
+      },
+      {
+        "type": "LIKE",
+        "user": "user325"
+      }
+    ],
+    "scraped_at": "2025-04-19T18:41:21.843632Z",
+    "message": "The applicator broke after first use.",
+    "matched_keywords": [
+      "avon order",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000088",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-30T18:34:21.843632Z",
+    "likes": 16,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user246"
+      },
+      {
+        "type": "LIKE",
+        "user": "user15"
+      },
+      {
+        "type": "WOW",
+        "user": "user276"
+      },
+      {
+        "type": "WOW",
+        "user": "user219"
+      }
+    ],
+    "scraped_at": "2025-04-30T18:41:21.843632Z",
+    "message": "The size is as described.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000089",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-06T18:34:21.843632Z",
+    "likes": 40,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user63"
+      },
+      {
+        "type": "HAHA",
+        "user": "user119"
+      },
+      {
+        "type": "SAD",
+        "user": "user178"
+      },
+      {
+        "type": "HAHA",
+        "user": "user67"
+      }
+    ],
+    "scraped_at": "2025-03-06T18:43:21.843632Z",
+    "message": "Shipping time was average.",
+    "matched_keywords": [
+      "avon true",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000090",
+    "page_id": "Avon",
+    "created_time": "2025-04-02T18:34:21.843632Z",
+    "likes": 13,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user133"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user170"
+      },
+      {
+        "type": "LOVE",
+        "user": "user116"
+      },
+      {
+        "type": "LOVE",
+        "user": "user305"
+      }
+    ],
+    "scraped_at": "2025-04-02T18:42:21.843632Z",
+    "message": "Instructions were clear and easy to follow.",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000091",
+    "page_id": "AvonInsider",
+    "created_time": "2025-05-02T18:34:21.843632Z",
+    "likes": 30,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user84"
+      },
+      {
+        "type": "LOVE",
+        "user": "user247"
+      }
+    ],
+    "scraped_at": "2025-05-02T18:39:21.843632Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000092",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-12T18:34:21.843632Z",
+    "likes": 14,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user16"
+      },
+      {
+        "type": "SAD",
+        "user": "user131"
+      },
+      {
+        "type": "WOW",
+        "user": "user108"
+      },
+      {
+        "type": "SAD",
+        "user": "user347"
+      },
+      {
+        "type": "SAD",
+        "user": "user291"
+      }
+    ],
+    "scraped_at": "2025-02-12T18:38:21.843632Z",
+    "message": "The packaging was standard, nothing fancy.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000093",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-28T18:34:21.843632Z",
+    "likes": 22,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user213"
+      }
+    ],
+    "scraped_at": "2025-03-28T18:35:21.843632Z",
+    "message": "Love the packaging design, very elegant.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000094",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-11T18:34:21.843632Z",
+    "likes": 48,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user186"
+      }
+    ],
+    "scraped_at": "2025-03-11T18:42:21.843632Z",
+    "message": "I had an allergic reaction to the cream.",
+    "matched_keywords": [
+      "avon true",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000095",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-01T18:34:21.843632Z",
+    "likes": 17,
+    "reactions": [],
+    "scraped_at": "2025-03-01T18:40:21.843632Z",
+    "message": "Arrived on time, works as intended.",
+    "matched_keywords": [
+      "avon true",
+      "avon delivery",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000096",
+    "page_id": "Avon",
+    "created_time": "2025-03-26T18:34:21.843632Z",
+    "likes": 37,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user319"
+      },
+      {
+        "type": "LIKE",
+        "user": "user259"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user64"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user186"
+      },
+      {
+        "type": "LIKE",
+        "user": "user292"
+      }
+    ],
+    "scraped_at": "2025-03-26T18:40:21.843632Z",
+    "message": "Color is close to what I expected.",
+    "matched_keywords": [
+      "avon discount",
+      "avon representative",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000097",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-17T18:34:21.843632Z",
+    "likes": 15,
+    "reactions": [],
+    "scraped_at": "2025-02-17T18:43:21.843632Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000098",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-10T18:34:21.843632Z",
+    "likes": 49,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user249"
+      }
+    ],
+    "scraped_at": "2025-03-10T18:36:21.843632Z",
+    "message": "The size is as described.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon discount",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000099",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-25T18:34:21.843632Z",
+    "likes": 21,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user109"
+      },
+      {
+        "type": "LIKE",
+        "user": "user302"
+      },
+      {
+        "type": "WOW",
+        "user": "user248"
+      },
+      {
+        "type": "HAHA",
+        "user": "user192"
+      },
+      {
+        "type": "HAHA",
+        "user": "user186"
+      }
+    ],
+    "scraped_at": "2025-04-25T18:43:21.843632Z",
+    "message": "The fragrance is so refreshing and lasts all day.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon representative",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000100",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-22T18:34:21.843632Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user159"
+      },
+      {
+        "type": "LOVE",
+        "user": "user250"
+      },
+      {
+        "type": "LIKE",
+        "user": "user114"
+      },
+      {
+        "type": "LIKE",
+        "user": "user329"
+      }
+    ],
+    "scraped_at": "2025-02-22T18:36:21.843632Z",
+    "message": "This is the best product I've tried from Avon.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon naturals",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000101",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-05-01T18:34:21.843632Z",
+    "likes": 50,
+    "reactions": [],
+    "scraped_at": "2025-05-01T18:39:21.843632Z",
+    "message": "Too expensive for the quality received.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000102",
+    "page_id": "Avon",
+    "created_time": "2025-03-17T18:34:21.843632Z",
+    "likes": 42,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user1"
+      }
+    ],
+    "scraped_at": "2025-03-17T18:37:21.843632Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon care",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000103",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-14T18:34:21.843632Z",
+    "likes": 13,
+    "reactions": [],
+    "scraped_at": "2025-02-14T18:36:21.843632Z",
+    "message": "Difficult to get a refund.",
+    "matched_keywords": [
+      "avon order",
+      "avon campaign",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000104",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-19T18:34:21.843632Z",
+    "likes": 36,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user239"
+      }
+    ],
+    "scraped_at": "2025-04-19T18:36:21.843632Z",
+    "message": "The packaging was standard, nothing fancy.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000105",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-12T18:34:21.843632Z",
+    "likes": 13,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user141"
+      },
+      {
+        "type": "HAHA",
+        "user": "user237"
+      }
+    ],
+    "scraped_at": "2025-02-12T18:36:21.843632Z",
+    "message": "Very disappointed with the product.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000106",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-11T18:34:21.843632Z",
+    "likes": 14,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user163"
+      },
+      {
+        "type": "HAHA",
+        "user": "user258"
+      }
+    ],
+    "scraped_at": "2025-02-11T18:42:21.843632Z",
+    "message": "Absolutely wonderful experience!",
+    "matched_keywords": [
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000107",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-11T18:34:21.843632Z",
+    "likes": 49,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user264"
+      },
+      {
+        "type": "LIKE",
+        "user": "user52"
+      },
+      {
+        "type": "HAHA",
+        "user": "user134"
+      }
+    ],
+    "scraped_at": "2025-03-11T18:40:21.843632Z",
+    "message": "Packaging was terrible, item leaked.",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000108",
+    "page_id": "Avon",
+    "created_time": "2025-02-16T18:34:21.843632Z",
+    "likes": 5,
+    "reactions": [],
+    "scraped_at": "2025-02-16T18:36:21.843632Z",
+    "message": "Product matches the description.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000109",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-09T18:34:21.843632Z",
+    "likes": 26,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user244"
+      },
+      {
+        "type": "WOW",
+        "user": "user24"
+      },
+      {
+        "type": "SAD",
+        "user": "user185"
+      }
+    ],
+    "scraped_at": "2025-03-09T18:44:21.843632Z",
+    "message": "The size is as described.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000110",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-10T18:34:21.843632Z",
+    "likes": 4,
+    "reactions": [],
+    "scraped_at": "2025-03-10T18:35:21.843632Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon representative",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000111",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-06T18:34:21.843632Z",
+    "likes": 5,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user242"
+      },
+      {
+        "type": "SAD",
+        "user": "user179"
+      },
+      {
+        "type": "SAD",
+        "user": "user7"
+      }
+    ],
+    "scraped_at": "2025-04-06T18:43:21.843632Z",
+    "message": "Met my basic expectations.",
+    "matched_keywords": [
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000112",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-21T18:34:21.843632Z",
+    "likes": 11,
+    "reactions": [],
+    "scraped_at": "2025-02-21T18:35:21.843632Z",
+    "message": "Got a free sample, and it was amazing!",
+    "matched_keywords": [
+      "avon campaign",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000113",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-20T18:34:21.843632Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user40"
+      },
+      {
+        "type": "LOVE",
+        "user": "user203"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user91"
+      }
+    ],
+    "scraped_at": "2025-03-20T18:35:21.843632Z",
+    "message": "Absolutely wonderful experience!",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000114",
+    "page_id": "Avon",
+    "created_time": "2025-02-28T18:34:21.843632Z",
+    "likes": 2,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user96"
+      }
+    ],
+    "scraped_at": "2025-02-28T18:38:21.843632Z",
+    "message": "Very satisfied with my purchase.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000115",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-16T18:34:21.843632Z",
+    "likes": 47,
+    "reactions": [],
+    "scraped_at": "2025-04-16T18:39:21.843632Z",
+    "message": "Blends in with my other products just fine.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000116",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-17T18:34:21.843632Z",
+    "likes": 35,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user298"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user52"
+      },
+      {
+        "type": "HAHA",
+        "user": "user116"
+      },
+      {
+        "type": "WOW",
+        "user": "user171"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user337"
+      }
+    ],
+    "scraped_at": "2025-03-17T18:37:21.843632Z",
+    "message": "The scent was overpowering and unpleasant.",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000117",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-21T18:34:21.843632Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user218"
+      },
+      {
+        "type": "WOW",
+        "user": "user79"
+      },
+      {
+        "type": "SAD",
+        "user": "user26"
+      }
+    ],
+    "scraped_at": "2025-02-21T18:43:21.843632Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000118",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-17T18:34:21.843632Z",
+    "likes": 33,
+    "reactions": [],
+    "scraped_at": "2025-04-17T18:40:21.843632Z",
+    "message": "Definitely buying more for gifts.",
+    "matched_keywords": [
+      "avon order",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000119",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-22T18:34:21.843632Z",
+    "likes": 22,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user250"
+      },
+      {
+        "type": "SAD",
+        "user": "user156"
+      }
+    ],
+    "scraped_at": "2025-03-22T18:40:21.843632Z",
+    "message": "The scent was overpowering and unpleasant.",
+    "matched_keywords": [
+      "avon care",
+      "avon order",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000120",
+    "page_id": "Avon",
+    "created_time": "2025-02-10T18:34:21.843632Z",
+    "likes": 34,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user99"
+      },
+      {
+        "type": "WOW",
+        "user": "user58"
+      },
+      {
+        "type": "SAD",
+        "user": "user326"
+      }
+    ],
+    "scraped_at": "2025-02-10T18:35:21.843632Z",
+    "message": "The packaging was standard, nothing fancy.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000121",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-06T18:34:21.843632Z",
+    "likes": 18,
+    "reactions": [],
+    "scraped_at": "2025-02-06T18:36:21.843632Z",
+    "message": "Amazing quality and fast shipping.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000122",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-01T18:34:21.843632Z",
+    "likes": 2,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user318"
+      }
+    ],
+    "scraped_at": "2025-04-01T18:38:21.843632Z",
+    "message": "Got a free sample, and it was amazing!",
+    "matched_keywords": [
+      "avon brochure",
+      "avon true",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000123",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-15T18:34:21.843632Z",
+    "likes": 2,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user90"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user207"
+      },
+      {
+        "type": "LIKE",
+        "user": "user93"
+      },
+      {
+        "type": "WOW",
+        "user": "user28"
+      }
+    ],
+    "scraped_at": "2025-04-15T18:40:21.843632Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon care",
+      "avon order",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000124",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-25T18:34:21.843632Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user93"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user280"
+      },
+      {
+        "type": "SAD",
+        "user": "user13"
+      },
+      {
+        "type": "HAHA",
+        "user": "user292"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user62"
+      }
+    ],
+    "scraped_at": "2025-02-25T18:40:21.843632Z",
+    "message": "Instructions were missing from the box.",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000125",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-14T18:34:21.843632Z",
+    "likes": 43,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user92"
+      },
+      {
+        "type": "WOW",
+        "user": "user347"
+      }
+    ],
+    "scraped_at": "2025-04-14T18:36:21.843632Z",
+    "message": "I had an allergic reaction to the cream.",
+    "matched_keywords": [
+      "avon order",
+      "avon discount",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000126",
+    "page_id": "Avon",
+    "created_time": "2025-03-27T18:34:21.843632Z",
+    "likes": 11,
+    "reactions": [],
+    "scraped_at": "2025-03-27T18:38:21.843632Z",
+    "message": "Great value for the price.",
+    "matched_keywords": [
+      "avon true",
+      "avon representative",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000127",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-24T18:34:21.843632Z",
+    "likes": 38,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user126"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user61"
+      },
+      {
+        "type": "SAD",
+        "user": "user230"
+      }
+    ],
+    "scraped_at": "2025-02-24T18:38:21.843632Z",
+    "message": "The size is as described.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000128",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-13T18:34:21.843632Z",
+    "likes": 48,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user329"
+      }
+    ],
+    "scraped_at": "2025-02-13T18:37:21.843632Z",
+    "message": "Arrived on time, works as intended.",
+    "matched_keywords": [
+      "avon true",
+      "avon order",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000129",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-31T18:34:21.843632Z",
+    "likes": 11,
+    "reactions": [],
+    "scraped_at": "2025-03-31T18:36:21.843632Z",
+    "message": "Love the packaging design, very elegant.",
+    "matched_keywords": [
+      "avon naturals",
+      "anew clinical",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000130",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-28T18:34:21.843632Z",
+    "likes": 43,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user128"
+      },
+      {
+        "type": "LOVE",
+        "user": "user232"
+      }
+    ],
+    "scraped_at": "2025-03-28T18:39:21.843632Z",
+    "message": "Love the packaging design, very elegant.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon representative",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000131",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-12T18:34:21.843632Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user211"
+      }
+    ],
+    "scraped_at": "2025-03-12T18:37:21.843632Z",
+    "message": "The size is as described.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000132",
+    "page_id": "Avon",
+    "created_time": "2025-04-09T18:34:21.843632Z",
+    "likes": 10,
+    "reactions": [],
+    "scraped_at": "2025-04-09T18:40:21.843632Z",
+    "message": "The fragrance is so refreshing and lasts all day.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon discount",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000133",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-15T18:34:21.843632Z",
+    "likes": 41,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user245"
+      }
+    ],
+    "scraped_at": "2025-04-15T18:37:21.843632Z",
+    "message": "The scent was overpowering and unpleasant.",
+    "matched_keywords": [
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000134",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-23T18:34:21.843632Z",
+    "likes": 6,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user240"
+      },
+      {
+        "type": "HAHA",
+        "user": "user168"
+      },
+      {
+        "type": "HAHA",
+        "user": "user303"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user146"
+      },
+      {
+        "type": "SAD",
+        "user": "user304"
+      }
+    ],
+    "scraped_at": "2025-02-23T18:42:21.843632Z",
+    "message": "Too expensive for the quality received.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000135",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-18T18:34:21.843632Z",
+    "likes": 0,
+    "reactions": [],
+    "scraped_at": "2025-03-18T18:44:21.843632Z",
+    "message": "The packaging was standard, nothing fancy.",
+    "matched_keywords": [
+      "avon order",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000136",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-18T18:34:21.843632Z",
+    "likes": 12,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user312"
+      },
+      {
+        "type": "LOVE",
+        "user": "user4"
+      },
+      {
+        "type": "LIKE",
+        "user": "user65"
+      },
+      {
+        "type": "HAHA",
+        "user": "user291"
+      }
+    ],
+    "scraped_at": "2025-04-18T18:44:21.843632Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon order",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000137",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-14T18:34:21.843632Z",
+    "likes": 3,
+    "reactions": [],
+    "scraped_at": "2025-04-14T18:44:21.843632Z",
+    "message": "Difficult to get a refund.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000138",
+    "page_id": "Avon",
+    "created_time": "2025-04-25T18:34:21.843632Z",
+    "likes": 15,
+    "reactions": [],
+    "scraped_at": "2025-04-25T18:38:21.843632Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon order",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000139",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-16T18:34:21.843632Z",
+    "likes": 21,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user20"
+      }
+    ],
+    "scraped_at": "2025-04-16T18:35:21.843632Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon discount",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000140",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-02T18:34:21.843632Z",
+    "likes": 45,
+    "reactions": [],
+    "scraped_at": "2025-04-02T18:42:21.843632Z",
+    "message": "Great value for the price.",
+    "matched_keywords": [
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000141",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-17T18:34:21.843632Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user299"
+      },
+      {
+        "type": "LOVE",
+        "user": "user153"
+      }
+    ],
+    "scraped_at": "2025-02-17T18:44:21.843632Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000142",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-29T18:34:21.843632Z",
+    "likes": 24,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user20"
+      },
+      {
+        "type": "LOVE",
+        "user": "user275"
+      },
+      {
+        "type": "LIKE",
+        "user": "user180"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user60"
+      }
+    ],
+    "scraped_at": "2025-04-29T18:39:21.843632Z",
+    "message": "I had an allergic reaction to the cream.",
+    "matched_keywords": [
+      "avon true",
+      "avon care",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000143",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-11T18:34:21.843632Z",
+    "likes": 27,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user159"
+      },
+      {
+        "type": "HAHA",
+        "user": "user162"
+      },
+      {
+        "type": "HAHA",
+        "user": "user283"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user109"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user77"
+      }
+    ],
+    "scraped_at": "2025-03-11T18:40:21.843632Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon naturals",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000144",
+    "page_id": "Avon",
+    "created_time": "2025-04-21T18:34:21.843632Z",
+    "likes": 6,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user115"
+      }
+    ],
+    "scraped_at": "2025-04-21T18:36:21.843632Z",
+    "message": "Very satisfied with my purchase.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000145",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-21T18:34:21.843632Z",
+    "likes": 4,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user207"
+      }
+    ],
+    "scraped_at": "2025-03-21T18:37:21.843632Z",
+    "message": "Great value for the price.",
+    "matched_keywords": [
+      "avon representative",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000146",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-12T18:34:21.843632Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user118"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user343"
+      },
+      {
+        "type": "LIKE",
+        "user": "user258"
+      },
+      {
+        "type": "WOW",
+        "user": "user217"
+      },
+      {
+        "type": "LOVE",
+        "user": "user176"
+      }
+    ],
+    "scraped_at": "2025-04-12T18:43:21.843632Z",
+    "message": "Average experience.",
+    "matched_keywords": [
+      "avon order",
+      "avon discount",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000147",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-14T18:34:21.843632Z",
+    "likes": 9,
+    "reactions": [],
+    "scraped_at": "2025-04-14T18:39:21.843632Z",
+    "message": "No issues, but nothing stood out.",
+    "matched_keywords": [
+      "avon true",
+      "avon brochure",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000148",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-07T18:34:21.843632Z",
+    "likes": 33,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user73"
+      },
+      {
+        "type": "LOVE",
+        "user": "user295"
+      }
+    ],
+    "scraped_at": "2025-02-07T18:39:21.843632Z",
+    "message": "Great customer service!",
+    "matched_keywords": [
+      "avon naturals",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000149",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-24T18:34:21.843632Z",
+    "likes": 12,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user269"
+      },
+      {
+        "type": "HAHA",
+        "user": "user326"
+      }
+    ],
+    "scraped_at": "2025-03-24T18:43:21.843632Z",
+    "message": "Average experience.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000150",
+    "page_id": "Avon",
+    "created_time": "2025-03-03T18:34:21.843632Z",
+    "likes": 23,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user225"
+      },
+      {
+        "type": "HAHA",
+        "user": "user227"
+      },
+      {
+        "type": "LOVE",
+        "user": "user21"
+      },
+      {
+        "type": "LOVE",
+        "user": "user135"
+      }
+    ],
+    "scraped_at": "2025-03-03T18:37:21.843632Z",
+    "message": "Great customer service!",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000151",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-27T18:34:21.843632Z",
+    "likes": 45,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user28"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user149"
+      },
+      {
+        "type": "LIKE",
+        "user": "user148"
+      },
+      {
+        "type": "WOW",
+        "user": "user7"
+      },
+      {
+        "type": "LIKE",
+        "user": "user47"
+      }
+    ],
+    "scraped_at": "2025-02-27T18:41:21.843632Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon discount",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000152",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-27T18:34:21.843632Z",
+    "likes": 24,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user225"
+      },
+      {
+        "type": "WOW",
+        "user": "user203"
+      }
+    ],
+    "scraped_at": "2025-03-27T18:44:21.843632Z",
+    "message": "Difficult to get a refund.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon order",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000153",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-25T18:34:21.843632Z",
+    "likes": 1,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user24"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user175"
+      }
+    ],
+    "scraped_at": "2025-03-25T18:40:21.843632Z",
+    "message": "Color is close to what I expected.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000154",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-27T18:34:21.843632Z",
+    "likes": 1,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user50"
+      },
+      {
+        "type": "LOVE",
+        "user": "user111"
+      },
+      {
+        "type": "WOW",
+        "user": "user253"
+      }
+    ],
+    "scraped_at": "2025-03-27T18:39:21.843632Z",
+    "message": "Definitely buying more for gifts.",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000155",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-11T18:34:21.843632Z",
+    "likes": 25,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user228"
+      },
+      {
+        "type": "LIKE",
+        "user": "user219"
+      },
+      {
+        "type": "LOVE",
+        "user": "user161"
+      },
+      {
+        "type": "LOVE",
+        "user": "user156"
+      },
+      {
+        "type": "WOW",
+        "user": "user244"
+      }
+    ],
+    "scraped_at": "2025-02-11T18:42:21.843632Z",
+    "message": "Waste of money, avoid this.",
+    "matched_keywords": [
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000156",
+    "page_id": "Avon",
+    "created_time": "2025-02-15T18:34:21.843632Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user66"
+      }
+    ],
+    "scraped_at": "2025-02-15T18:40:21.843632Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000157",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-07T18:34:21.843632Z",
+    "likes": 48,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user348"
+      }
+    ],
+    "scraped_at": "2025-04-07T18:41:21.843632Z",
+    "message": "Too expensive for the quality received.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000158",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-27T18:34:21.843632Z",
+    "likes": 8,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user222"
+      },
+      {
+        "type": "LOVE",
+        "user": "user133"
+      },
+      {
+        "type": "SAD",
+        "user": "user336"
+      }
+    ],
+    "scraped_at": "2025-03-27T18:35:21.843632Z",
+    "message": "The packaging was standard, nothing fancy.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000159",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-10T18:34:21.843632Z",
+    "likes": 14,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user253"
+      }
+    ],
+    "scraped_at": "2025-02-10T18:44:21.843632Z",
+    "message": "Customer service was unhelpful.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000160",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-03T18:34:21.843632Z",
+    "likes": 18,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user333"
+      },
+      {
+        "type": "WOW",
+        "user": "user108"
+      },
+      {
+        "type": "HAHA",
+        "user": "user136"
+      },
+      {
+        "type": "LOVE",
+        "user": "user337"
+      },
+      {
+        "type": "SAD",
+        "user": "user145"
+      }
+    ],
+    "scraped_at": "2025-03-03T18:43:21.843632Z",
+    "message": "Great value for the price.",
+    "matched_keywords": [
+      "avon order",
+      "avon discount",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000161",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-01T18:34:21.843632Z",
+    "likes": 14,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user93"
+      },
+      {
+        "type": "HAHA",
+        "user": "user111"
+      },
+      {
+        "type": "LIKE",
+        "user": "user1"
+      },
+      {
+        "type": "SAD",
+        "user": "user124"
+      }
+    ],
+    "scraped_at": "2025-04-01T18:42:21.843632Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon discount",
+      "avon delivery",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000162",
+    "page_id": "Avon",
+    "created_time": "2025-02-28T18:34:21.843632Z",
+    "likes": 40,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user277"
+      }
+    ],
+    "scraped_at": "2025-02-28T18:36:21.843632Z",
+    "message": "Arrived on time, works as intended.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000163",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-26T18:34:21.843632Z",
+    "likes": 50,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user50"
+      },
+      {
+        "type": "HAHA",
+        "user": "user27"
+      },
+      {
+        "type": "HAHA",
+        "user": "user78"
+      },
+      {
+        "type": "HAHA",
+        "user": "user199"
+      },
+      {
+        "type": "SAD",
+        "user": "user71"
+      }
+    ],
+    "scraped_at": "2025-03-26T18:38:21.843632Z",
+    "message": "My skin feels so smooth after using this lotion.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000164",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-02T18:34:21.843632Z",
+    "likes": 48,
+    "reactions": [],
+    "scraped_at": "2025-02-02T18:42:21.843632Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000165",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-21T18:34:21.843632Z",
+    "likes": 9,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user111"
+      }
+    ],
+    "scraped_at": "2025-03-21T18:36:21.843632Z",
+    "message": "Item arrived damaged.",
+    "matched_keywords": [
+      "avon care",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000166",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-25T18:34:21.843632Z",
+    "likes": 6,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user97"
+      },
+      {
+        "type": "WOW",
+        "user": "user226"
+      }
+    ],
+    "scraped_at": "2025-03-25T18:38:21.843632Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon order",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000167",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-20T18:34:21.843632Z",
+    "likes": 9,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user263"
+      },
+      {
+        "type": "WOW",
+        "user": "user130"
+      },
+      {
+        "type": "SAD",
+        "user": "user174"
+      },
+      {
+        "type": "SAD",
+        "user": "user41"
+      }
+    ],
+    "scraped_at": "2025-02-20T18:44:21.843632Z",
+    "message": "The applicator broke after first use.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000168",
+    "page_id": "Avon",
+    "created_time": "2025-03-13T18:34:21.843632Z",
+    "likes": 34,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user76"
+      },
+      {
+        "type": "WOW",
+        "user": "user307"
+      },
+      {
+        "type": "LOVE",
+        "user": "user110"
+      }
+    ],
+    "scraped_at": "2025-03-13T18:37:21.843632Z",
+    "message": "Received as expected.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000169",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-07T18:34:21.843632Z",
+    "likes": 11,
+    "reactions": [],
+    "scraped_at": "2025-03-07T18:44:21.843632Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon representative",
+      "avon naturals",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000170",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-05T18:34:21.843632Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user199"
+      },
+      {
+        "type": "WOW",
+        "user": "user242"
+      },
+      {
+        "type": "SAD",
+        "user": "user309"
+      }
+    ],
+    "scraped_at": "2025-03-05T18:44:21.843632Z",
+    "message": "Color is close to what I expected.",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000171",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-26T18:34:21.843632Z",
+    "likes": 21,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user245"
+      }
+    ],
+    "scraped_at": "2025-04-26T18:40:21.843632Z",
+    "message": "The size is as described.",
+    "matched_keywords": [
+      "avon discount",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000172",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-30T18:34:21.843632Z",
+    "likes": 15,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user41"
+      },
+      {
+        "type": "WOW",
+        "user": "user251"
+      },
+      {
+        "type": "HAHA",
+        "user": "user289"
+      },
+      {
+        "type": "LOVE",
+        "user": "user217"
+      }
+    ],
+    "scraped_at": "2025-04-30T18:40:21.843632Z",
+    "message": "Definitely buying more for gifts.",
+    "matched_keywords": [
+      "avon representative",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000173",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-09T18:34:21.843632Z",
+    "likes": 11,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user196"
+      }
+    ],
+    "scraped_at": "2025-04-09T18:44:21.843632Z",
+    "message": "Instructions were missing from the box.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000174",
+    "page_id": "Avon",
+    "created_time": "2025-02-05T18:34:21.843632Z",
+    "likes": 14,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user94"
+      },
+      {
+        "type": "HAHA",
+        "user": "user9"
+      },
+      {
+        "type": "SAD",
+        "user": "user271"
+      }
+    ],
+    "scraped_at": "2025-02-05T18:38:21.843632Z",
+    "message": "Highly recommend to everyone.",
+    "matched_keywords": [
+      "avon true",
+      "avon care",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000175",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-26T18:34:21.843632Z",
+    "likes": 31,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user178"
+      },
+      {
+        "type": "HAHA",
+        "user": "user39"
+      },
+      {
+        "type": "LIKE",
+        "user": "user318"
+      }
+    ],
+    "scraped_at": "2025-04-26T18:36:21.843632Z",
+    "message": "Exceeded my expectations!",
+    "matched_keywords": [
+      "avon brochure",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000176",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-08T18:34:21.843632Z",
+    "likes": 32,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user174"
+      },
+      {
+        "type": "SAD",
+        "user": "user35"
+      }
+    ],
+    "scraped_at": "2025-02-08T18:43:21.843632Z",
+    "message": "The product stopped working after a week.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000177",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-11T18:34:21.843632Z",
+    "likes": 4,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user329"
+      }
+    ],
+    "scraped_at": "2025-04-11T18:42:21.843632Z",
+    "message": "Customer support resolved my issue quickly.",
+    "matched_keywords": [
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000178",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-19T18:34:21.843632Z",
+    "likes": 9,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user239"
+      },
+      {
+        "type": "LIKE",
+        "user": "user335"
+      },
+      {
+        "type": "LOVE",
+        "user": "user226"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user37"
+      },
+      {
+        "type": "HAHA",
+        "user": "user275"
+      }
+    ],
+    "scraped_at": "2025-03-19T18:35:21.843632Z",
+    "message": "I had an allergic reaction to the cream.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon naturals",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000179",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-27T18:34:21.843632Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user281"
+      },
+      {
+        "type": "SAD",
+        "user": "user133"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user274"
+      }
+    ],
+    "scraped_at": "2025-04-27T18:38:21.843632Z",
+    "message": "Shipping time was average.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000180",
+    "page_id": "Avon",
+    "created_time": "2025-04-20T18:34:21.843632Z",
+    "likes": 25,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user67"
+      },
+      {
+        "type": "HAHA",
+        "user": "user82"
+      }
+    ],
+    "scraped_at": "2025-04-20T18:41:21.843632Z",
+    "message": "The product is okay.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon true",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000181",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-16T18:34:21.843632Z",
+    "likes": 33,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user309"
+      },
+      {
+        "type": "SAD",
+        "user": "user89"
+      },
+      {
+        "type": "HAHA",
+        "user": "user50"
+      },
+      {
+        "type": "LOVE",
+        "user": "user212"
+      },
+      {
+        "type": "LIKE",
+        "user": "user1"
+      }
+    ],
+    "scraped_at": "2025-02-16T18:37:21.843632Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon true",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000182",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-01T18:34:21.843632Z",
+    "likes": 5,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user177"
+      },
+      {
+        "type": "HAHA",
+        "user": "user326"
+      }
+    ],
+    "scraped_at": "2025-04-01T18:38:21.843632Z",
+    "message": "Poor quality, not worth the money.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon care",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000183",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-24T18:34:21.843632Z",
+    "likes": 18,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user240"
+      },
+      {
+        "type": "SAD",
+        "user": "user47"
+      },
+      {
+        "type": "SAD",
+        "user": "user155"
+      },
+      {
+        "type": "HAHA",
+        "user": "user221"
+      }
+    ],
+    "scraped_at": "2025-04-24T18:43:21.843632Z",
+    "message": "Customer service was unhelpful.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon campaign",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000184",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-19T18:34:21.843632Z",
+    "likes": 38,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user186"
+      }
+    ],
+    "scraped_at": "2025-03-19T18:36:21.843632Z",
+    "message": "Average experience.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000185",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-03T18:34:21.843632Z",
+    "likes": 30,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user188"
+      }
+    ],
+    "scraped_at": "2025-02-03T18:43:21.843632Z",
+    "message": "Very disappointed with the product.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000186",
+    "page_id": "Avon",
+    "created_time": "2025-02-16T18:34:21.843632Z",
+    "likes": 20,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user29"
+      },
+      {
+        "type": "HAHA",
+        "user": "user194"
+      },
+      {
+        "type": "LIKE",
+        "user": "user265"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user78"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user123"
+      }
+    ],
+    "scraped_at": "2025-02-16T18:41:21.843632Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "avon care",
+      "avon order",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000187",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-15T18:34:21.843632Z",
+    "likes": 27,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user163"
+      },
+      {
+        "type": "HAHA",
+        "user": "user20"
+      },
+      {
+        "type": "LOVE",
+        "user": "user294"
+      },
+      {
+        "type": "HAHA",
+        "user": "user50"
+      }
+    ],
+    "scraped_at": "2025-03-15T18:41:21.843632Z",
+    "message": "Shipping time was average.",
+    "matched_keywords": [
+      "avon order",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000188",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-05T18:34:21.843632Z",
+    "likes": 48,
+    "reactions": [],
+    "scraped_at": "2025-03-05T18:36:21.843632Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000189",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-30T18:34:21.843632Z",
+    "likes": 35,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user232"
+      },
+      {
+        "type": "WOW",
+        "user": "user176"
+      }
+    ],
+    "scraped_at": "2025-04-30T18:44:21.843632Z",
+    "message": "Not as described, very misleading.",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000190",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-01T18:34:21.843632Z",
+    "likes": 12,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user72"
+      },
+      {
+        "type": "LOVE",
+        "user": "user310"
+      }
+    ],
+    "scraped_at": "2025-03-01T18:35:21.843632Z",
+    "message": "I had an allergic reaction to the cream.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000191",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-18T18:34:21.843632Z",
+    "likes": 7,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user348"
+      }
+    ],
+    "scraped_at": "2025-04-18T18:43:21.843632Z",
+    "message": "Arrived on time, works as intended.",
+    "matched_keywords": [
+      "avon delivery",
+      "anew clinical",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000192",
+    "page_id": "Avon",
+    "created_time": "2025-03-23T18:34:21.843632Z",
+    "likes": 0,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user320"
+      }
+    ],
+    "scraped_at": "2025-03-23T18:38:21.843632Z",
+    "message": "Waste of money, avoid this.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000193",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-11T18:34:21.845141Z",
+    "likes": 43,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user298"
+      },
+      {
+        "type": "HAHA",
+        "user": "user253"
+      },
+      {
+        "type": "LIKE",
+        "user": "user184"
+      },
+      {
+        "type": "LIKE",
+        "user": "user134"
+      },
+      {
+        "type": "HAHA",
+        "user": "user197"
+      }
+    ],
+    "scraped_at": "2025-02-11T18:41:21.845141Z",
+    "message": "Item arrived damaged.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000194",
+    "page_id": "AvonUK",
+    "created_time": "2025-05-01T18:34:21.845141Z",
+    "likes": 7,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user38"
+      },
+      {
+        "type": "HAHA",
+        "user": "user47"
+      },
+      {
+        "type": "LIKE",
+        "user": "user49"
+      },
+      {
+        "type": "LOVE",
+        "user": "user199"
+      }
+    ],
+    "scraped_at": "2025-05-01T18:44:21.845141Z",
+    "message": "Absolutely wonderful experience!",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000195",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-16T18:34:21.845141Z",
+    "likes": 1,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user315"
+      },
+      {
+        "type": "LIKE",
+        "user": "user60"
+      },
+      {
+        "type": "HAHA",
+        "user": "user146"
+      }
+    ],
+    "scraped_at": "2025-04-16T18:43:21.845141Z",
+    "message": "Blends in with my other products just fine.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon naturals",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000196",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-30T18:34:21.845141Z",
+    "likes": 39,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user200"
+      },
+      {
+        "type": "LOVE",
+        "user": "user266"
+      },
+      {
+        "type": "WOW",
+        "user": "user166"
+      },
+      {
+        "type": "LIKE",
+        "user": "user173"
+      }
+    ],
+    "scraped_at": "2025-03-30T18:39:21.845141Z",
+    "message": "Difficult to get a refund.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000197",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-31T18:34:21.845141Z",
+    "likes": 14,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user251"
+      },
+      {
+        "type": "LOVE",
+        "user": "user315"
+      },
+      {
+        "type": "LOVE",
+        "user": "user227"
+      },
+      {
+        "type": "LIKE",
+        "user": "user227"
+      },
+      {
+        "type": "HAHA",
+        "user": "user249"
+      }
+    ],
+    "scraped_at": "2025-03-31T18:42:21.845141Z",
+    "message": "Product matches the description.",
+    "matched_keywords": [
+      "avon order",
+      "avon care",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000198",
+    "page_id": "Avon",
+    "created_time": "2025-04-07T18:34:21.845141Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user233"
+      }
+    ],
+    "scraped_at": "2025-04-07T18:39:21.845141Z",
+    "message": "Absolutely wonderful experience!",
+    "matched_keywords": [
+      "avon care",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000199",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-26T18:34:21.845141Z",
+    "likes": 39,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user323"
+      },
+      {
+        "type": "LOVE",
+        "user": "user172"
+      },
+      {
+        "type": "HAHA",
+        "user": "user13"
+      },
+      {
+        "type": "WOW",
+        "user": "user154"
+      }
+    ],
+    "scraped_at": "2025-02-26T18:36:21.845141Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000200",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-30T18:34:21.845141Z",
+    "likes": 2,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user313"
+      },
+      {
+        "type": "SAD",
+        "user": "user335"
+      },
+      {
+        "type": "HAHA",
+        "user": "user316"
+      },
+      {
+        "type": "LOVE",
+        "user": "user325"
+      }
+    ],
+    "scraped_at": "2025-04-30T18:36:21.845141Z",
+    "message": "Color is close to what I expected.",
+    "matched_keywords": [
+      "avon representative",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000201",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-06T18:34:21.845141Z",
+    "likes": 19,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user230"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user304"
+      }
+    ],
+    "scraped_at": "2025-02-06T18:43:21.845141Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon order",
+      "avon campaign",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000202",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-27T18:34:21.845141Z",
+    "likes": 6,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user133"
+      }
+    ],
+    "scraped_at": "2025-04-27T18:44:21.845141Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon care",
+      "avon discount",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000203",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-03T18:34:21.845141Z",
+    "likes": 26,
+    "reactions": [],
+    "scraped_at": "2025-02-03T18:37:21.845141Z",
+    "message": "My skin feels so smooth after using this lotion.",
+    "matched_keywords": [
+      "avon care",
+      "avon brochure",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000204",
+    "page_id": "Avon",
+    "created_time": "2025-04-27T18:34:21.845141Z",
+    "likes": 8,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user291"
+      },
+      {
+        "type": "SAD",
+        "user": "user19"
+      },
+      {
+        "type": "LOVE",
+        "user": "user182"
+      },
+      {
+        "type": "SAD",
+        "user": "user166"
+      }
+    ],
+    "scraped_at": "2025-04-27T18:38:21.845141Z",
+    "message": "My skin feels so smooth after using this lotion.",
+    "matched_keywords": [
+      "avon order",
+      "avon delivery",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000205",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-10T18:34:21.845141Z",
+    "likes": 9,
+    "reactions": [],
+    "scraped_at": "2025-04-10T18:39:21.845141Z",
+    "message": "I might buy again if on sale.",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000206",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-02T18:34:21.845141Z",
+    "likes": 23,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user337"
+      },
+      {
+        "type": "HAHA",
+        "user": "user114"
+      },
+      {
+        "type": "SAD",
+        "user": "user256"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user267"
+      }
+    ],
+    "scraped_at": "2025-02-02T18:35:21.845141Z",
+    "message": "Got a free sample, and it was amazing!",
+    "matched_keywords": [
+      "avon brochure",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000207",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-08T18:34:21.845141Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user129"
+      },
+      {
+        "type": "SAD",
+        "user": "user89"
+      },
+      {
+        "type": "WOW",
+        "user": "user252"
+      }
+    ],
+    "scraped_at": "2025-02-08T18:37:21.845141Z",
+    "message": "Color is close to what I expected.",
+    "matched_keywords": [
+      "avon discount",
+      "avon care",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000208",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-19T18:34:21.845141Z",
+    "likes": 33,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user143"
+      },
+      {
+        "type": "LOVE",
+        "user": "user18"
+      }
+    ],
+    "scraped_at": "2025-02-19T18:41:21.845141Z",
+    "message": "Five stars, will buy again.",
+    "matched_keywords": [
+      "avon order",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000209",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-01T18:34:21.845141Z",
+    "likes": 22,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user306"
+      },
+      {
+        "type": "HAHA",
+        "user": "user254"
+      },
+      {
+        "type": "HAHA",
+        "user": "user207"
+      }
+    ],
+    "scraped_at": "2025-03-01T18:37:21.845141Z",
+    "message": "Too expensive for the quality received.",
+    "matched_keywords": [
+      "avon discount",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000210",
+    "page_id": "Avon",
+    "created_time": "2025-02-16T18:34:21.845141Z",
+    "likes": 21,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user318"
+      },
+      {
+        "type": "LOVE",
+        "user": "user271"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user114"
+      },
+      {
+        "type": "LIKE",
+        "user": "user236"
+      }
+    ],
+    "scraped_at": "2025-02-16T18:38:21.845141Z",
+    "message": "Nothing special, nothing bad.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000211",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-02T18:34:21.845141Z",
+    "likes": 20,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user254"
+      }
+    ],
+    "scraped_at": "2025-02-02T18:41:21.845141Z",
+    "message": "My friends keep asking where I got this from.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000212",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-01T18:34:21.845141Z",
+    "likes": 9,
+    "reactions": [],
+    "scraped_at": "2025-03-01T18:44:21.845141Z",
+    "message": "Neither good nor bad, just average.",
+    "matched_keywords": [
+      "avon true",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000213",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-09T18:34:21.845141Z",
+    "likes": 4,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user347"
+      },
+      {
+        "type": "SAD",
+        "user": "user317"
+      }
+    ],
+    "scraped_at": "2025-03-09T18:36:21.845141Z",
+    "message": "Color is close to what I expected.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000214",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-27T18:34:21.845141Z",
+    "likes": 32,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user252"
+      },
+      {
+        "type": "LOVE",
+        "user": "user13"
+      },
+      {
+        "type": "SAD",
+        "user": "user223"
+      },
+      {
+        "type": "LOVE",
+        "user": "user303"
+      },
+      {
+        "type": "LIKE",
+        "user": "user17"
+      }
+    ],
+    "scraped_at": "2025-04-27T18:41:21.845141Z",
+    "message": "Customer service was unhelpful.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon campaign",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000215",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-20T18:34:21.845141Z",
+    "likes": 50,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user205"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user140"
+      }
+    ],
+    "scraped_at": "2025-02-20T18:43:21.845141Z",
+    "message": "Product matches the description.",
+    "matched_keywords": [
+      "avon delivery",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000216",
+    "page_id": "Avon",
+    "created_time": "2025-02-06T18:34:21.845141Z",
+    "likes": 6,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user136"
+      },
+      {
+        "type": "LIKE",
+        "user": "user38"
+      },
+      {
+        "type": "LIKE",
+        "user": "user121"
+      },
+      {
+        "type": "LOVE",
+        "user": "user268"
+      },
+      {
+        "type": "SAD",
+        "user": "user264"
+      }
+    ],
+    "scraped_at": "2025-02-06T18:41:21.845141Z",
+    "message": "Very disappointed with the product.",
+    "matched_keywords": [
+      "avon representative",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000217",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-23T18:34:21.845141Z",
+    "likes": 37,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user245"
+      },
+      {
+        "type": "LOVE",
+        "user": "user75"
+      }
+    ],
+    "scraped_at": "2025-03-23T18:37:21.845141Z",
+    "message": "Arrived on time, works as intended.",
+    "matched_keywords": [
+      "avon discount",
+      "avon true",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000218",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-01T18:34:21.845141Z",
+    "likes": 18,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user218"
+      },
+      {
+        "type": "WOW",
+        "user": "user82"
+      },
+      {
+        "type": "LIKE",
+        "user": "user19"
+      }
+    ],
+    "scraped_at": "2025-02-01T18:36:21.845141Z",
+    "message": "Easy to order and track shipment.",
+    "matched_keywords": [
+      "avon care",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000219",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-14T18:34:21.845141Z",
+    "likes": 28,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user328"
+      },
+      {
+        "type": "WOW",
+        "user": "user180"
+      },
+      {
+        "type": "LOVE",
+        "user": "user9"
+      },
+      {
+        "type": "LOVE",
+        "user": "user166"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user21"
+      }
+    ],
+    "scraped_at": "2025-02-14T18:41:21.845141Z",
+    "message": "Met my basic expectations.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000220",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-10T18:34:21.845141Z",
+    "likes": 6,
+    "reactions": [],
+    "scraped_at": "2025-04-10T18:38:21.845141Z",
+    "message": "Customer support resolved my issue quickly.",
+    "matched_keywords": [
+      "avon care",
+      "avon representative",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000221",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-17T18:34:21.845141Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user271"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user15"
+      },
+      {
+        "type": "HAHA",
+        "user": "user129"
+      }
+    ],
+    "scraped_at": "2025-02-17T18:42:21.845141Z",
+    "message": "No issues, but nothing stood out.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000222",
+    "page_id": "Avon",
+    "created_time": "2025-03-28T18:34:21.845141Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user157"
+      },
+      {
+        "type": "SAD",
+        "user": "user128"
+      },
+      {
+        "type": "HAHA",
+        "user": "user46"
+      }
+    ],
+    "scraped_at": "2025-03-28T18:35:21.845141Z",
+    "message": "Packaging was terrible, item leaked.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon campaign",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000223",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-17T18:34:21.845141Z",
+    "likes": 13,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user102"
+      },
+      {
+        "type": "HAHA",
+        "user": "user107"
+      },
+      {
+        "type": "SAD",
+        "user": "user169"
+      }
+    ],
+    "scraped_at": "2025-04-17T18:44:21.845141Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon discount",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000224",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-15T18:34:21.845141Z",
+    "likes": 5,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user281"
+      },
+      {
+        "type": "HAHA",
+        "user": "user261"
+      },
+      {
+        "type": "WOW",
+        "user": "user190"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user25"
+      }
+    ],
+    "scraped_at": "2025-04-15T18:37:21.845141Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "avon order",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000225",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-27T18:34:21.845141Z",
+    "likes": 22,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user258"
+      },
+      {
+        "type": "HAHA",
+        "user": "user16"
+      },
+      {
+        "type": "SAD",
+        "user": "user194"
+      },
+      {
+        "type": "HAHA",
+        "user": "user155"
+      },
+      {
+        "type": "SAD",
+        "user": "user256"
+      }
+    ],
+    "scraped_at": "2025-04-27T18:40:21.845141Z",
+    "message": "Exceeded my expectations!",
+    "matched_keywords": [
+      "anew clinical",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000226",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-22T18:34:21.845141Z",
+    "likes": 0,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user84"
+      },
+      {
+        "type": "HAHA",
+        "user": "user144"
+      },
+      {
+        "type": "HAHA",
+        "user": "user19"
+      },
+      {
+        "type": "HAHA",
+        "user": "user238"
+      }
+    ],
+    "scraped_at": "2025-04-22T18:40:21.845141Z",
+    "message": "The scent was overpowering and unpleasant.",
+    "matched_keywords": [
+      "avon discount",
+      "avon delivery",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000227",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-18T18:34:21.845141Z",
+    "likes": 40,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user344"
+      }
+    ],
+    "scraped_at": "2025-02-18T18:36:21.845141Z",
+    "message": "Instructions were clear and easy to follow.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon campaign",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000228",
+    "page_id": "Avon",
+    "created_time": "2025-03-19T18:34:21.845141Z",
+    "likes": 40,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user130"
+      },
+      {
+        "type": "LIKE",
+        "user": "user158"
+      }
+    ],
+    "scraped_at": "2025-03-19T18:42:21.845141Z",
+    "message": "Great value for the price.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon care",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000229",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-15T18:34:21.845141Z",
+    "likes": 32,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user180"
+      }
+    ],
+    "scraped_at": "2025-03-15T18:35:21.845141Z",
+    "message": "The product is okay.",
+    "matched_keywords": [
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000230",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-27T18:34:21.845141Z",
+    "likes": 11,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user222"
+      },
+      {
+        "type": "LIKE",
+        "user": "user256"
+      },
+      {
+        "type": "WOW",
+        "user": "user124"
+      },
+      {
+        "type": "WOW",
+        "user": "user140"
+      }
+    ],
+    "scraped_at": "2025-03-27T18:44:21.845141Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000231",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-18T18:34:21.845141Z",
+    "likes": 47,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user306"
+      },
+      {
+        "type": "SAD",
+        "user": "user256"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user191"
+      },
+      {
+        "type": "LIKE",
+        "user": "user265"
+      },
+      {
+        "type": "HAHA",
+        "user": "user32"
+      }
+    ],
+    "scraped_at": "2025-04-18T18:40:21.845141Z",
+    "message": "This is the best product I've tried from Avon.",
+    "matched_keywords": [
+      "avon order",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000232",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-09T18:34:21.845141Z",
+    "likes": 10,
+    "reactions": [],
+    "scraped_at": "2025-04-09T18:39:21.845141Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000233",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-23T18:34:21.845141Z",
+    "likes": 30,
+    "reactions": [],
+    "scraped_at": "2025-04-23T18:39:21.845141Z",
+    "message": "Nothing special, nothing bad.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000234",
+    "page_id": "Avon",
+    "created_time": "2025-02-18T18:34:21.845141Z",
+    "likes": 2,
+    "reactions": [],
+    "scraped_at": "2025-02-18T18:41:21.845141Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon true",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000235",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-07T18:34:21.845141Z",
+    "likes": 4,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user300"
+      },
+      {
+        "type": "LOVE",
+        "user": "user309"
+      }
+    ],
+    "scraped_at": "2025-03-07T18:41:21.845141Z",
+    "message": "The lipstick color is vibrant and stays on for hours.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000236",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-11T18:34:21.845141Z",
+    "likes": 22,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user161"
+      }
+    ],
+    "scraped_at": "2025-03-11T18:36:21.845141Z",
+    "message": "Shipping took far too long.",
+    "matched_keywords": [
+      "avon true",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000237",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-09T18:34:21.845141Z",
+    "likes": 29,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user79"
+      },
+      {
+        "type": "WOW",
+        "user": "user51"
+      },
+      {
+        "type": "HAHA",
+        "user": "user224"
+      },
+      {
+        "type": "LIKE",
+        "user": "user73"
+      },
+      {
+        "type": "HAHA",
+        "user": "user285"
+      }
+    ],
+    "scraped_at": "2025-03-09T18:40:21.845141Z",
+    "message": "Instructions were missing from the box.",
+    "matched_keywords": [
+      "avon order",
+      "avon campaign",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000238",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-08T18:34:21.845141Z",
+    "likes": 42,
+    "reactions": [],
+    "scraped_at": "2025-02-08T18:40:21.845141Z",
+    "message": "Blends in with my other products just fine.",
+    "matched_keywords": [
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000239",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-20T18:34:21.845141Z",
+    "likes": 50,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user164"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user21"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user285"
+      }
+    ],
+    "scraped_at": "2025-04-20T18:44:21.845141Z",
+    "message": "Color is close to what I expected.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000240",
+    "page_id": "Avon",
+    "created_time": "2025-02-24T18:34:21.845141Z",
+    "likes": 46,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user135"
+      },
+      {
+        "type": "LOVE",
+        "user": "user189"
+      },
+      {
+        "type": "SAD",
+        "user": "user43"
+      }
+    ],
+    "scraped_at": "2025-02-24T18:40:21.845141Z",
+    "message": "Five stars, will buy again.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000241",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-30T18:34:21.845141Z",
+    "likes": 47,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user160"
+      },
+      {
+        "type": "LIKE",
+        "user": "user208"
+      }
+    ],
+    "scraped_at": "2025-03-30T18:42:21.845141Z",
+    "message": "Fast delivery and excellent packaging.",
+    "matched_keywords": [
+      "avon representative",
+      "avon brochure",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000242",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-30T18:34:21.845141Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user251"
+      },
+      {
+        "type": "SAD",
+        "user": "user263"
+      }
+    ],
+    "scraped_at": "2025-04-30T18:43:21.845141Z",
+    "message": "Customer support never replied to my emails.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000243",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-02T18:34:21.845141Z",
+    "likes": 0,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user7"
+      },
+      {
+        "type": "LIKE",
+        "user": "user265"
+      },
+      {
+        "type": "LIKE",
+        "user": "user88"
+      },
+      {
+        "type": "LIKE",
+        "user": "user175"
+      },
+      {
+        "type": "SAD",
+        "user": "user111"
+      }
+    ],
+    "scraped_at": "2025-03-02T18:41:21.845141Z",
+    "message": "Left my skin feeling dry and irritated.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000244",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-19T18:34:21.845141Z",
+    "likes": 27,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user64"
+      },
+      {
+        "type": "LIKE",
+        "user": "user81"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user281"
+      },
+      {
+        "type": "HAHA",
+        "user": "user12"
+      }
+    ],
+    "scraped_at": "2025-04-19T18:42:21.845141Z",
+    "message": "Five stars, will buy again.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000245",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-02T18:34:21.845141Z",
+    "likes": 31,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user296"
+      },
+      {
+        "type": "HAHA",
+        "user": "user287"
+      },
+      {
+        "type": "LOVE",
+        "user": "user138"
+      }
+    ],
+    "scraped_at": "2025-02-02T18:37:21.845141Z",
+    "message": "Product matches the description.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000246",
+    "page_id": "Avon",
+    "created_time": "2025-03-30T18:34:21.845141Z",
+    "likes": 45,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user187"
+      },
+      {
+        "type": "LIKE",
+        "user": "user265"
+      },
+      {
+        "type": "HAHA",
+        "user": "user279"
+      },
+      {
+        "type": "LOVE",
+        "user": "user128"
+      }
+    ],
+    "scraped_at": "2025-03-30T18:37:21.845141Z",
+    "message": "This is the best product I've tried from Avon.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000247",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-11T18:34:21.845141Z",
+    "likes": 45,
+    "reactions": [],
+    "scraped_at": "2025-04-11T18:39:21.845141Z",
+    "message": "Easy to order and track shipment.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000248",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-26T18:34:21.845141Z",
+    "likes": 37,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user302"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user50"
+      },
+      {
+        "type": "WOW",
+        "user": "user146"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user159"
+      },
+      {
+        "type": "HAHA",
+        "user": "user176"
+      }
+    ],
+    "scraped_at": "2025-02-26T18:36:21.845141Z",
+    "message": "Item arrived damaged.",
+    "matched_keywords": [
+      "anew clinical",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000249",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-08T18:34:21.845141Z",
+    "likes": 30,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user302"
+      }
+    ],
+    "scraped_at": "2025-02-08T18:41:21.845141Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon true",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000250",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-04T18:34:21.845141Z",
+    "likes": 25,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user208"
+      },
+      {
+        "type": "LIKE",
+        "user": "user74"
+      }
+    ],
+    "scraped_at": "2025-04-04T18:44:21.845141Z",
+    "message": "Customer service was unhelpful.",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000251",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-07T18:34:21.845141Z",
+    "likes": 33,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user155"
+      },
+      {
+        "type": "HAHA",
+        "user": "user155"
+      },
+      {
+        "type": "HAHA",
+        "user": "user12"
+      },
+      {
+        "type": "WOW",
+        "user": "user284"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user115"
+      }
+    ],
+    "scraped_at": "2025-03-07T18:39:21.845141Z",
+    "message": "The size is as described.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000252",
+    "page_id": "Avon",
+    "created_time": "2025-03-25T18:34:21.845141Z",
+    "likes": 40,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user323"
+      },
+      {
+        "type": "HAHA",
+        "user": "user9"
+      },
+      {
+        "type": "LIKE",
+        "user": "user321"
+      },
+      {
+        "type": "SAD",
+        "user": "user120"
+      },
+      {
+        "type": "WOW",
+        "user": "user19"
+      }
+    ],
+    "scraped_at": "2025-03-25T18:36:21.845141Z",
+    "message": "Shipping time was average.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon order",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000253",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-04T18:34:21.845141Z",
+    "likes": 20,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user41"
+      },
+      {
+        "type": "HAHA",
+        "user": "user32"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user296"
+      }
+    ],
+    "scraped_at": "2025-04-04T18:43:21.845141Z",
+    "message": "Exceeded my expectations!",
+    "matched_keywords": [
+      "anew clinical",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000254",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-26T18:34:21.845141Z",
+    "likes": 32,
+    "reactions": [],
+    "scraped_at": "2025-04-26T18:43:21.845141Z",
+    "message": "Amazing quality and fast shipping.",
+    "matched_keywords": [
+      "avon order",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000255",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-08T18:34:21.845141Z",
+    "likes": 39,
+    "reactions": [],
+    "scraped_at": "2025-03-08T18:37:21.845141Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon discount",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000256",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-26T18:34:21.845141Z",
+    "likes": 42,
+    "reactions": [],
+    "scraped_at": "2025-04-26T18:37:21.845141Z",
+    "message": "Packaging was terrible, item leaked.",
+    "matched_keywords": [
+      "avon true",
+      "anew clinical",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000257",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-13T18:34:21.845141Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user294"
+      }
+    ],
+    "scraped_at": "2025-02-13T18:40:21.845141Z",
+    "message": "Left my skin feeling dry and irritated.",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000258",
+    "page_id": "Avon",
+    "created_time": "2025-02-18T18:34:21.845141Z",
+    "likes": 22,
+    "reactions": [],
+    "scraped_at": "2025-02-18T18:37:21.845141Z",
+    "message": "Blends in with my other products just fine.",
+    "matched_keywords": [
+      "avon order",
+      "avon naturals",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000259",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-21T18:34:21.845141Z",
+    "likes": 32,
+    "reactions": [],
+    "scraped_at": "2025-04-21T18:36:21.845141Z",
+    "message": "Nothing special, nothing bad.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000260",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-03T18:34:21.845141Z",
+    "likes": 31,
+    "reactions": [],
+    "scraped_at": "2025-03-03T18:41:21.845141Z",
+    "message": "Would not recommend.",
+    "matched_keywords": [
+      "avon order",
+      "avon brochure",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000261",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-12T18:34:21.845141Z",
+    "likes": 13,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user323"
+      },
+      {
+        "type": "HAHA",
+        "user": "user241"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user332"
+      }
+    ],
+    "scraped_at": "2025-04-12T18:40:21.845141Z",
+    "message": "Five stars, will buy again.",
+    "matched_keywords": [
+      "avon discount",
+      "avon delivery",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000262",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-03T18:34:21.845141Z",
+    "likes": 6,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user127"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user217"
+      }
+    ],
+    "scraped_at": "2025-03-03T18:41:21.845141Z",
+    "message": "Very satisfied with my purchase.",
+    "matched_keywords": [
+      "avon order",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000263",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-01T18:34:21.845141Z",
+    "likes": 16,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user13"
+      },
+      {
+        "type": "WOW",
+        "user": "user111"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user118"
+      },
+      {
+        "type": "HAHA",
+        "user": "user28"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user239"
+      }
+    ],
+    "scraped_at": "2025-02-01T18:38:21.845141Z",
+    "message": "Instructions were clear and easy to follow.",
+    "matched_keywords": [
+      "avon campaign",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000264",
+    "page_id": "Avon",
+    "created_time": "2025-03-30T18:34:21.845141Z",
+    "likes": 11,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user57"
+      },
+      {
+        "type": "SAD",
+        "user": "user49"
+      }
+    ],
+    "scraped_at": "2025-03-30T18:43:21.845141Z",
+    "message": "Waste of money, avoid this.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon campaign",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000265",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-27T18:34:21.845141Z",
+    "likes": 43,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user202"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user188"
+      },
+      {
+        "type": "WOW",
+        "user": "user190"
+      },
+      {
+        "type": "HAHA",
+        "user": "user56"
+      },
+      {
+        "type": "LIKE",
+        "user": "user337"
+      }
+    ],
+    "scraped_at": "2025-02-27T18:41:21.845141Z",
+    "message": "Instructions were missing from the box.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000266",
+    "page_id": "AvonUK",
+    "created_time": "2025-03-18T18:34:21.845141Z",
+    "likes": 33,
+    "reactions": [],
+    "scraped_at": "2025-03-18T18:40:21.845141Z",
+    "message": "Packaging was terrible, item leaked.",
+    "matched_keywords": [
+      "avon true",
+      "avon discount",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000267",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-30T18:34:21.845141Z",
+    "likes": 30,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user283"
+      },
+      {
+        "type": "SAD",
+        "user": "user83"
+      },
+      {
+        "type": "LOVE",
+        "user": "user117"
+      }
+    ],
+    "scraped_at": "2025-04-30T18:43:21.845141Z",
+    "message": "Got a free sample, and it was amazing!",
+    "matched_keywords": [
+      "avon brochure",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000268",
+    "page_id": "141628782532797",
+    "created_time": "2025-04-08T18:34:21.845141Z",
+    "likes": 27,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user72"
+      },
+      {
+        "type": "LOVE",
+        "user": "user308"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user21"
+      },
+      {
+        "type": "SAD",
+        "user": "user258"
+      },
+      {
+        "type": "WOW",
+        "user": "user201"
+      }
+    ],
+    "scraped_at": "2025-04-08T18:41:21.845141Z",
+    "message": "Customer support never replied to my emails.",
+    "matched_keywords": [
+      "avon campaign",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000269",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-16T18:34:21.845141Z",
+    "likes": 20,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user245"
+      },
+      {
+        "type": "SAD",
+        "user": "user271"
+      },
+      {
+        "type": "LIKE",
+        "user": "user312"
+      }
+    ],
+    "scraped_at": "2025-02-16T18:38:21.845141Z",
+    "message": "Very satisfied with my purchase.",
+    "matched_keywords": [
+      "avon care",
+      "avon delivery",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000270",
+    "page_id": "Avon",
+    "created_time": "2025-04-17T18:34:21.845141Z",
+    "likes": 19,
+    "reactions": [],
+    "scraped_at": "2025-04-17T18:41:21.845141Z",
+    "message": "Highly recommend to everyone.",
+    "matched_keywords": [
+      "avon representative",
+      "avon order",
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000271",
+    "page_id": "AvonInsider",
+    "created_time": "2025-03-27T18:34:21.845141Z",
+    "likes": 15,
+    "reactions": [],
+    "scraped_at": "2025-03-27T18:36:21.845141Z",
+    "message": "The product is okay.",
+    "matched_keywords": [
+      "avon care",
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000272",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-14T18:34:21.845141Z",
+    "likes": 5,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user126"
+      },
+      {
+        "type": "WOW",
+        "user": "user246"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user43"
+      }
+    ],
+    "scraped_at": "2025-04-14T18:35:21.845141Z",
+    "message": "Shipping took far too long.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000273",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-20T18:34:21.845141Z",
+    "likes": 36,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user304"
+      },
+      {
+        "type": "LOVE",
+        "user": "user73"
+      }
+    ],
+    "scraped_at": "2025-02-20T18:41:21.845141Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon campaign",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000274",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-06T18:34:21.845141Z",
+    "likes": 38,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user117"
+      }
+    ],
+    "scraped_at": "2025-02-06T18:44:21.845141Z",
+    "message": "Arrived on time, works as intended.",
+    "matched_keywords": [
+      "avon discount",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000275",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-03-23T18:34:21.845141Z",
+    "likes": 16,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user88"
+      },
+      {
+        "type": "LOVE",
+        "user": "user173"
+      },
+      {
+        "type": "SAD",
+        "user": "user78"
+      }
+    ],
+    "scraped_at": "2025-03-23T18:37:21.845141Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000276",
+    "page_id": "Avon",
+    "created_time": "2025-03-12T18:34:21.845141Z",
+    "likes": 45,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user321"
+      },
+      {
+        "type": "LIKE",
+        "user": "user214"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user320"
+      },
+      {
+        "type": "LOVE",
+        "user": "user322"
+      },
+      {
+        "type": "WOW",
+        "user": "user94"
+      }
+    ],
+    "scraped_at": "2025-03-12T18:39:21.845141Z",
+    "message": "Love the packaging design, very elegant.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000277",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-24T18:34:21.845141Z",
+    "likes": 8,
+    "reactions": [
+      {
+        "type": "ANGRY",
+        "user": "user249"
+      }
+    ],
+    "scraped_at": "2025-04-24T18:36:21.845141Z",
+    "message": "Too expensive for the quality received.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000278",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-08T18:34:21.845141Z",
+    "likes": 29,
+    "reactions": [],
+    "scraped_at": "2025-04-08T18:40:21.845141Z",
+    "message": "The applicator broke after first use.",
+    "matched_keywords": [
+      "avon brochure",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000279",
+    "page_id": "AvonUSA",
+    "created_time": "2025-04-18T18:34:21.845141Z",
+    "likes": 50,
+    "reactions": [],
+    "scraped_at": "2025-04-18T18:38:21.845141Z",
+    "message": "Very disappointed with the product.",
+    "matched_keywords": [
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000280",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-19T18:34:21.845141Z",
+    "likes": 41,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user20"
+      },
+      {
+        "type": "LIKE",
+        "user": "user105"
+      },
+      {
+        "type": "LIKE",
+        "user": "user92"
+      }
+    ],
+    "scraped_at": "2025-03-19T18:36:21.845141Z",
+    "message": "My skin feels so smooth after using this lotion.",
+    "matched_keywords": [
+      "avon order",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000281",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-25T18:34:21.845141Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user94"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user292"
+      }
+    ],
+    "scraped_at": "2025-04-25T18:41:21.845141Z",
+    "message": "Met my basic expectations.",
+    "matched_keywords": [
+      "avon care",
+      "avon discount",
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000282",
+    "page_id": "Avon",
+    "created_time": "2025-02-09T18:34:21.845141Z",
+    "likes": 41,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user242"
+      },
+      {
+        "type": "WOW",
+        "user": "user282"
+      },
+      {
+        "type": "LIKE",
+        "user": "user197"
+      },
+      {
+        "type": "WOW",
+        "user": "user42"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user15"
+      }
+    ],
+    "scraped_at": "2025-02-09T18:42:21.845141Z",
+    "message": "Got a free sample, and it was amazing!",
+    "matched_keywords": [
+      "avon delivery"
+    ]
+  },
+  {
+    "post_id": "1000283",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-08T18:34:21.845141Z",
+    "likes": 13,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user209"
+      },
+      {
+        "type": "SAD",
+        "user": "user337"
+      }
+    ],
+    "scraped_at": "2025-02-08T18:37:21.845141Z",
+    "message": "Arrived on time, works as intended.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000284",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-05T18:34:21.845141Z",
+    "likes": 45,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user194"
+      },
+      {
+        "type": "LOVE",
+        "user": "user241"
+      },
+      {
+        "type": "LOVE",
+        "user": "user69"
+      },
+      {
+        "type": "WOW",
+        "user": "user184"
+      },
+      {
+        "type": "SAD",
+        "user": "user208"
+      }
+    ],
+    "scraped_at": "2025-02-05T18:41:21.845141Z",
+    "message": "The fragrance is so refreshing and lasts all day.",
+    "matched_keywords": [
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000285",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-02T18:34:21.845141Z",
+    "likes": 33,
+    "reactions": [],
+    "scraped_at": "2025-03-02T18:36:21.845141Z",
+    "message": "Packaging was terrible, item leaked.",
+    "matched_keywords": [
+      "avon order",
+      "avon campaign",
+      "avon brochure"
+    ]
+  },
+  {
+    "post_id": "1000286",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-26T18:34:21.845141Z",
+    "likes": 35,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user81"
+      },
+      {
+        "type": "SAD",
+        "user": "user263"
+      },
+      {
+        "type": "LIKE",
+        "user": "user133"
+      },
+      {
+        "type": "SAD",
+        "user": "user190"
+      },
+      {
+        "type": "WOW",
+        "user": "user247"
+      }
+    ],
+    "scraped_at": "2025-02-26T18:36:21.845141Z",
+    "message": "I love this Avon product!",
+    "matched_keywords": [
+      "anew clinical",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000287",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-20T18:34:21.845141Z",
+    "likes": 50,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user126"
+      },
+      {
+        "type": "SAD",
+        "user": "user294"
+      },
+      {
+        "type": "HAHA",
+        "user": "user62"
+      }
+    ],
+    "scraped_at": "2025-02-20T18:36:21.845141Z",
+    "message": "Great value for the price.",
+    "matched_keywords": [
+      "avon order"
+    ]
+  },
+  {
+    "post_id": "1000288",
+    "page_id": "Avon",
+    "created_time": "2025-04-26T18:34:21.845141Z",
+    "likes": 25,
+    "reactions": [],
+    "scraped_at": "2025-04-26T18:38:21.845141Z",
+    "message": "Highly recommend to everyone.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon order",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000289",
+    "page_id": "AvonInsider",
+    "created_time": "2025-02-12T18:34:21.845141Z",
+    "likes": 27,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user28"
+      },
+      {
+        "type": "LIKE",
+        "user": "user33"
+      },
+      {
+        "type": "HAHA",
+        "user": "user230"
+      }
+    ],
+    "scraped_at": "2025-02-12T18:38:21.845141Z",
+    "message": "Customer support never replied to my emails.",
+    "matched_keywords": [
+      "avon representative",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000290",
+    "page_id": "AvonUK",
+    "created_time": "2025-02-10T18:34:21.845141Z",
+    "likes": 6,
+    "reactions": [],
+    "scraped_at": "2025-02-10T18:35:21.845141Z",
+    "message": "Used it a few times, results are decent.",
+    "matched_keywords": [
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000291",
+    "page_id": "AvonUSA",
+    "created_time": "2025-02-26T18:34:21.845141Z",
+    "likes": 40,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user330"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user296"
+      }
+    ],
+    "scraped_at": "2025-02-26T18:41:21.845141Z",
+    "message": "Customer support resolved my issue quickly.",
+    "matched_keywords": [
+      "avon campaign"
+    ]
+  },
+  {
+    "post_id": "1000292",
+    "page_id": "141628782532797",
+    "created_time": "2025-03-12T18:34:21.845141Z",
+    "likes": 16,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user194"
+      },
+      {
+        "type": "LOVE",
+        "user": "user301"
+      }
+    ],
+    "scraped_at": "2025-03-12T18:36:21.845141Z",
+    "message": "Customer support resolved my issue quickly.",
+    "matched_keywords": [
+      "avon discount",
+      "avon delivery",
+      "anew clinical"
+    ]
+  },
+  {
+    "post_id": "1000293",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-04-07T18:34:21.845141Z",
+    "likes": 23,
+    "reactions": [
+      {
+        "type": "LOVE",
+        "user": "user187"
+      },
+      {
+        "type": "WOW",
+        "user": "user166"
+      },
+      {
+        "type": "LIKE",
+        "user": "user79"
+      },
+      {
+        "type": "LOVE",
+        "user": "user107"
+      },
+      {
+        "type": "LIKE",
+        "user": "user85"
+      }
+    ],
+    "scraped_at": "2025-04-07T18:36:21.845141Z",
+    "message": "The fragrance is so refreshing and lasts all day.",
+    "matched_keywords": [
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000294",
+    "page_id": "Avon",
+    "created_time": "2025-02-01T18:34:21.845141Z",
+    "likes": 40,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user161"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user61"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user203"
+      },
+      {
+        "type": "LOVE",
+        "user": "user133"
+      },
+      {
+        "type": "SAD",
+        "user": "user89"
+      }
+    ],
+    "scraped_at": "2025-02-01T18:36:21.845141Z",
+    "message": "Shipping took far too long.",
+    "matched_keywords": [
+      "avon order",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000295",
+    "page_id": "AvonInsider",
+    "created_time": "2025-04-24T18:34:21.845141Z",
+    "likes": 34,
+    "reactions": [
+      {
+        "type": "WOW",
+        "user": "user106"
+      },
+      {
+        "type": "SAD",
+        "user": "user333"
+      },
+      {
+        "type": "LIKE",
+        "user": "user137"
+      },
+      {
+        "type": "HAHA",
+        "user": "user174"
+      },
+      {
+        "type": "WOW",
+        "user": "user144"
+      }
+    ],
+    "scraped_at": "2025-04-24T18:41:21.845141Z",
+    "message": "It's fine for the price.",
+    "matched_keywords": [
+      "avon discount",
+      "avon naturals"
+    ]
+  },
+  {
+    "post_id": "1000296",
+    "page_id": "AvonUK",
+    "created_time": "2025-04-07T18:34:21.845141Z",
+    "likes": 31,
+    "reactions": [
+      {
+        "type": "LIKE",
+        "user": "user152"
+      },
+      {
+        "type": "WOW",
+        "user": "user162"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user159"
+      },
+      {
+        "type": "LOVE",
+        "user": "user193"
+      },
+      {
+        "type": "HAHA",
+        "user": "user231"
+      }
+    ],
+    "scraped_at": "2025-04-07T18:38:21.845141Z",
+    "message": "Amazing quality and fast shipping.",
+    "matched_keywords": [
+      "avon naturals",
+      "anew clinical",
+      "avon true"
+    ]
+  },
+  {
+    "post_id": "1000297",
+    "page_id": "AvonUSA",
+    "created_time": "2025-03-15T18:34:21.845141Z",
+    "likes": 44,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user196"
+      },
+      {
+        "type": "HAHA",
+        "user": "user29"
+      },
+      {
+        "type": "WOW",
+        "user": "user226"
+      }
+    ],
+    "scraped_at": "2025-03-15T18:41:21.845141Z",
+    "message": "Item arrived damaged.",
+    "matched_keywords": [
+      "avon delivery",
+      "avon discount"
+    ]
+  },
+  {
+    "post_id": "1000298",
+    "page_id": "141628782532797",
+    "created_time": "2025-02-02T18:34:21.845141Z",
+    "likes": 17,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user164"
+      },
+      {
+        "type": "LOVE",
+        "user": "user181"
+      }
+    ],
+    "scraped_at": "2025-02-02T18:36:21.845141Z",
+    "message": "The shade did not match the description.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon delivery",
+      "avon care"
+    ]
+  },
+  {
+    "post_id": "1000299",
+    "page_id": "YourBeautyWithAvon",
+    "created_time": "2025-02-20T18:34:21.845141Z",
+    "likes": 20,
+    "reactions": [
+      {
+        "type": "HAHA",
+        "user": "user38"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user10"
+      },
+      {
+        "type": "ANGRY",
+        "user": "user281"
+      },
+      {
+        "type": "LIKE",
+        "user": "user126"
+      },
+      {
+        "type": "WOW",
+        "user": "user178"
+      }
+    ],
+    "scraped_at": "2025-02-20T18:39:21.845141Z",
+    "message": "Poor quality, not worth the money.",
+    "matched_keywords": [
+      "avon naturals",
+      "avon representative"
+    ]
+  },
+  {
+    "post_id": "1000300",
+    "page_id": "Avon",
+    "created_time": "2025-04-04T18:34:21.845141Z",
+    "likes": 41,
+    "reactions": [
+      {
+        "type": "SAD",
+        "user": "user123"
+      }
+    ],
+    "scraped_at": "2025-04-04T18:38:21.845141Z",
+    "message": "I love this Avon product!",
+    "matched_keywords": [
+      "anew clinical"
+    ]
+  }
+]

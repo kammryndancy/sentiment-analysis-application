@@ -43,13 +43,14 @@ const FeedList = () => {
         {feeds.map((feed, idx) => (
           <FeedCard
             key={feed._id || idx}
-            user={feed.username || feed.user || 'Unknown'}
-            time={feed.created_time || ''}
-            sentiment={
-              feed.weighted_sentiment > 0.05 ? 'positive' : feed.weighted_sentiment < -0.05 ? 'negative' : 'neutral'
-            }
+            page_id={feed.page_id}
+            created_time={feed.created_time}
+            sentiment={feed.weighted_sentiment > 0.05 ? 'positive' : feed.weighted_sentiment < -0.05 ? 'negative' : 'neutral'}
             text={feed.message || feed.text || ''}
             tags={[feed._extreme]}
+            matched_keywords={feed.matched_keywords}
+            likes={feed.likes}
+            weighted_sentiment={feed.weighted_sentiment}
           />
         ))}
       </div>

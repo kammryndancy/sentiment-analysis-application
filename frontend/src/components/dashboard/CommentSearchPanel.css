@@ -1,0 +1,107 @@
+.comment-search-panel {
+  background: #223322;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 24px 20px 18px 20px;
+  margin: 0 0 20px 0;
+  color: #e2e2e2;
+}
+
+.comment-search-panel h2 {
+  color: #7dd87d;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.search-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.search-controls label {
+  font-weight: 500;
+  color: #7dd87d;
+}
+
+.search-controls select,
+.search-controls input {
+  background: #1c271c;
+  color: #e2e2e2;
+  border-radius: 6px;
+  border: 1px solid #314d31;
+  padding: 6px 10px;
+  font-size: 1rem;
+}
+
+.search-controls select:focus,
+.search-controls input:focus,
+.search-controls input[type="text"]:focus,
+.search-controls input[type="text"]:focus-visible {
+  border: 1.5px solid #7dd87d;
+}
+
+.table-wrapper {
+  background: #1c271c;
+  border-radius: 8px;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.comment-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.comment-table th,
+.comment-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #2e3b2e;
+}
+
+.comment-table th {
+  color: #7dd87d;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  background: #223322;
+}
+
+.comment-table tbody tr:hover {
+  background: #273927;
+}
+
+.loading {
+  text-align: center;
+  color: #aef4c2;
+  margin: 20px 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.pagination button {
+  background: #7dd87d;
+  color: #223322;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pagination button:disabled {
+  background: #444;
+  color: #aaa;
+  cursor: default;
+}

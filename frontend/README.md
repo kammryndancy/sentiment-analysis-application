@@ -1,35 +1,51 @@
-# Sentiment Analysis Frontend
+# Sentiment Analysis Dashboard (Frontend)
 
-This is the React-based frontend for the Sentiment Analysis Application.
+This is the modern React-based frontend for the Avon Social Media Sentiment Analysis Application.
+
+## Features
+- **Interactive Dashboard:**
+  - Real-time word cloud with sentiment-based color gradients
+  - Top/bottom sentiment word lists with cross-highlighting
+  - Comments/posts over time chart
+  - Recent feeds and Hot Topics panels
+- **Consistent Styling:**
+  - Dark, cohesive dashboard theme
+  - Responsive layout
+- **Error & Loading Handling:**
+  - User-friendly loading and error states for all analytics panels
+- **API Integration:**
+  - Connects to the Node.js/Express backend API
+  - Fetches processed social media data, analytics, and visualizations
 
 ## Getting Started
-
-1. Install dependencies:
+1. **Install dependencies:**
    ```bash
    npm install
    ```
-2. Start the development server:
+2. **Start the development server:**
    ```bash
    npm run dev
    ```
-3. The app will be available at [http://localhost:5173](http://localhost:5173) by default.
+   The app will be available at [http://localhost:5173](http://localhost:5173) by default.
 
 ## Project Structure
-- `/src`: Main source code for the React app
-- `/public`: Static assets
-
-## Integration
-- The frontend is designed to connect to the backend API described in the project documentation.
-- Update API endpoints in the code as needed to match your backend configuration.
+- `/src/components/dashboard/` — Dashboard panels (AnalyticsPanel, FeedList, etc.)
+- `/src/components/visualizations/` — Custom charts and word cloud
+- `/src/api/` — API request logic
+- `/public/` — Static assets
 
 ## Customization
-- Update components in `/src` to build out the dashboard, charts, filters, and other features described in the documentation.
+- All dashboard panels and visualizations are fully customizable in `/src/components/`
+- API endpoints can be configured in `/src/api/`
 
 ## Build for Production
 ```bash
 npm run build
 ```
 
----
+## Requirements
+- Node.js 18+
+- Backend API (see `../backend/api/README.md`)
 
-For more details, see the main project documentation in the `../documents` directory.
+---
+For backend and data scraping setup, see the backend API README.

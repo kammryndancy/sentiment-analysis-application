@@ -19,27 +19,36 @@
 .feed-card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 2px;
+  gap: 16px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
 }
 .feed-card-user {
-  font-weight: bold;
+  font-weight: 600;
   color: #7dd87d;
   font-size: 1.07rem;
 }
 .feed-card-time {
-  color: #aef4c2;
-  font-size: 0.95rem;
+  color: #b6f7b6;
+  font-size: 0.98rem;
+  margin-right: 8px;
 }
 .feed-card-text {
   color: #e3f9e3;
   font-size: 1.08rem;
   margin-bottom: 4px;
 }
+.feed-card-tags-keywords-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
 .feed-card-tags {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 }
 .feed-card-tag {
   background: #2c3e2c;
@@ -52,4 +61,65 @@
   margin-bottom: 3px;
   display: inline-block;
   border: 1px solid #314d31;
+}
+.feed-card-keywords {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.feed-card-keywords-label {
+  font-weight: 600;
+  color: #7dd87d;
+  margin-right: 8px;
+  font-size: 0.98em;
+}
+.feed-card-keyword {
+  background: #334d33;
+  color: #b6f7b6;
+  border-radius: 6px;
+  padding: 2px 10px;
+  font-size: 0.95em;
+  margin-right: 4px;
+  margin-bottom: 2px;
+  display: inline-block;
+}
+.feed-card-likes {
+  display: flex;
+  align-items: center;
+  background: #263326;
+  border-radius: 16px;
+  padding: 2px 10px 2px 6px;
+  font-size: 0.97rem;
+  color: #ffe066;
+  margin-right: 6px;
+}
+.feed-card-likes-icon {
+  margin-right: 4px;
+}
+.feed-card-weighted-sentiment {
+  display: flex;
+  align-items: center;
+  background: #263326;
+  border-radius: 16px;
+  padding: 2px 10px;
+  font-size: 0.97rem;
+  color: #aee8ff;
+}
+.feed-card-weighted-label {
+  font-weight: 500;
+  margin-right: 4px;
+  color: #8ecae6;
+}
+.feed-card-weighted-value {
+  font-size: 1.01em;
+  font-weight: 600;
+  &.red {
+    color: #e74c3c;
+  }
+  &.green {
+    color: #2ecc40;
+  }
+  &.yellow {
+    color: #f1c40f;
+  }
 }

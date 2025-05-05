@@ -225,6 +225,7 @@ class DataProcessor {
 
     return {
       ...anonymizedComment,
+      created_time: comment.created_time ? new Date(comment.created_time) : new Date(),
       matched_keywords: comment.matched_keywords,
       original_message: comment.message,
       processed_message: processedText.text,
@@ -274,6 +275,7 @@ class DataProcessor {
 
     return {
       ...anonymizedPost,
+      created_time: post.created_time ? new Date(post.created_time) : new Date(),
       matched_keywords: post.matched_keywords,
       original_message: post.message,
       processed_message: processedText.text,

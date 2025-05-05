@@ -16,6 +16,12 @@ async function importDummyComments() {
     const db = client.db(dbName);
     const collection = db.collection(collectionName);
     const comments = JSON.parse(fs.readFileSync('./scripts/dummy_scraped_comments.json', 'utf-8'));
+    // Convert string dates to Date objects for created_time
+    comments.forEach(comment => {
+      if (comment.created_time && typeof comment.created_time === 'string') {
+        comment.created_time = new Date(comment.created_time);
+      }
+    });
     // Remove all existing dummy comments (optional, comment out if not desired)
     await collection.deleteMany({});
     await collection.insertMany(comments);
